@@ -1,16 +1,18 @@
 import pytz
 import asyncio
+
 from config import Config
-from src.database.run_db import create_db
 
 from aiogram import Bot, Dispatcher
 from aiogram.client.bot import DefaultBotProperties
 from aiogram.fsm.storage.memory import MemoryStorage
 from aiogram_dialog import setup_dialogs
 
-from src.handlers.chat_commands import chat_handler as chat_cmd_router
-from src.handlers.bot_commands import bot_handler as bot_cmd_router
-from src.dialogs.dialogs_manager import user_panel_dialog
+from src.database.run_db import create_db
+
+from src.handlers.commands import router as commands_router
+
+from src.dialogs.dialogs_manager import user_dialog
 
 bot = Bot(Config.bot_token, default=DefaultBotProperties(parse_mode='HTML'))
 
@@ -20,10 +22,9 @@ async def aiogram_run():
 
     # Подключение роутеров
     dp.include_routers(
-        user_panel_dialog,
+        user_dialog,
 
-        bot_cmd_router,
-        chat_cmd_router
+        commands_router
     )
 
     setup_dialogs(dp)

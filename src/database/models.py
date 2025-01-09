@@ -5,8 +5,7 @@ from sqlalchemy.orm import Mapped, mapped_column, DeclarativeBase, relationship
 class Base(AsyncAttrs, DeclarativeBase):
     pass
 
-
-# Информация о Пользователе
+# Пользователи
 class User(Base):
     __tablename__ = "users"
 
@@ -14,36 +13,45 @@ class User(Base):
     telegram_id: Mapped[int]
     full_name: Mapped[str] = mapped_column(nullable=True)
     username: Mapped[str] = mapped_column(nullable=True)
-    points_balance: Mapped[int] = mapped_column(default=0)  # Баллы
-    lvl_number: Mapped[int] = mapped_column(ForeignKey('lvls.number')) # Уровень
-    rank_title: Mapped[str] = mapped_column(ForeignKey('ranks.title')) # Звание
-    referrals_count: Mapped[int] = mapped_column(default=0)
-    invite_date: Mapped[str] = mapped_column(nullable=True)
+    status: Mapped[str] = mapped_column(default='Владелец')  # Владелец/Агент
+    object_limit: Mapped[int] = mapped_column(default=5)
 
-    lvl = relationship("Lvl", back_populates="users")
-    rank = relationship("Rank", back_populates="users")
-
-
-# Информация об уровнях
-class Lvl(Base):
-    __tablename__ = "lvls"
+# Страны
+class Country(Base):
+    __tablename__ = 'countries'
 
     id: Mapped[int] = mapped_column(primary_key=True)
-    number: Mapped[int]
-    min_points: Mapped[int]
-    max_points: Mapped[int]
+    name: Mapped[str]
+    thread_id: Mapped[int] = mapped_column(nullable=True)
 
-    users = relationship("User", back_populates="lvl")
-
-
-# Информация о званиях
-class Rank(Base):
-    __tablename__ = "ranks"
+# Объекты
+class Object(Base):
+    __tablename__ = "objects"
 
     id: Mapped[int] = mapped_column(primary_key=True)
-    title: Mapped[str]
-    min_lvl: Mapped[int]
-    max_lvl: Mapped[int]
+    status: Mapped[str]
+    obj_type: Mapped[str] = mapped_column(nullable=True)
+    country_id: Mapped[int] = mapped_column(ForeignKey('countries.id'), nullable=False)
+    address: Mapped[str] = mapped_column(nullable=True)
+    conditions: Mapped[str] = mapped_column(nullable=True) # Условия и цена
+    description: Mapped[str] = mapped_column(nullable=True)
+    contacts: Mapped[int] = mapped_column(nullable=True)
+    photos: Mapped[str] = mapped_column(nullable=True)
 
-    users = relationship("User", back_populates="rank")
+    # Связь с пользователем
+    owner_id: Mapped[int] = mapped_column(ForeignKey('users.id'))  # Внешний ключ на пользователя
 
+    # Связь с постами
+    posts: Mapped[list['Post']] = relationship("Post", back_populates="object", cascade="all, delete-orphan")
+
+# Созданные посты
+class Post(Base):
+    __tablename__ = "posts"
+
+    id: Mapped[int] = mapped_column(primary_key=True)
+    message_id: Mapped[int]
+    thread_id: Mapped[int]
+
+    # Внешний ключ на объект
+    object_id: Mapped[int] = mapped_column(ForeignKey('objects.id'))  # Внешний ключ на объект
+    object: Mapped[Object] = relationship("Object", back_populates="posts")
