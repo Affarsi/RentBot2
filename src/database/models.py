@@ -29,6 +29,7 @@ class Object(Base):
     __tablename__ = "objects"
 
     id: Mapped[int] = mapped_column(primary_key=True)
+    generate_id: Mapped[int]
     status: Mapped[str]
     obj_type: Mapped[str] = mapped_column(nullable=True)
     country_id: Mapped[int] = mapped_column(ForeignKey('countries.id'), nullable=False)
@@ -55,3 +56,10 @@ class Post(Base):
     # Внешний ключ на объект
     object_id: Mapped[int] = mapped_column(ForeignKey('objects.id'))  # Внешний ключ на объект
     object: Mapped[Object] = relationship("Object", back_populates="posts")
+
+# Настройка бота
+class Setting(Base):
+    __tablename__ = "settings"
+
+    id: Mapped[int] = mapped_column(primary_key=True)
+    info_text: Mapped[str] = mapped_column(nullable=True)

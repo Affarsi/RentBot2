@@ -9,17 +9,14 @@ from src.dialogs.getters.user import user_getter
 main_menu_window = Window(
     Format(
         "👋 <b>@{username}, Добро пожаловать!</b>\n\n"
-        
         "👤Ваш статус: <code>{status}</code>\n"
-        "🏠Создано объектов: <code>{obj_list_len} из {obj_max}</code>\n\n"
-        
-        "🦸‍♂️<b>Поддержка: @sermseo</b>"
+        "🏠Создано объектов: <code>{obj_list_len} из {obj_limit}</code>"
     ),
 
     Group(
-        SwitchTo(Const('🏢 Мои объекты'), id='my_objects', state=User.main_menu),
+        SwitchTo(Const('🏢 Мои объекты'), id='my_objects', state=User.objects_manager),
         Row(
-            SwitchTo(Const('📕 Информация'), id='info', state=User.main_menu),
+            SwitchTo(Const('📕 Информация'), id='info', state=User.info),
             Url(Const('🦸‍♂️ Тех. Поддержка'), Const('https://t.me/sermseo')),
         ),
     ),

@@ -84,7 +84,8 @@ async def db_get_user(
             "username": user.username,
             "status": user.status,
             "obj_limit": str(user.object_limit),
-            "obj_list": obj_list
+            "obj_list": obj_list,
+            "obj_list_len": len(obj_list)
         }
 
         return user_dict
