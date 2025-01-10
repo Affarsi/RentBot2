@@ -4,15 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1bd5e2e9-72a5-4a8d-b09e-36008a260f3c" name="Changes" comment="Commit">
-      <change afterPath="$PROJECT_DIR$/src/dialogs/getters/create_object.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/dialogs/windows/create_object.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bot.py" beforeDir="false" afterPath="$PROJECT_DIR$/bot.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dialogs/dialogs_manager.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/dialogs/dialogs_manager.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dialogs/dialogs_states.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/dialogs/dialogs_states.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dialogs/windows/objects_manager.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/dialogs/windows/objects_manager.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/handlers/commands.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/handlers/commands.py" afterDir="false" />
-    </list>
+    <list default="true" id="1bd5e2e9-72a5-4a8d-b09e-36008a260f3c" name="Changes" comment="Commit" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -65,8 +57,8 @@
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "git-widget-placeholder": "RentBot2__v1",
     "ignore.virus.scanning.warn.message": "true",
-    "last_opened_file_path": "D:/PCFather/Files/Programm files/pycharmProjects/Kwork/RentBot",
-    "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable"
+    "last_opened_file_path": "D:/PCFather/Files/Programm files/pycharmProjects/StartUP/AutoBuyShop",
+    "settings.editor.selected.configurable": "preferences.keymap"
   }
 }]]></component>
   <component name="RecentsManager">
@@ -155,7 +147,31 @@
       <option name="project" value="LOCAL" />
       <updated>1736509502047</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Commit">
+      <option name="closed" value="true" />
+      <created>1736521802929</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1736521802929</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Commit">
+      <option name="closed" value="true" />
+      <created>1736523724579</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1736523724579</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Commit">
+      <option name="closed" value="true" />
+      <created>1736524081554</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1736524081554</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
