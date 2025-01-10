@@ -21,6 +21,6 @@ async def my_objects_getter(dialog_manager: DialogManager, **kwargs):
         status = obj['status']
         generate_id = obj['generate_id']
         country = obj['country']
-        my_object_list.append([f'{status} ID: {generate_id} | {country}', {id}])
+        my_object_list.append([f'{status} | ID: {generate_id} | {country}', {id}])
 
     return {'my_object_list': my_object_list}
