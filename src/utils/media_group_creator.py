@@ -37,6 +37,12 @@ async def create_media_group(dict_data: dict=None, state_data: dict=None, photo_
     # Формирование медиа группы
     media_group = MediaGroupBuilder(caption=caption)
 
+    if photo_list is None:
+        photo_list = dict_data['photos']
+        photo_list = photo_list.split(', ')
+
+    print(photo_list)
+
     for photo in photo_list:
         media_group.add_photo(media=photo)
 

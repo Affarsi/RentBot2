@@ -4,6 +4,9 @@ class UserDialog(StatesGroup):
     main_menu = State()
 
     objects_manager = State()
+    open_my_object_confirmed = State()
+    open_my_object_moderated = State()
+    open_my_object_deleted = State()
 
     info = State() # Информационная доска
 

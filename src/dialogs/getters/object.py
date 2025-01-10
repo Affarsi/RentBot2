@@ -1,10 +1,11 @@
 from aiogram.types import CallbackQuery
-from aiogram_dialog import DialogManager
-from aiogram_dialog.widgets.kbd import Button
+from aiogram_dialog import DialogManager, ShowMode
+from aiogram_dialog.widgets.kbd import Button, Select
 
 from src.database.requests.object import db_get_object
 from src.database.requests.user import db_get_user
-from src.dialogs.dialogs_states import CreateObject
+from src.dialogs.dialogs_states import CreateObject, UserDialog
+from src.utils.media_group_creator import create_media_group
 
 
 # Возвращает текст для раздела Информация
@@ -24,7 +25,7 @@ async def my_objects_getter(dialog_manager: DialogManager, **kwargs):
         status = obj['status']
         generate_id = obj['generate_id']
         country = obj['country']
-        my_object_list.append([f'{status} | ID: {generate_id} | {country}', {id}])
+        my_object_list.append([f'{status} | ID: {generate_id} | {country}', str(id)])
 
     return {'my_object_list': my_object_list}
 
@@ -46,3 +47,36 @@ async def start_create_object(
         return
 
     await dialog_manager.start(CreateObject.get_country)
+
+
+# Вывод информации об объекте Пользователю с меню взаимодействия
+async def open_my_object(
+        callback: CallbackQuery,
+        widget: Select,
+        dialog_manager: DialogManager,
+        item_id: str
+):
+    object_id = int(item_id)
+    object_data = await db_get_object(object_id=object_id)
+    object_data = object_data[0]
+    chat_id = dialog_manager.event.message.chat.id
+
+    # Формирование медиа группы
+    media_group = await create_media_group(dict_data=object_data)
+
+    # Отправка медиа группы
+    await dialog_manager.event.bot.send_media_group(
+        chat_id=chat_id,
+        media=media_group
+    )
+
+    # Чтобы медиа группа отправилась раньше чем смс от бота
+    dialog_manager.show_mode = ShowMode.DELETE_AND_SEND
+
+    # В зависимости от статуса выводим меню взаимодействия
+    if object_data['status'] == '✅':
+        await dialog_manager.switch_to(UserDialog.open_my_object_confirmed)
+    elif object_data['status'] == '🔄':
+        await dialog_manager.switch_to(UserDialog.open_my_object_moderated)
+    else:
+        await dialog_manager.switch_to(UserDialog.open_my_object_deleted)

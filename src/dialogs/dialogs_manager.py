@@ -4,13 +4,18 @@ from src.dialogs.windows.create_object import get_country_window, get_type_windo
     get_conditions_window, get_description_window, get_contacts_window, get_photos_window, final_result_window
 from src.dialogs.windows.info import info_window
 from src.dialogs.windows.main_menu import main_menu_window
-from src.dialogs.windows.objects_manager import objects_manager_window
+from src.dialogs.windows.objects_manager import objects_manager_window, object_confirmed_window, \
+    object_moderated_window, object_deleted_window
 
 # Основной диалог у Пользователя
 user_dialog = Dialog(
     main_menu_window,
 
     objects_manager_window,
+
+    object_confirmed_window,
+    object_moderated_window,
+    object_deleted_window,
 
     info_window
 )
