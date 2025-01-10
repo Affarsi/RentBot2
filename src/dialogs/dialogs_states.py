@@ -15,3 +15,4 @@ class CreateObject(StatesGroup):
     get_description = State()
     get_contacts = State()
     get_photos = State()
+    final_result = State()

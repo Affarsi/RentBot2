@@ -6,7 +6,7 @@ from aiogram.types import Message
 from aiogram.filters import CommandStart
 from aiogram_dialog import DialogManager, StartMode
 
-from src.dialogs.dialogs_states import User
+from src.dialogs.dialogs_states import UserDialog
 
 from src.database.requests.user import db_new_user
 
@@ -30,7 +30,7 @@ async def user_start(message: Message, dialog_manager: DialogManager):
     )
 
     # Запускаем диалоговое окно
-    await dialog_manager.start(User.main_menu, mode=StartMode.RESET_STACK)
+    await dialog_manager.start(UserDialog.main_menu, mode=StartMode.RESET_STACK)
 
 
 

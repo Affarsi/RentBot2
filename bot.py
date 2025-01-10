@@ -12,7 +12,7 @@ from src.database.run_db import create_db
 
 from src.handlers.commands import router as commands_router
 
-from src.dialogs.dialogs_manager import user_dialog
+from src.dialogs.dialogs_manager import user_dialog, create_object_dialog
 
 bot = Bot(Config.bot_token, default=DefaultBotProperties(parse_mode='HTML'))
 
@@ -23,6 +23,8 @@ async def aiogram_run():
     # Подключение роутеров
     dp.include_routers(
         user_dialog,
+
+        create_object_dialog,
 
         commands_router
     )

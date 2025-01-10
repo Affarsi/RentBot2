@@ -2,10 +2,10 @@ import operator
 
 from aiogram_dialog import Window
 from aiogram_dialog.widgets.text import Const, Format, Multi
-from aiogram_dialog.widgets.kbd import Start, Group, Row, SwitchTo, Url, Back, ScrollingGroup, Select
+from aiogram_dialog.widgets.kbd import Start, Group, Row, SwitchTo, Url, Back, ScrollingGroup, Select, Button
 
-from src.dialogs.dialogs_states import UserDialog
-from src.dialogs.getters.object import my_objects_getter
+from src.dialogs.dialogs_states import UserDialog, CreateObject
+from src.dialogs.getters.object import my_objects_getter, start_create_object
 from src.dialogs.getters.user import user_getter
 
 # Основное меню Пользователя
@@ -32,7 +32,7 @@ objects_manager_window = Window(
             width=2,
             height=7,
         ),
-        SwitchTo(Const('➕ Создать объект'), id='my_objects', state=UserDialog.objects_manager),
+        Button(Const('➕ Создать объект'), id='create_object', on_click=start_create_object),
         SwitchTo(Const('Назад'), id='to_main_menu', state=UserDialog.main_menu),
     ),
 
