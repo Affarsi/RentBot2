@@ -1,3 +1,4 @@
+import asyncio
 from random import randrange
 
 from aiogram_dialog import DialogManager, ShowMode
@@ -17,6 +18,8 @@ async def clear_dialog_data_create_object(
         widget: Button=None,
         dialog_manager: DialogManager=None
 ):
+    dialog_manager.show_mode = ShowMode.AUTO
+
     keys_to_remove = [
         'create_object_data_country_id',
         'create_object_data_country_name',
@@ -190,7 +193,7 @@ async def go_final_result_create_onject(
         chat_id=chat_id,
         media=media_group
     )
-
+    dialog_manager.show_mode = ShowMode.DELETE_AND_SEND # чтобы медиа группа раньше отправилась, чем смс от бота
     await dialog_manager.switch_to(CreateObject.final_result)
 
 
@@ -200,6 +203,8 @@ async def submit_create_object(
         widget: Button,
         dialog_manager: DialogManager
 ):
+    dialog_manager.show_mode = ShowMode.AUTO
+
     user_tg_id = dialog_manager.event.from_user.id
 
     # Сохраняем объект в БД и отправляем его на модерацию
