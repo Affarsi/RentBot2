@@ -6,15 +6,16 @@ from aiogram.types import CallbackQuery, Message, ReactionType, ReactionTypeEmoj
 from aiogram_dialog.widgets.input import MessageInput, TextInput
 
 from src.database.requests.country import db_get_country, db_get_country_name_by_id
+from src.database.requests.object import db_new_object
 from src.dialogs.dialogs_states import CreateObject
 from src.utils.media_group_creator import create_media_group
 
 
 # Очищает информацию, которая собирается при создании объекта
 async def clear_dialog_data_create_object(
-        callback: CallbackQuery,
-        widget: Button,
-        dialog_manager: DialogManager
+        callback: CallbackQuery=None,
+        widget: Button=None,
+        dialog_manager: DialogManager=None
 ):
     keys_to_remove = [
         'create_object_data_country_id',
@@ -63,8 +64,8 @@ async def create_object_country_input(
     dialog_manager.dialog_data['create_object_data_country_id'] = int(item_id)
     dialog_manager.dialog_data['create_object_data_country_name'] = country_name
 
-    # await dialog_manager.switch_to(CreateObject.get_type)
-    await dialog_manager.switch_to(CreateObject.get_photos)
+    await dialog_manager.switch_to(CreateObject.get_type)
+    # await dialog_manager.switch_to(CreateObject.get_photos)
 
 
 # Выбор типа объекта и переход к следующему шагу
@@ -96,7 +97,7 @@ async def create_object_conditions_input(
         dialog_manager: DialogManager
 ):
     object_conditions = message.html_text.strip()
-    dialog_manager.dialog_data['create_object_data_address'] = object_conditions
+    dialog_manager.dialog_data['create_object_data_conditions'] = object_conditions
     await dialog_manager.switch_to(CreateObject.get_description)
 
 
@@ -107,7 +108,7 @@ async def create_object_description_input(
         dialog_manager: DialogManager
 ):
     object_description = message.html_text.strip()
-    dialog_manager.dialog_data['create_object_data_address'] = object_description
+    dialog_manager.dialog_data['create_object_data_description'] = object_description
     await dialog_manager.switch_to(CreateObject.get_contacts)
 
 
@@ -118,7 +119,7 @@ async def create_object_contacts_input(
         dialog_manager: DialogManager
 ):
     object_contacts = message.html_text.strip()
-    dialog_manager.dialog_data['create_object_data_address'] = object_contacts
+    dialog_manager.dialog_data['create_object_data_contacts'] = object_contacts
     await dialog_manager.switch_to(CreateObject.get_photos)
 
 
@@ -168,16 +169,13 @@ async def go_final_result_create_onject(
         widget: Button,
         dialog_manager: DialogManager
 ):
-    # Проверка на наличие фотографий
+    # Получение данных
     try:
-        dialog_manager.dialog_data.pop('create_object_data_photos')
+        chat_id = dialog_manager.event.message.chat.id
+        photo_list = dialog_manager.dialog_data.get('create_object_data_photos')
     except KeyError:
         await dialog_manager.event.answer('У вас нет загруженных фотографий')
         return
-
-    # Получение данных
-    chat_id = dialog_manager.event.chat.id
-    photo_list = dialog_manager.dialog_data.get('create_object_data_photos')
 
     # Формирование ID для объекта
     generate_id = randrange(0, 99999)# формируем id для поста
@@ -188,7 +186,27 @@ async def go_final_result_create_onject(
                                            photo_list=photo_list)
 
     # Отправка медиа группы
-    await messages[0].bot.send_media_group(chat_id=chat_id,
-                                           media=media_group)
+    await dialog_manager.event.bot.send_media_group(
+        chat_id=chat_id,
+        media=media_group
+    )
 
     await dialog_manager.switch_to(CreateObject.final_result)
+
+
+# Сохранить и отправить объект на модерацию!
+async def submit_create_object(
+        callback: CallbackQuery,
+        widget: Button,
+        dialog_manager: DialogManager
+):
+    user_tg_id = dialog_manager.event.from_user.id
+
+    # Сохраняем объект в БД и отправляем его на модерацию
+    await db_new_object(object_data=dialog_manager.dialog_data, user_tg_id=user_tg_id)
+
+    # Оповещаем пользователя и закрываем диалог
+    await dialog_manager.event.answer('Объект успешно отправлен на модерацию!')
+    await clear_dialog_data_create_object(dialog_manager=dialog_manager)
+    await dialog_manager.done()
+

@@ -11,7 +11,7 @@ from src.dialogs.getters.create_object import (
     clear_dialog_data_create_object, country_list_getter,
     create_object_country_input, create_object_type_input, create_object_address_input, create_object_conditions_input,
     create_object_description_input, create_object_contacts_input, create_object_photos_input,
-    dell_photos_create_object, go_final_result_create_onject
+    dell_photos_create_object, go_final_result_create_onject, submit_create_object
 )
 from src.dialogs.getters.user import user_getter
 
@@ -125,3 +125,14 @@ get_photos_window = Window(
     state=CreateObject.get_photos
 )
 
+# Финальный осмотр созданного объекта и переход к следующему шагу
+final_result_window = Window(
+    Const('<b>Выше вы видите пост, который будет отправлен на модерацию.\n</b>'
+          '<b>Вы сможете отслеживать его статус в разделе "Мои объекты"\n\n</b>'
+          '<b>Выберите действие:</b>'),
+
+    Button(Const('✅ Отправить на модерацию'), id='submit_create_object', on_click=submit_create_object),
+    Cancel(Const('Прекратить создание объекта'), id='stop_create_object', on_click=clear_dialog_data_create_object),
+
+    state=CreateObject.final_result
+)

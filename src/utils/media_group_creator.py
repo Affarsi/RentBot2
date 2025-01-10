@@ -7,13 +7,13 @@ from aiogram.utils.media_group import MediaGroupBuilder
 # Формирование описание из информации объекта
 async def create_description_for_obj(dict_data: dict=None, state_data: dict=None):
     # Получение данных объекта
-    ojb_type = state_data['obj_type'] if state_data else dict_data['obj_type']
-    country = state_data['country'] if state_data else dict_data['country']
-    address = state_data['address'] if state_data else dict_data['address']
-    conditions = state_data['conditions'] if state_data else dict_data['conditions']
-    description = state_data['description'] if state_data else dict_data['description']
-    contacts = state_data['contacts'] if state_data else dict_data['contacts']
-    generate_id = state_data['contacts'] if state_data else dict_data['contacts']
+    ojb_type = state_data['create_object_data_type'] if state_data else dict_data['obj_type']
+    country = state_data['create_object_data_country_name'] if state_data else dict_data['country']
+    address = state_data['create_object_data_address'] if state_data else dict_data['address']
+    conditions = state_data['create_object_data_conditions'] if state_data else dict_data['conditions']
+    description = state_data['create_object_data_description'] if state_data else dict_data['description']
+    contacts = state_data['create_object_data_contacts'] if state_data else dict_data['contacts']
+    generate_id = state_data['create_object_data_generate_id'] if state_data else dict_data['generate_id']
 
     # Формирование текста
     caption = (f"<b>🏢 {ojb_type} (ID{generate_id})</b>\n"

@@ -5,6 +5,44 @@ from src.database.run_db import async_session
 from src.database.models import Object, User, Country
 
 
+# Добавляет новый объект
+async def db_new_object(
+        object_data: dict,
+        user_tg_id: int
+) -> bool or int:
+    async with async_session() as session:
+        # Определяем ID Пользователя в БД
+        user = await db_get_user(telegram_id=user_tg_id)
+
+        # Преобразования фотографий
+        photo_list = object_data['create_object_data_photos']
+        photo_str = ", ".join(photo_list)
+
+        # Формирование объекта
+        new_object = Object(
+            status="🔄",
+            generate_id=object_data['create_object_data_generate_id'],
+            obj_type=object_data['create_object_data_type'],
+            country_id=object_data['create_object_data_country_id'],
+            address=object_data['create_object_data_address'],
+            conditions=object_data['create_object_data_conditions'],
+            description=object_data['create_object_data_description'],
+            contacts=object_data['create_object_data_contacts'],
+            photos=photo_str,
+            owner_id=user["id"]
+        )
+
+        # Попытка добавления объекта в БД
+        try:
+            session.add(new_object)
+            await session.commit()
+            return True
+        except Exception as e:
+            print(f'При добавлении нового объекта в БД произошла ошибка:\n{e}')
+            return False
+
+
+# Извлекает объекты из базы данных на основе заданных параметров
 async def db_get_object(
         object_id: int = None,
         country_id: int = None,
@@ -13,7 +51,7 @@ async def db_get_object(
         status: str = None
 ) -> list[dict]:
     """
-    Извлекает объекты из базы данных на основе заданных параметров.
+    .
 
     Аргументы:
     - object_id (int, optional): ID объекта для фильтрации. Если указан, будут возвращены только объекты с этим ID.
