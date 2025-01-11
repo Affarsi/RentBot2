@@ -72,8 +72,8 @@ async def db_get_object(
             user_id = user_result.scalar()
 
             if user_id is not None:
-                # Теперь фильтруем объекты по owner_id
-                query = query.where(Object.owner_id == user_id)
+                # Сортируем по owner_id и status
+                query = query.where(Object.owner_id == user_id).order_by(Object.status)
 
         if object_id is not None:
             query = query.where(Object.id == object_id)
@@ -108,3 +108,48 @@ async def db_get_object(
             })
 
         return objects_list
+
+
+# Удаление объекта
+async def db_delete_object(object_id: int):
+    async with async_session() as session:
+        obj = await session.execute(
+            select(Object).where(Object.id == object_id)
+        )
+        obj = obj.scalar_one_or_none()
+
+        if obj is None:
+            return
+
+        await session.delete(obj)
+        await session.commit()
+
+
+# Обновляет существующий объект
+async def db_update_object(object_id: int, object_data: dict) -> bool:
+    async with async_session() as session:
+        # Получаем объект по его ID
+        result = await session.execute(
+            select(Object).where(Object.id == object_id)
+        )
+        obj = result.scalars().first()
+
+        if not obj:
+            print(f'Объект с ID {object_id} не найден в базе данных.')
+            return False
+
+        # Обновляем только указанные поля объекта
+        for key, value in object_data.items():
+            if key in ['status', 'obj_type', 'country_id', 'address', 'conditions', 'description', 'contacts', 'photos']:
+                if key == 'photos':
+                    obj.photos = ", ".join(value) if isinstance(value, list) else value
+                else:
+                    setattr(obj, key, value)
+
+        # Попытка сохранить изменения в БД
+        try:
+            await session.commit()
+            return True
+        except Exception as e:
+            print(f'При обновлении объекта в БД произошла ошибка:\n{e}')
+            return False
