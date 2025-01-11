@@ -6,7 +6,8 @@ from aiogram_dialog.widgets.text import Const, Format, Multi
 from aiogram_dialog.widgets.kbd import Start, Group, Row, SwitchTo, Url, Back, ScrollingGroup, Select, Button
 
 from src.dialogs.dialogs_states import UserDialog, CreateObject
-from src.dialogs.getters.object import my_objects_getter, start_create_object, open_my_object, delete_my_object
+from src.dialogs.getters.object import my_objects_getter, start_create_object, open_my_object, delete_my_object, \
+    object_confirmed_getter, invert_edit_menu_open
 from src.dialogs.getters.user import user_getter
 
 # Раздел 'Мои объекты'
@@ -43,13 +44,9 @@ objects_manager_window = Window(
 
 # Просмотр объекта, находящегося в статусе 'Принят'
 object_confirmed_window = Window(
-    Const('<b>Выше вы видите ваш пост, который успешно прошёл модерацию и был опубликован в нашем канале</b>\n\n'
-        'Вы можете: Внести корректировки или Удалить его\n\n'
-        '<b>После редактирования</b> - пост снова попадёт на модерацию, также вы не сможете загрузить больше фотографий, '
-        'чем на данный момент содержит пост!\n'
-        '<b>После удаления</b> - пост не будет подлежать восстановлению!'),
+    Const('<b>✨Выберите действие:</b>'),
 
-        SwitchTo(Const('✏️ Меню редактирования'), id='edit_my_object', state=UserDialog.main_menu),
+        Button(Const('✏️ Меню редактирования'), id='open_edit_menu_my_object', on_click=invert_edit_menu_open),
         Row(
             Button(Const('Адрес'), id='dell_my_object', on_click=delete_my_object),
             Button(Const('Цена и Условия'), id='dell_my_object', on_click=delete_my_object),

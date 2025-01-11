@@ -99,7 +99,18 @@ async def delete_my_object(
     await dialog_manager.back()
 
 
-# Открывает или закрывает edit_menu
+# Инверсия переменной is_edit_menu_open
+async def invert_edit_menu_open(
+        callback: CallbackQuery,
+        widget: Button,
+        dialog_manager: DialogManager
+):
+    is_edit_menu_open = dialog_manager.dialog_data.get('is_edit_menu_open', True)
+
+    # Инверсируем значение
+    dialog_manager.dialog_data['is_edit_menu_open'] = not is_edit_menu_open
+
+    dialog_manager.s
 
 
 # Getter, сообщающий, открыто ли edit_menu или нет
