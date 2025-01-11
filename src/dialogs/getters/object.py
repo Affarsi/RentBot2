@@ -97,3 +97,12 @@ async def delete_my_object(
 
     await dialog_manager.event.answer('Объект успешно удалён!')
     await dialog_manager.back()
+
+
+# Открывает или закрывает edit_menu
+
+
+# Getter, сообщающий, открыто ли edit_menu или нет
+async def object_confirmed_getter(dialog_manager: DialogManager, **kwargs):
+    is_edit_menu_open = dialog_manager.dialog_data.get('is_edit_menu_open')
+    return {'edit_menu_open': is_edit_menu_open}

@@ -1,5 +1,6 @@
 import operator
 
+from aiogram import F
 from aiogram_dialog import Window
 from aiogram_dialog.widgets.text import Const, Format, Multi
 from aiogram_dialog.widgets.kbd import Start, Group, Row, SwitchTo, Url, Back, ScrollingGroup, Select, Button
@@ -48,10 +49,19 @@ object_confirmed_window = Window(
         'чем на данный момент содержит пост!\n'
         '<b>После удаления</b> - пост не будет подлежать восстановлению!'),
 
-        SwitchTo(Const('✏️ Редактировать объект'), id='to_main_menu', state=UserDialog.main_menu),
+        SwitchTo(Const('✏️ Меню редактирования'), id='edit_my_object', state=UserDialog.main_menu),
+        Row(
+            Button(Const('Адрес'), id='dell_my_object', on_click=delete_my_object),
+            Button(Const('Цена и Условия'), id='dell_my_object', on_click=delete_my_object),
+            Button(Const('Описание'), id='dell_my_object', on_click=delete_my_object),
+            Button(Const('Фотографии'), id='dell_my_object', on_click=delete_my_object),
+
+            when=F['edit_menu_open']
+        ),
         Button(Const('❌ Удалить объект'), id='dell_my_object', on_click=delete_my_object),
         SwitchTo(Const('Назад'), id='to_main_menu', state=UserDialog.main_menu),
 
+    getter=object_confirmed_getter,
     state=UserDialog.open_my_object_confirmed
 )
 
