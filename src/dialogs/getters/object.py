@@ -105,12 +105,10 @@ async def invert_edit_menu_open(
         widget: Button,
         dialog_manager: DialogManager
 ):
-    is_edit_menu_open = dialog_manager.dialog_data.get('is_edit_menu_open', True)
+    is_edit_menu_open = dialog_manager.dialog_data.get('is_edit_menu_open', False)
 
     # Инверсируем значение
     dialog_manager.dialog_data['is_edit_menu_open'] = not is_edit_menu_open
-
-    dialog_manager.s
 
 
 # Getter, сообщающий, открыто ли edit_menu или нет
