@@ -80,3 +80,13 @@ async def open_my_object(
         await dialog_manager.switch_to(UserDialog.open_my_object_moderated)
     else:
         await dialog_manager.switch_to(UserDialog.open_my_object_deleted)
+
+
+# Удалить созданный объект
+async def delete_my_object(
+        callback: CallbackQuery,
+        widget: Button,
+        dialog_manager: DialogManager,
+        item_id: str
+):
+    await dialog_manager.event.answer(f'item_id: {item_id}')
