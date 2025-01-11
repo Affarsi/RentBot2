@@ -5,6 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1bd5e2e9-72a5-4a8d-b09e-36008a260f3c" name="Changes" comment="Commit">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/database/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/src/database/db.sqlite3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dialogs/getters/user.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/dialogs/getters/user.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/dialogs/windows/main_menu.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/dialogs/windows/main_menu.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -22,7 +25,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="RentBot2_v1" />
+        <entry key="$PROJECT_DIR$" value="RentBot2_v2" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -52,12 +55,12 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
-    "Python.bot.executor": "Debug",
+    "Python.bot.executor": "Run",
     "Python.main_menu.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "RentBot2__v2",
+    "git-widget-placeholder": "RentBot2__v3",
     "ignore.virus.scanning.warn.message": "true",
     "last_opened_file_path": "D:/PCFather/Files/Programm files/pycharmProjects/StartUP/AutoBuyShop",
     "settings.editor.selected.configurable": "preferences.keymap"
@@ -197,7 +200,23 @@
       <option name="project" value="LOCAL" />
       <updated>1736614990545</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="Commit">
+      <option name="closed" value="true" />
+      <created>1736615234963</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1736615234963</updated>
+    </task>
+    <task id="LOCAL-00012" summary="Commit">
+      <option name="closed" value="true" />
+      <created>1736615246875</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1736615246875</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
