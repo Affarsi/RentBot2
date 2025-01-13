@@ -44,10 +44,7 @@ async def edit_object_conditions_input(
         message: Message,
         widget: MessageInput,
         dialog_manager: DialogManager
-):
-    object_description = message.html_text.strip()
-    dialog_manager.dialog_data['create_object_data_description'] = object_description
-    await dialog_manager.switch_to(CreateObject.get_contacts)
+):...
 
 
 # Изменить описание объекта и перейти к следующему шагу
@@ -55,7 +52,4 @@ async def edit_object_description_input(
         message: Message,
         widget: MessageInput,
         dialog_manager: DialogManager
-):
-    object_description = message.html_text.strip()
-    dialog_manager.dialog_data['create_object_data_description'] = object_description
-    await dialog_manager.switch_to(CreateObject.get_contacts)
+):...

@@ -12,10 +12,13 @@ async def create_description_for_obj(
 ):
     # Возвращает значение с приоритетом edit_data, затем state_data, затем dict_data.
     def get_priority_value(key, default_value):
-        if edit_data and key in edit_data:
-            return edit_data[key]
-        if state_data and f'create_object_data_{key}' in state_data:
-            return state_data[f'create_object_data_{key}']
+        edit_key = f'edit_object_data_{key}'
+        state_key = f'state_object_data_{key}'
+
+        if edit_data and edit_key in edit_data:
+            return edit_data[edit_key]
+        if state_data and state_key in state_data:
+            return state_data[state_key]
         return default_value
 
     # Получение данных объекта
