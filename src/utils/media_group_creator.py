@@ -59,7 +59,7 @@ async def create_media_group(
 
     # Работа с фотографиями
     if photo_list is None:
-        if edit_data is None:
+        if edit_data is None or 'edit_object_data_photos' not in edit_data:
             photo_list = dict_data['photos']
             photo_list = photo_list.split(', ')
         else:
