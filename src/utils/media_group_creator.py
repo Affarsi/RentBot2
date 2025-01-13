@@ -44,20 +44,6 @@ async def create_description_for_obj(
     return caption
 
 
-# Функция для получения списка фотографий
-def get_photo_list(edit_data: dict, dict_data: dict) -> List[str]:
-    photo_list = edit_data.get('edit_object_data_photos')
-
-    if photo_list is None or not photo_list:  # Если нет фотографий в edit_data или список пуст
-        photo_list = dict_data['photos']  # Берем фотографии из dict_data
-
-    # Преобразуем строку в список, если это необходимо
-    if isinstance(photo_list, str):
-        photo_list = photo_list.split(', ')
-
-    return photo_list
-
-
 # Формирование медиа группы c информацией об объекте
 async def create_media_group(
         dict_data: dict = None,
@@ -71,9 +57,13 @@ async def create_media_group(
     # Формирование медиа группы
     media_group = MediaGroupBuilder(caption=caption)
 
-    # Проверяем, нужно ли получать список фотографий из edit_data или dict_data
+    # Работа с фотографиями
     if photo_list is None:
-        photo_list = get_photo_list(edit_data, dict_data)
+        if edit_data is None:
+            photo_list = dict_data['photos']
+            photo_list = photo_list.split(', ')
+        else:
+            photo_list = edit_data['edit_object_data_photos']
 
     # Сохраняем фотографии в медиа группе
     for photo in photo_list:
