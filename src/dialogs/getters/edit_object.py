@@ -12,6 +12,26 @@ from src.dialogs.dialogs_states import CreateObject, EditObject, UserDialog
 from src.utils.media_group_creator import create_media_group
 
 
+# Запуск edit_menu_dialog и сохранение open_object_id
+async def start_edit_menu_dialog(
+        callback: CallbackQuery,
+        widget: Button,
+        dialog_manager: DialogManager
+):
+    open_object_id = dialog_manager.dialog_data.get('open_object_id')
+    callback_data = callback.data.split('_')[1]
+
+    states = {
+        'address': EditObject.edit_address,
+        'conditions': EditObject.edit_conditions,
+        'description': EditObject.edit_description,
+        'photos': EditObject.edit_photos
+    }
+
+    if callback_data in states:
+        await dialog_manager.start(state=states[callback_data], data={'open_object_id': open_object_id})
+
+
 # Очищает информацию, которая собирается при изменении объекта
 async def clear_dialog_data_edit_object(
         callback: CallbackQuery=None,
@@ -167,7 +187,7 @@ async def submit_edit_object(
         new_object_data['photos'] = dialog_data['edit_object_data_photos']
 
     # Сохраняем объект в БД и отправляем его на модерацию
-    await db_update_object(object_id=dialog_manager.dialog_data.get('open_object_id'),
+    await db_update_object(object_id=dialog_manager.start_data.get('open_object_id'),
                            object_data=new_object_data)
 
     # Оповещаем пользователя и закрываем диалог
