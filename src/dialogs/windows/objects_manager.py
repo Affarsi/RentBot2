@@ -7,7 +7,7 @@ from aiogram_dialog.widgets.kbd import Start, Group, Row, SwitchTo, Url, Back, S
 
 from src.dialogs.dialogs_states import UserDialog, CreateObject
 from src.dialogs.getters.object import my_objects_getter, start_create_object, open_my_object, delete_my_object, \
-    object_confirmed_getter, invert_edit_menu_open
+    object_confirmed_getter, invert_edit_menu_open, invert_delete_object_confirm_menu
 from src.dialogs.getters.user import user_getter
 
 # Раздел 'Мои объекты'
@@ -46,7 +46,7 @@ objects_manager_window = Window(
 object_confirmed_window = Window(
     Const('<b>✨Выберите действие:</b>'),
 
-        Button(Const('✏️ Меню редактирования'), id='open_edit_menu_my_object', on_click=invert_edit_menu_open),
+        Button(Const('✏️ Меню редактирования'), id='invert_edit_menu_my_object', on_click=invert_edit_menu_open),
         Row(
             Button(Const('Адрес'), id='dell_my_object', on_click=delete_my_object),
             Button(Const('Цена и Условия'), id='dell_my_object', on_click=delete_my_object),
@@ -55,7 +55,16 @@ object_confirmed_window = Window(
 
             when=F['edit_menu_open']
         ),
-        Button(Const('❌ Удалить объект'), id='dell_my_object', on_click=delete_my_object),
+        Button(
+            Const('❌ Удалить объект'),
+            id='invert_delete_object_confirm_menu',
+            on_click=invert_delete_object_confirm_menu
+        ),
+        Row(
+            Button(Const('🚨ПОДТВЕРДИТЬ УДАЛЕНИЕ ОБЪЕКТА🚨'), id='dell_my_object', on_click=delete_my_object),
+
+            when=F['delete_object_confirm_menu']
+        ),
         SwitchTo(Const('Назад'), id='to_main_menu', state=UserDialog.main_menu),
 
     getter=object_confirmed_getter,

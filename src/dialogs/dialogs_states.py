@@ -19,3 +19,5 @@ class CreateObject(StatesGroup):
     get_contacts = State()
     get_photos = State()
     final_result = State()
+#
+# class EditObject(State)

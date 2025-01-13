@@ -111,7 +111,21 @@ async def invert_edit_menu_open(
     dialog_manager.dialog_data['is_edit_menu_open'] = not is_edit_menu_open
 
 
+# Инверсия переменной is_delete_object_confirm_menu
+async def invert_delete_object_confirm_menu(
+        callback: CallbackQuery,
+        widget: Button,
+        dialog_manager: DialogManager
+):
+    is_delete_object_confirm_menu = dialog_manager.dialog_data.get('is_delete_object_confirm_menu', False)
+
+    # Инверсируем значение
+    dialog_manager.dialog_data['is_delete_object_confirm_menu'] = not is_delete_object_confirm_menu
+
+
 # Getter, сообщающий, открыто ли edit_menu или нет
 async def object_confirmed_getter(dialog_manager: DialogManager, **kwargs):
     is_edit_menu_open = dialog_manager.dialog_data.get('is_edit_menu_open')
-    return {'edit_menu_open': is_edit_menu_open}
+    is_delete_object_confirm_menu = dialog_manager.dialog_data.get('is_delete_object_confirm_menu')
+    return {'edit_menu_open': is_edit_menu_open,
+            'delete_object_confirm_menu': is_delete_object_confirm_menu}
