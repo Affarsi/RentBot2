@@ -19,5 +19,10 @@ class CreateObject(StatesGroup):
     get_contacts = State()
     get_photos = State()
     final_result = State()
-#
-# class EditObject(State)
+
+class EditObject(StatesGroup):
+    result_and_edit_menu = State()
+    edit_address = State()
+    edit_conditions = State()
+    edit_description = State()
+    edit_photos = State()

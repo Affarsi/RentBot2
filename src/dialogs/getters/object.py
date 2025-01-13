@@ -56,11 +56,13 @@ async def open_my_object(
         dialog_manager: DialogManager,
         item_id: str
 ):
-    dialog_manager.dialog_data['open_object_id'] = int(item_id) # id открытого объекта
     object_id = int(item_id)
     object_data = await db_get_object(object_id=object_id)
     object_data = object_data[0]
     chat_id = dialog_manager.event.message.chat.id
+
+    # Сохраняем id открытого объета
+    dialog_manager.dialog_data['open_object_id'] = object_id
 
     # Формирование медиа группы
     media_group = await create_media_group(dict_data=object_data)
