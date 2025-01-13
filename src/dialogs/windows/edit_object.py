@@ -19,6 +19,15 @@ result_and_edit_menu_window = Window(
     Const('<b>Выше вы видите отредактированный пост!\n</b>'
           '<b>Вы можете отказаться от изменений или отправить его на модерацию\n\n</b>'),
 
+    Button(Const('✏️ Меню редактирования'), id=..., on_click=...),
+    Row(
+        SwitchTo(Const('Адрес'), id='edit_address', state=EditObject.edit_address),
+        SwitchTo(Const('Цена и Условия'), id='edit_conditions', state=EditObject.edit_conditions),
+        SwitchTo(Const('Описание'), id='edit_description', state=EditObject.edit_description),
+        Button(Const('Фотографии'), id='edit_photos', on_click=delete_my_object),
+
+        when=F['edit_menu_open']
+    ),
     # Button(Const('✅ Отправить на модерацию'), id='submit_edit_object', on_click=submit_edit_object),
     # Cancel(Const('Отменить изменение объекта'), id='stop_edit_object', on_click=clear_dialog_data_edit_object),
 

@@ -12,17 +12,18 @@ from src.dialogs.dialogs_states import CreateObject, EditObject
 from src.utils.media_group_creator import create_media_group
 
 
-# Изменить адрес объекта и перейти к следующему шагу
-async def edit_object_address_input(
+# Менеджер edit_object_input
+async def edit_object_input(
         message: Message,
         widget: MessageInput,
-        dialog_manager: DialogManager
+        dialog_manager: DialogManager,
+        field_name: str
 ):
-    # Сохраняем измененные данные
-    new_address = message.text.strip()
-    dialog_manager.dialog_data['edit_object_data_address'] = new_address
+    # Сохранение измененных данных
+    new_value = message.text.strip()
+    dialog_manager.dialog_data[f'edit_object_data_{field_name}'] = new_value
 
-    # Получение данных об объекта
+    # Получение данных об объекте
     object_id = dialog_manager.dialog_data.get('open_object_id')
     objects_list = await db_get_object(object_id=object_id)
     object_dict_data = objects_list[0]
@@ -35,8 +36,17 @@ async def edit_object_address_input(
         chat_id=dialog_manager.event.chat.id,
         media=media_group
     )
-    dialog_manager.show_mode = ShowMode.DELETE_AND_SEND # чтобы медиа группа раньше отправилась, чем смс от бота
+    dialog_manager.show_mode = ShowMode.DELETE_AND_SEND  # чтобы медиа группа раньше отправилась, чем смс от бота
     await dialog_manager.switch_to(EditObject.result_and_edit_menu)
+
+
+# Изменить адрес объекта и перейти к следующему шагу
+async def edit_object_address_input(
+        message: Message,
+        widget: MessageInput,
+        dialog_manager: DialogManager
+):
+    await edit_object_input(message, widget, dialog_manager, 'address')
 
 
 # Изменить условия и стоимость объекта и перейти к следующему шагу
@@ -44,7 +54,8 @@ async def edit_object_conditions_input(
         message: Message,
         widget: MessageInput,
         dialog_manager: DialogManager
-):...
+):
+    await edit_object_input(message, widget, dialog_manager, 'conditions')
 
 
 # Изменить описание объекта и перейти к следующему шагу
@@ -52,4 +63,5 @@ async def edit_object_description_input(
         message: Message,
         widget: MessageInput,
         dialog_manager: DialogManager
-):...
+):
+    await edit_object_input(message, widget, dialog_manager, 'description')
