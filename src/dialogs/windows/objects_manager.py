@@ -51,7 +51,7 @@ object_confirmed_window = Window(
             Start(Const('Адрес'), id='edit_address', state=EditObject.edit_address),
             Start(Const('Цена и Условия'), id='edit_conditions', state=EditObject.edit_conditions),
             Start(Const('Описание'), id='edit_description', state=EditObject.edit_description),
-            Button(Const('Фотографии'), id='edit_photos', on_click=delete_my_object),
+            Start(Const('Фотографии'), id='edit_photos', state=EditObject.edit_photos),
 
             when=F['edit_menu_open']
         ),

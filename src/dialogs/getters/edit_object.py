@@ -15,7 +15,7 @@ from src.utils.media_group_creator import create_media_group
 # Менеджер edit_object_input
 async def edit_object_input(
         message: Message,
-        widget: MessageInput,
+        widget: MessageInput or Button,
         dialog_manager: DialogManager,
         field_name: str
 ):
@@ -33,7 +33,7 @@ async def edit_object_input(
 
     # Отправка медиа группы и диалога с edit_menu
     await dialog_manager.event.bot.send_media_group(
-        chat_id=dialog_manager.event.chat.id,
+        chat_id=message.chat.id,
         media=media_group
     )
     dialog_manager.show_mode = ShowMode.DELETE_AND_SEND  # чтобы медиа группа раньше отправилась, чем смс от бота
@@ -65,3 +65,59 @@ async def edit_object_description_input(
         dialog_manager: DialogManager
 ):
     await edit_object_input(message, widget, dialog_manager, 'description')
+
+
+# Сохраняет загруженные пользователям новые фотографии объекта
+async def edit_object_photos_input(
+        message: Message,
+        widget: MessageInput,
+        dialog_manager: DialogManager
+):
+    # Получаем file id фотографии
+    file_id = message.photo[-1].file_id
+
+    # Смотрим, были ли ранее отправлены фотографии от Пользователя
+    new_photo_list = dialog_manager.dialog_data.get('edit_object_data_photos')
+
+    # Формируем список фотографий
+    if not new_photo_list:
+        new_photo_list = [file_id]
+    else:
+        new_photo_list.append(file_id)
+
+    # Утверждаем список фотографий
+    dialog_manager.dialog_data['edit_object_data_photos'] = new_photo_list
+
+
+# Удалить загруженные фотографии
+async def dell_photos_edit_object(
+        callback: CallbackQuery,
+        widget: Button,
+        dialog_manager: DialogManager
+):
+    # Очищаем фотографии из dialog_data
+    try:
+        photo_list = dialog_manager.dialog_data.pop('edit_object_data_photos')
+    except KeyError:
+        await dialog_manager.event.answer('У вас нет загруженных фотографий')
+        return
+
+    # Оповещаем Пользователя
+    await dialog_manager.event.answer(f'Количество удаленных фотографий: {len(photo_list)}\n'
+                                      f'Теперь вы можете отправить новые фотографии!')
+
+
+# Изменить фотографии объекта и перейти к следующему шагу
+async def confirm_edit_photo_and_go_to_finaly(
+        callback: CallbackQuery,
+        widget: Button,
+        dialog_manager: DialogManager
+):
+    # Получение данных
+    try:
+        photo_list = dialog_manager.dialog_data.get('edit_object_data_photos')
+    except KeyError:
+        await dialog_manager.event.answer('У вас нет загруженных фотографий')
+        return
+
+    await edit_object_input(callback.message, widget, dialog_manager, 'photos')
