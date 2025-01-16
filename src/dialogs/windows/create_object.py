@@ -13,7 +13,6 @@ from src.dialogs.getters.create_object import (
     create_object_description_input, create_object_contacts_input, create_object_photos_input,
     dell_photos_create_object, go_final_result_create_onject, submit_create_object
 )
-from src.dialogs.getters.user import user_getter
 
 # Выбор страны и переход к следующему шагу
 get_country_window = Window(

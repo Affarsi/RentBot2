@@ -4,7 +4,6 @@ from aiogram_dialog.widgets.kbd import Start, Group, Row, SwitchTo, Url, Back, C
 
 from src.dialogs.dialogs_states import UserDialog
 from src.dialogs.getters.info import info_getter
-from src.dialogs.getters.user import user_getter
 
 # Основное меню Пользователя
 info_window = Window(

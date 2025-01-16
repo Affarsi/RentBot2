@@ -9,7 +9,6 @@ from src.dialogs.dialogs_states import UserDialog, CreateObject, EditObject
 from src.dialogs.getters.edit_object import start_edit_menu_dialog
 from src.dialogs.getters.object import my_objects_getter, start_create_object, open_my_object, delete_my_object, \
     object_confirmed_getter, invert_edit_menu_open, invert_delete_object_confirm_menu
-from src.dialogs.getters.user import user_getter
 
 # Раздел 'Мои объекты'
 objects_manager_window = Window(

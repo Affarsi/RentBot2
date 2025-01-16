@@ -3,8 +3,8 @@ from aiogram_dialog import Window
 from aiogram_dialog.widgets.text import Const, Format, Multi
 from aiogram_dialog.widgets.kbd import Start, Group, Row, SwitchTo, Url, Button
 
-from src.dialogs.dialogs_states import UserDialog
-from src.dialogs.getters.user import user_getter
+from src.dialogs.dialogs_states import UserDialog, AdminDialog
+from src.dialogs.getters.main_menu import user_main_getter
 
 # Основное меню Пользователя
 main_menu_window = Window(
@@ -20,9 +20,9 @@ main_menu_window = Window(
             SwitchTo(Const('📕 Информация'), id='info', state=UserDialog.info),
             Url(Const('🦸‍♂️ Тех. Поддержка'), Const('https://t.me/sermseo')),
         ),
-        Button(Const('🖥 Панель Администрирования'), id='open_admin_panel', when=F['is_admin']),
+        Start(Const('🖥 Панель Администрирования'), id='admin_menu', state=AdminDialog.menu, when=F['is_admin']),
     ),
 
-    getter=user_getter,
+    getter=user_main_getter,
     state=UserDialog.main_menu
 )

@@ -12,7 +12,7 @@ from src.database.run_db import create_db
 
 from src.handlers.commands import router as commands_router
 
-from src.dialogs.dialogs_manager import user_dialog, create_object_dialog, edit_object_dialog
+from src.dialogs.dialogs_manager import user_dialog, create_object_dialog, edit_object_dialog, admin_dialog
 
 bot = Bot(Config.bot_token, default=DefaultBotProperties(parse_mode='HTML'))
 
@@ -26,6 +26,8 @@ async def aiogram_run():
 
         create_object_dialog,
         edit_object_dialog,
+
+        admin_dialog,
 
         commands_router
     )

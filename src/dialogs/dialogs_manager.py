@@ -1,5 +1,6 @@
 from aiogram_dialog import Dialog
 
+from src.dialogs.windows.admin import admin_menu_window
 from src.dialogs.windows.create_object import get_country_window, get_type_window, get_address_window, \
     get_conditions_window, get_description_window, get_contacts_window, get_photos_window, final_result_window
 from src.dialogs.windows.edit_object import edit_address_window, edit_conditions_window, edit_description_window, \
@@ -20,6 +21,11 @@ user_dialog = Dialog(
     object_deleted_window,
 
     info_window
+)
+
+# Диалог для Администраторов
+admin_dialog = Dialog(
+    admin_menu_window
 )
 
 # Диалог с созданием нового объекта

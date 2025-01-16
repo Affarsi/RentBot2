@@ -1,4 +1,4 @@
-from sqlalchemy import select
+from sqlalchemy import select, func
 
 from src.database.run_db import async_session
 from src.database.models import User, Object
@@ -42,7 +42,7 @@ async def db_new_user(
 async def db_get_user(
         telegram_id: int = None,
         object_id: int = None
-) -> dict | None:
+) -> dict | list | None:
     async with async_session() as session:
         user = None
 
@@ -66,6 +66,24 @@ async def db_get_user(
                     select(User).where(User.id == obj.owner_id)
                 )
                 user = user.scalar_one_or_none()
+
+        else :
+            # Получаем список всех пользователей в виде словарей
+            user_results = await session.execute(select(User))
+            users = user_results.scalars().all()
+            users_list = []
+            for user in users:
+                users_list.append({
+                    "id": user.id,
+                    "telegram_id": user.telegram_id,
+                    "full_name": user.full_name,
+                    "username": user.username,
+                    "status": user.status,
+                    "object_limit": user.object_limit,
+                })
+
+            user = users_list
+            return user
 
         if user is None:
             return None  # Пользователь не найден

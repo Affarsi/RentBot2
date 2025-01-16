@@ -10,6 +10,9 @@ class UserDialog(StatesGroup):
 
     info = State() # Информационная доска
 
+class AdminDialog(StatesGroup):
+    menu = State()
+
 class CreateObject(StatesGroup):
     get_country = State()
     get_type = State()
