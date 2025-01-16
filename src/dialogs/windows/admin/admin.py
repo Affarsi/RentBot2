@@ -1,10 +1,9 @@
-from aiogram import F
 from aiogram_dialog import Window
-from aiogram_dialog.widgets.text import Const, Format, Multi
-from aiogram_dialog.widgets.kbd import Start, Group, Row, SwitchTo, Url, Button
+from aiogram_dialog.widgets.text import Const, Format
+from aiogram_dialog.widgets.kbd import Start, Button
 
 from src.dialogs.dialogs_states import UserDialog, AdminDialog
-from src.dialogs.getters.admin import admin_menu_getter
+from src.dialogs.getters.admin.admin import admin_menu_getter
 
 # Основное меню Администратора
 admin_menu_window = Window(

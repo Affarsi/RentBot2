@@ -13,6 +13,8 @@ class UserDialog(StatesGroup):
 class AdminDialog(StatesGroup):
     menu = State()
 
+    users_manager = State()
+
 class CreateObject(StatesGroup):
     get_country = State()
     get_type = State()

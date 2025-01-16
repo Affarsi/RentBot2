@@ -2,6 +2,7 @@ from config import Config
 
 from aiogram_dialog import DialogManager
 
+from src.database.requests.settings import db_get_info
 from src.database.requests.user import db_get_user
 
 
@@ -15,3 +16,9 @@ async def user_main_getter(dialog_manager: DialogManager, **kwargs):
     user_dict['is_admin'] = is_admin
 
     return user_dict
+
+
+# Возвращает текст для раздела Информация
+async def info_getter(**kwargs):
+    res = {'info': await db_get_info()}
+    return res

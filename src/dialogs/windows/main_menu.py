@@ -4,6 +4,7 @@ from aiogram_dialog.widgets.text import Const, Format, Multi
 from aiogram_dialog.widgets.kbd import Start, Group, Row, SwitchTo, Url, Button
 
 from src.dialogs.dialogs_states import UserDialog, AdminDialog
+from src.dialogs.getters.info import info_getter
 from src.dialogs.getters.main_menu import user_main_getter
 
 # Основное меню Пользователя
@@ -25,4 +26,14 @@ main_menu_window = Window(
 
     getter=user_main_getter,
     state=UserDialog.main_menu
+)
+
+# Основное меню Пользователя
+info_window = Window(
+    Format('{info}'),
+
+    SwitchTo(Const('Назад'), id='to_main_menu', state=UserDialog.main_menu),
+
+    getter=info_getter,
+    state=UserDialog.info
 )

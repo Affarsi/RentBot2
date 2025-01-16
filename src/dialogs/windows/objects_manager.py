@@ -7,7 +7,7 @@ from aiogram_dialog.widgets.kbd import Start, Group, Row, SwitchTo, Url, Back, S
 
 from src.dialogs.dialogs_states import UserDialog, CreateObject, EditObject
 from src.dialogs.getters.edit_object import start_edit_menu_dialog
-from src.dialogs.getters.object import my_objects_getter, start_create_object, open_my_object, delete_my_object, \
+from src.dialogs.getters.objects_manager import my_objects_getter, start_create_object, open_my_object, delete_my_object, \
     object_confirmed_getter, invert_edit_menu_open, invert_delete_object_confirm_menu
 
 # Раздел 'Мои объекты'

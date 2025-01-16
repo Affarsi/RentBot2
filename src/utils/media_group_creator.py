@@ -21,6 +21,9 @@ async def create_description_for_obj(
             return state_data[state_key]
         return default_value
 
+    # Убедитесь, что dict_data не None, если да - используйте пустой словарь
+    dict_data = dict_data or {}
+
     # Получение данных объекта
     obj_type = get_priority_value('type', dict_data.get('obj_type'))
     country = get_priority_value('country_name', dict_data.get('country'))
