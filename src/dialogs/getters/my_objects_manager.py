@@ -78,11 +78,11 @@ async def open_my_object(
 
     # В зависимости от статуса выводим меню взаимодействия
     if object_data['status'] == '✅':
-        await dialog_manager.switch_to(UserDialog.open_my_object_confirmed)
+        await dialog_manager.switch_to(UserDialog.my_open_my_object_confirmed)
     elif object_data['status'] == '🔄':
-        await dialog_manager.switch_to(UserDialog.open_my_object_moderated)
+        await dialog_manager.switch_to(UserDialog.my_open_my_object_moderated)
     else:
-        await dialog_manager.switch_to(UserDialog.open_my_object_deleted)
+        await dialog_manager.switch_to(UserDialog.my_open_my_object_deleted)
 
 
 # Удалить созданный объект

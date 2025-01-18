@@ -10,7 +10,7 @@ from src.dialogs.dialogs_states import UserDialog, CreateObject, EditObject
 from src.dialogs.getters.edit_object import edit_object_address_input, edit_object_conditions_input, \
     edit_object_description_input, edit_object_photos_input, dell_photos_edit_object, \
     confirm_edit_photo_and_go_to_finaly, clear_dialog_data_edit_object, submit_edit_object
-from src.dialogs.getters.objects_manager import my_objects_getter, start_create_object, open_my_object, delete_my_object, \
+from src.dialogs.getters.my_objects_manager import my_objects_getter, start_create_object, open_my_object, delete_my_object, \
     object_confirmed_getter, invert_edit_menu_open, invert_delete_object_confirm_menu
 
 

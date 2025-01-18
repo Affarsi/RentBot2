@@ -7,11 +7,11 @@ from aiogram_dialog.widgets.kbd import Start, Group, Row, SwitchTo, Url, Back, S
 
 from src.dialogs.dialogs_states import UserDialog, CreateObject, EditObject
 from src.dialogs.getters.edit_object import start_edit_menu_dialog
-from src.dialogs.getters.objects_manager import my_objects_getter, start_create_object, open_my_object, delete_my_object, \
+from src.dialogs.getters.my_objects_manager import my_objects_getter, start_create_object, open_my_object, delete_my_object, \
     object_confirmed_getter, invert_edit_menu_open, invert_delete_object_confirm_menu
 
 # Раздел 'Мои объекты'
-objects_manager_window = Window(
+my_objects_manager_window = Window(
     Const(
         '<b>Добро пожаловать в раздел Мои объекты</b>\n\n'
         'Вы можете открыть уже существующий объект и отредактировать его,'
@@ -39,11 +39,11 @@ objects_manager_window = Window(
     ),
 
     getter=my_objects_getter,
-    state=UserDialog.objects_manager
+    state=UserDialog.my_objects_manager
 )
 
 # Просмотр объекта, находящегося в статусе 'Принят'
-object_confirmed_window = Window(
+my_object_confirmed_window = Window(
     Const('<b>✨Выберите действие:</b>'),
 
         Button(Const('✏️ Меню редактирования'), id='invert_edit_menu_my_object', on_click=invert_edit_menu_open),
@@ -68,11 +68,11 @@ object_confirmed_window = Window(
         SwitchTo(Const('Назад'), id='to_main_menu', state=UserDialog.main_menu),
 
     getter=object_confirmed_getter,
-    state=UserDialog.open_my_object_confirmed
+    state=UserDialog.my_open_my_object_confirmed
 )
 
 # Просмотр объекта, находящегося в статусе 'На модерации'
-object_moderated_window = Window(
+my_object_moderated_window = Window(
     Const('<b>Выше вы видите ваш пост, но он ещё находится в процессе модерации!\n\n'
           'Если ваш пост находится на модерации больше 48 часов или вы желаете его удалить - '
           'напишите в Тех. Поддержку!\n'
@@ -80,11 +80,11 @@ object_moderated_window = Window(
 
         SwitchTo(Const('Назад'), id='to_main_menu', state=UserDialog.main_menu),
 
-    state=UserDialog.open_my_object_moderated
+    state=UserDialog.my_open_my_object_moderated
 )
 
 # Просмотр объекта, находящегося в статусе 'Удалён'
-object_deleted_window = Window(
+my_object_deleted_window = Window(
     Const('<b>К сожалению, ваш пост был удалён администратором.\n\n'
           'Причина удаления:\n'
           '\n\n'
@@ -92,5 +92,5 @@ object_deleted_window = Window(
 
         SwitchTo(Const('Назад'), id='to_main_menu', state=UserDialog.main_menu),
 
-    state=UserDialog.open_my_object_deleted
+    state=UserDialog.my_open_my_object_deleted
 )

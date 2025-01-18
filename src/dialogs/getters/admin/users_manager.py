@@ -79,7 +79,6 @@ async def new_user_obj_limit_input(
         await dialog_manager.event.answer('Вы ввели не число!')
         return
 
-
     # Обновляем данные в БД
     await db_update_user(user_id=s_user_id, object_limit=new_object_limit)
 

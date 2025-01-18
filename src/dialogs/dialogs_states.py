@@ -3,10 +3,10 @@ from aiogram.fsm.state import State, StatesGroup
 class UserDialog(StatesGroup):
     main_menu = State()
 
-    objects_manager = State()
-    open_my_object_confirmed = State()
-    open_my_object_moderated = State()
-    open_my_object_deleted = State()
+    my_objects_manager = State()
+    my_open_my_object_confirmed = State()
+    my_open_my_object_moderated = State()
+    my_open_my_object_deleted = State()
 
     info = State() # Информационная доска
 
@@ -14,10 +14,11 @@ class AdminDialog(StatesGroup):
     menu = State()
 
     users_manager = State()
-
     open_user_account = State()
     change_user_status = State()
     change_user_obj_limit = State()
+
+    users_manager = State()
 
 class CreateObject(StatesGroup):
     get_country = State()

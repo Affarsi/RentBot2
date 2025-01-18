@@ -15,7 +15,7 @@ main_menu_window = Window(
     ),
 
     Group(
-        SwitchTo(Const('🏢 Мои объекты'), id='my_objects', state=UserDialog.objects_manager),
+        SwitchTo(Const('🏢 Мои объекты'), id='my_objects', state=UserDialog.my_objects_manager),
         Row(
             SwitchTo(Const('📕 Информация'), id='info', state=UserDialog.info),
             Url(Const('🦸‍♂️ Тех. Поддержка'), Const('https://t.me/sermseo')),
