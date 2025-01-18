@@ -18,7 +18,10 @@ class AdminDialog(StatesGroup):
     change_user_status = State()
     change_user_obj_limit = State()
 
-    users_manager = State()
+    all_objects_manager = State()
+    all_objects_confirmed = State()
+    all_objects_moderated = State()
+    all_objects_deleted = State()
 
 class CreateObject(StatesGroup):
     get_country = State()
