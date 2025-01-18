@@ -15,6 +15,10 @@ class AdminDialog(StatesGroup):
 
     users_manager = State()
 
+    open_user_account = State()
+    change_user_status = State()
+    change_user_obj_limit = State()
+
 class CreateObject(StatesGroup):
     get_country = State()
     get_type = State()

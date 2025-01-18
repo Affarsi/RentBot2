@@ -41,7 +41,8 @@ async def db_new_user(
 # Возвращает информацию о Пользователе
 async def db_get_user(
         telegram_id: int = None,
-        object_id: int = None
+        object_id: int = None,
+        user_id: int = None
 ) -> dict | list | None:
     async with async_session() as session:
         user = None
@@ -67,6 +68,13 @@ async def db_get_user(
                 )
                 user = user.scalar_one_or_none()
 
+        elif user_id is not None:
+            # Пользователя по user_id
+            user = await session.execute(
+                select(User).where(User.id == user_id)
+            )
+            user = user.scalar_one_or_none()
+
         else :
             # Получаем список всех пользователей в виде словарей
             user_results = await session.execute(select(User))
@@ -79,7 +87,7 @@ async def db_get_user(
                     "full_name": user.full_name,
                     "username": user.username,
                     "status": user.status,
-                    "object_limit": user.object_limit,
+                    "object_limit": user.object_limit
                 })
 
             user = users_list
@@ -107,3 +115,26 @@ async def db_get_user(
         }
 
         return user_dict
+
+
+# Изменить информацию о Пользователе
+async def db_update_user(
+        user_id: int,
+        status: str = None,
+        object_limit: int = None
+):
+    async with async_session() as session:
+        # Получаем Пользователя по user_id
+        result = await session.execute(select(User).where(User.id == user_id))
+        user = result.scalar_one_or_none()
+
+        # Обновляем поля, если они были переданы
+        if status is not None:
+            user.status = status
+
+        if object_limit is not None:
+            user.object_limit = object_limit
+
+        # Сохраняем изменения
+        session.add(user)
+        await session.commit()

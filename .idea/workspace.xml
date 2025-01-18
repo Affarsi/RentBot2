@@ -5,22 +5,22 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1bd5e2e9-72a5-4a8d-b09e-36008a260f3c" name="Changes" comment="admin_menu_window">
-      <change afterPath="$PROJECT_DIR$/src/dialogs/getters/admin/users_manager.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/dialogs/windows/admin/users_manager.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_09_01_2025_21_46_[Changes]/shelved.patch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_09_01_2025_21_46__Changes_.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_10_01_2025_0_03_[Changes]1/shelved.patch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_10_01_2025_0_03_[Changes]2/shelved.patch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_10_01_2025_0_03__Changes_1.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_10_01_2025_0_03__Changes_2.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/database/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/src/database/db.sqlite3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/database/requests/user.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/database/requests/user.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/dialogs/dialogs_manager.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/dialogs/dialogs_manager.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/dialogs/dialogs_states.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/dialogs/dialogs_states.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dialogs/getters/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/dialogs/getters/admin/admin.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dialogs/getters/info.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dialogs/getters/main_menu.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/dialogs/getters/main_menu.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dialogs/getters/object.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/dialogs/getters/objects_manager.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dialogs/windows/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/dialogs/windows/admin/admin.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dialogs/windows/edit_object.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/dialogs/windows/edit_object.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dialogs/windows/info.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dialogs/getters/admin/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/dialogs/getters/admin/main_menu.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dialogs/getters/admin/users_manager.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/dialogs/getters/admin/users_manager.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dialogs/getters/objects_manager.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/dialogs/getters/objects_manager.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dialogs/windows/admin/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/dialogs/windows/admin/main_menu.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dialogs/windows/admin/users_manager.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/dialogs/windows/admin/users_manager.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/dialogs/windows/main_menu.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/dialogs/windows/main_menu.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dialogs/windows/objects_manager.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/dialogs/windows/objects_manager.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/utils/media_group_creator.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/media_group_creator.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -350,7 +350,15 @@
       <option name="project" value="LOCAL" />
       <updated>1737047323318</updated>
     </task>
-    <option name="localTasksCounter" value="28" />
+    <task id="LOCAL-00028" summary="admin_menu_window">
+      <option name="closed" value="true" />
+      <created>1737050088817</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1737050088817</updated>
+    </task>
+    <option name="localTasksCounter" value="29" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">

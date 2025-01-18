@@ -11,7 +11,7 @@ from src.utils.media_group_creator import create_media_group
 # Возвращает текст для раздела Информация
 async def my_objects_getter(dialog_manager: DialogManager, **kwargs):
     telegram_id = dialog_manager.event.from_user.id
-    object_list = await db_get_object(telegram_id=telegram_id)
+    object_list = await db_get_object(telegram_id=telegram_id) # Получение списка объектов из БД
 
     # Если у Пользователя не найдено объектов
     if not object_list:
