@@ -1,0 +1,453 @@
+Index: config.py
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>from dataclasses import dataclass\r\n\r\n@dataclass\r\nclass Config:\r\n    bot_token: str = '7617336613:AAEz95VLn0kAoO7vR_9LQbxz4CXfrIpHKrM'  # test_kwork\r\n    sqlalchemy_url: str = 'sqlite+aiosqlite:///src/database/db.sqlite3'\r\n    admin_ids = [902966420] # IDs список администраторов\r\n    api_id: int = 23988290 # МОИ\r\n    api_hash: str = '62b3cc11b049d4e2f5d4a1de5636df06' # МОИ\r\n    chat: str or int = \"@klajflksadjflsakdjfklsafd\" # ID или \"@логин чата\"\r\n\r\n    # Пример ID чата\r\n    # chat: str or int = \"@klajflksadjflsakdjfklsafd\"\r\n\r\n    # Пример логин чата\r\n    # chat: str or int = -109234012098402
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/config.py b/config.py
+--- a/config.py	(revision 8b991d8e4fc71efb4bad7263080cab10451fab38)
++++ b/config.py	(date 1737031854332)
+@@ -4,7 +4,7 @@
+ class Config:
+     bot_token: str = '7617336613:AAEz95VLn0kAoO7vR_9LQbxz4CXfrIpHKrM'  # test_kwork
+     sqlalchemy_url: str = 'sqlite+aiosqlite:///src/database/db.sqlite3'
+-    admin_ids = [902966420] # IDs список администраторов
++    admin_ids = [6991273215] # IDs список администраторов
+     api_id: int = 23988290 # МОИ
+     api_hash: str = '62b3cc11b049d4e2f5d4a1de5636df06' # МОИ
+     chat: str or int = "@klajflksadjflsakdjfklsafd" # ID или "@логин чата"
+Index: .idea/shelf/Uncommitted_changes_before_Checkout_at_10_01_2025_0_03__Changes_2.xml
+===================================================================
+diff --git a/.idea/shelf/Uncommitted_changes_before_Checkout_at_10_01_2025_0_03__Changes_2.xml b/.idea/shelf/Uncommitted_changes_before_Checkout_at_10_01_2025_0_03__Changes_2.xml
+deleted file mode 100644
+--- a/.idea/shelf/Uncommitted_changes_before_Checkout_at_10_01_2025_0_03__Changes_2.xml	(revision 8b991d8e4fc71efb4bad7263080cab10451fab38)
++++ /dev/null	(revision 8b991d8e4fc71efb4bad7263080cab10451fab38)
+@@ -1,4 +0,0 @@
+-<changelist name="Uncommitted_changes_before_Checkout_at_10_01_2025_0_03_[Changes]2" date="1736456637333" recycled="true" deleted="true">
+-  <option name="PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_10_01_2025_0_03_[Changes]2/shelved.patch" />
+-  <option name="DESCRIPTION" value="Uncommitted changes before Checkout at 10.01.2025 0:03 [Changes]" />
+-</changelist>
+\ No newline at end of file
+Index: .idea/shelf/Uncommitted_changes_before_Checkout_at_10_01_2025_0_03_[Changes]1/shelved.patch
+===================================================================
+diff --git a/.idea/shelf/Uncommitted_changes_before_Checkout_at_10_01_2025_0_03_[Changes]1/shelved.patch b/.idea/shelf/Uncommitted_changes_before_Checkout_at_10_01_2025_0_03_[Changes]1/shelved.patch
+deleted file mode 100644
+--- a/.idea/shelf/Uncommitted_changes_before_Checkout_at_10_01_2025_0_03_[Changes]1/shelved.patch	(revision 8b991d8e4fc71efb4bad7263080cab10451fab38)
++++ /dev/null	(revision 8b991d8e4fc71efb4bad7263080cab10451fab38)
+@@ -1,87 +0,0 @@
+-Index: .idea/vcs.xml
+-IDEA additional info:
+-Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+-<+>UTF-8
+-===================================================================
+-diff --git a/.idea/vcs.xml b/.idea/vcs.xml
+-deleted file mode 100644
+---- a/.idea/vcs.xml	(revision d6d6c8d3fe61576ca6dca3271b564c27355c0f14)
+-+++ /dev/null	(revision d6d6c8d3fe61576ca6dca3271b564c27355c0f14)
+-@@ -1,6 +0,0 @@
+--<?xml version="1.0" encoding="UTF-8"?>
+--<project version="4">
+--  <component name="VcsDirectoryMappings">
+--    <mapping directory="" vcs="Git" />
+--  </component>
+--</project>
+-\ No newline at end of file
+-Index: .idea/.gitignore
+-IDEA additional info:
+-Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+-<+>UTF-8
+-===================================================================
+-diff --git a/.idea/.gitignore b/.idea/.gitignore
+-deleted file mode 100644
+---- a/.idea/.gitignore	(revision d6d6c8d3fe61576ca6dca3271b564c27355c0f14)
+-+++ /dev/null	(revision d6d6c8d3fe61576ca6dca3271b564c27355c0f14)
+-@@ -1,3 +0,0 @@
+--# Default ignored files
+--/shelf/
+--/workspace.xml
+-Index: .idea/RentBot2.iml
+-IDEA additional info:
+-Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+-<+>UTF-8
+-===================================================================
+-diff --git a/.idea/RentBot2.iml b/.idea/RentBot2.iml
+-deleted file mode 100644
+---- a/.idea/RentBot2.iml	(revision d6d6c8d3fe61576ca6dca3271b564c27355c0f14)
+-+++ /dev/null	(revision d6d6c8d3fe61576ca6dca3271b564c27355c0f14)
+-@@ -1,10 +0,0 @@
+--<?xml version="1.0" encoding="UTF-8"?>
+--<module type="PYTHON_MODULE" version="4">
+--  <component name="NewModuleRootManager">
+--    <content url="file://$MODULE_DIR$">
+--      <excludeFolder url="file://$MODULE_DIR$/.venv" />
+--    </content>
+--    <orderEntry type="jdk" jdkName="Python 3.13 (RentBot)" jdkType="Python SDK" />
+--    <orderEntry type="sourceFolder" forTests="false" />
+--  </component>
+--</module>
+-\ No newline at end of file
+-Index: .idea/modules.xml
+-IDEA additional info:
+-Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+-<+>UTF-8
+-===================================================================
+-diff --git a/.idea/modules.xml b/.idea/modules.xml
+-deleted file mode 100644
+---- a/.idea/modules.xml	(revision d6d6c8d3fe61576ca6dca3271b564c27355c0f14)
+-+++ /dev/null	(revision d6d6c8d3fe61576ca6dca3271b564c27355c0f14)
+-@@ -1,8 +0,0 @@
+--<?xml version="1.0" encoding="UTF-8"?>
+--<project version="4">
+--  <component name="ProjectModuleManager">
+--    <modules>
+--      <module fileurl="file://$PROJECT_DIR$/.idea/RatingBot.iml" filepath="$PROJECT_DIR$/.idea/RatingBot.iml" />
+--    </modules>
+--  </component>
+--</project>
+-\ No newline at end of file
+-Index: .idea/inspectionProfiles/profiles_settings.xml
+-IDEA additional info:
+-Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+-<+>UTF-8
+-===================================================================
+-diff --git a/.idea/inspectionProfiles/profiles_settings.xml b/.idea/inspectionProfiles/profiles_settings.xml
+-deleted file mode 100644
+---- a/.idea/inspectionProfiles/profiles_settings.xml	(revision d6d6c8d3fe61576ca6dca3271b564c27355c0f14)
+-+++ /dev/null	(revision d6d6c8d3fe61576ca6dca3271b564c27355c0f14)
+-@@ -1,6 +0,0 @@
+--<component name="InspectionProjectProfileManager">
+--  <settings>
+--    <option name="USE_PROJECT_PROFILE" value="false" />
+--    <version value="1.0" />
+--  </settings>
+--</component>
+-\ No newline at end of file
+Index: .idea/shelf/Uncommitted_changes_before_Checkout_at_09_01_2025_21_46__Changes_.xml
+===================================================================
+diff --git a/.idea/shelf/Uncommitted_changes_before_Checkout_at_09_01_2025_21_46__Changes_.xml b/.idea/shelf/Uncommitted_changes_before_Checkout_at_09_01_2025_21_46__Changes_.xml
+deleted file mode 100644
+--- a/.idea/shelf/Uncommitted_changes_before_Checkout_at_09_01_2025_21_46__Changes_.xml	(revision 8b991d8e4fc71efb4bad7263080cab10451fab38)
++++ /dev/null	(revision 8b991d8e4fc71efb4bad7263080cab10451fab38)
+@@ -1,4 +0,0 @@
+-<changelist name="Uncommitted_changes_before_Checkout_at_09_01_2025_21_46_[Changes]" date="1736448388833" recycled="true" deleted="true">
+-  <option name="PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_09_01_2025_21_46_[Changes]/shelved.patch" />
+-  <option name="DESCRIPTION" value="Uncommitted changes before Checkout at 09.01.2025 21:46 [Changes]" />
+-</changelist>
+\ No newline at end of file
+Index: .idea/shelf/Uncommitted_changes_before_Checkout_at_10_01_2025_0_03_[Changes]2/shelved.patch
+===================================================================
+diff --git a/.idea/shelf/Uncommitted_changes_before_Checkout_at_10_01_2025_0_03_[Changes]2/shelved.patch b/.idea/shelf/Uncommitted_changes_before_Checkout_at_10_01_2025_0_03_[Changes]2/shelved.patch
+deleted file mode 100644
+--- a/.idea/shelf/Uncommitted_changes_before_Checkout_at_10_01_2025_0_03_[Changes]2/shelved.patch	(revision 8b991d8e4fc71efb4bad7263080cab10451fab38)
++++ /dev/null	(revision 8b991d8e4fc71efb4bad7263080cab10451fab38)
+@@ -1,87 +0,0 @@
+-Index: .idea/vcs.xml
+-IDEA additional info:
+-Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+-<+>UTF-8
+-===================================================================
+-diff --git a/.idea/vcs.xml b/.idea/vcs.xml
+-deleted file mode 100644
+---- a/.idea/vcs.xml	(revision a8fae88d7d5a46a2124d09976ffda602f07509ce)
+-+++ /dev/null	(revision a8fae88d7d5a46a2124d09976ffda602f07509ce)
+-@@ -1,6 +0,0 @@
+--<?xml version="1.0" encoding="UTF-8"?>
+--<project version="4">
+--  <component name="VcsDirectoryMappings">
+--    <mapping directory="$PROJECT_DIR$" vcs="Git" />
+--  </component>
+--</project>
+-\ No newline at end of file
+-Index: .idea/.gitignore
+-IDEA additional info:
+-Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+-<+>UTF-8
+-===================================================================
+-diff --git a/.idea/.gitignore b/.idea/.gitignore
+-deleted file mode 100644
+---- a/.idea/.gitignore	(revision a8fae88d7d5a46a2124d09976ffda602f07509ce)
+-+++ /dev/null	(revision a8fae88d7d5a46a2124d09976ffda602f07509ce)
+-@@ -1,3 +0,0 @@
+--# Default ignored files
+--/shelf/
+--/workspace.xml
+-Index: .idea/RentBot2.iml
+-IDEA additional info:
+-Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+-<+>UTF-8
+-===================================================================
+-diff --git a/.idea/RentBot2.iml b/.idea/RentBot2.iml
+-deleted file mode 100644
+---- a/.idea/RentBot2.iml	(revision a8fae88d7d5a46a2124d09976ffda602f07509ce)
+-+++ /dev/null	(revision a8fae88d7d5a46a2124d09976ffda602f07509ce)
+-@@ -1,10 +0,0 @@
+--<?xml version="1.0" encoding="UTF-8"?>
+--<module type="PYTHON_MODULE" version="4">
+--  <component name="NewModuleRootManager">
+--    <content url="file://$MODULE_DIR$">
+--      <excludeFolder url="file://$MODULE_DIR$/.venv" />
+--    </content>
+--    <orderEntry type="jdk" jdkName="Python 3.13 (RentBot2)" jdkType="Python SDK" />
+--    <orderEntry type="sourceFolder" forTests="false" />
+--  </component>
+--</module>
+-\ No newline at end of file
+-Index: .idea/modules.xml
+-IDEA additional info:
+-Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+-<+>UTF-8
+-===================================================================
+-diff --git a/.idea/modules.xml b/.idea/modules.xml
+-deleted file mode 100644
+---- a/.idea/modules.xml	(revision a8fae88d7d5a46a2124d09976ffda602f07509ce)
+-+++ /dev/null	(revision a8fae88d7d5a46a2124d09976ffda602f07509ce)
+-@@ -1,8 +0,0 @@
+--<?xml version="1.0" encoding="UTF-8"?>
+--<project version="4">
+--  <component name="ProjectModuleManager">
+--    <modules>
+--      <module fileurl="file://$PROJECT_DIR$/.idea/RentBot2.iml" filepath="$PROJECT_DIR$/.idea/RentBot2.iml" />
+--    </modules>
+--  </component>
+--</project>
+-\ No newline at end of file
+-Index: .idea/inspectionProfiles/profiles_settings.xml
+-IDEA additional info:
+-Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+-<+>UTF-8
+-===================================================================
+-diff --git a/.idea/inspectionProfiles/profiles_settings.xml b/.idea/inspectionProfiles/profiles_settings.xml
+-deleted file mode 100644
+---- a/.idea/inspectionProfiles/profiles_settings.xml	(revision a8fae88d7d5a46a2124d09976ffda602f07509ce)
+-+++ /dev/null	(revision a8fae88d7d5a46a2124d09976ffda602f07509ce)
+-@@ -1,6 +0,0 @@
+--<component name="InspectionProjectProfileManager">
+--  <settings>
+--    <option name="USE_PROJECT_PROFILE" value="false" />
+--    <version value="1.0" />
+--  </settings>
+--</component>
+-\ No newline at end of file
+Index: .idea/shelf/Uncommitted_changes_before_Checkout_at_09_01_2025_21_46_[Changes]/shelved.patch
+===================================================================
+diff --git a/.idea/shelf/Uncommitted_changes_before_Checkout_at_09_01_2025_21_46_[Changes]/shelved.patch b/.idea/shelf/Uncommitted_changes_before_Checkout_at_09_01_2025_21_46_[Changes]/shelved.patch
+deleted file mode 100644
+--- a/.idea/shelf/Uncommitted_changes_before_Checkout_at_09_01_2025_21_46_[Changes]/shelved.patch	(revision 8b991d8e4fc71efb4bad7263080cab10451fab38)
++++ /dev/null	(revision 8b991d8e4fc71efb4bad7263080cab10451fab38)
+@@ -1,95 +0,0 @@
+-Index: .idea/vcs.xml
+-===================================================================
+-diff --git a/.idea/vcs.xml b/.idea/vcs.xml
+-deleted file mode 100644
+---- a/.idea/vcs.xml	(revision a8fae88d7d5a46a2124d09976ffda602f07509ce)
+-+++ /dev/null	(revision a8fae88d7d5a46a2124d09976ffda602f07509ce)
+-@@ -1,6 +0,0 @@
+--<?xml version="1.0" encoding="UTF-8"?>
+--<project version="4">
+--  <component name="VcsDirectoryMappings">
+--    <mapping directory="$PROJECT_DIR$" vcs="Git" />
+--  </component>
+--</project>
+-\ No newline at end of file
+-Index: main.py
+-===================================================================
+-diff --git a/main.py b/main.py
+-deleted file mode 100644
+---- a/main.py	(revision a8fae88d7d5a46a2124d09976ffda602f07509ce)
+-+++ /dev/null	(revision a8fae88d7d5a46a2124d09976ffda602f07509ce)
+-@@ -1,16 +0,0 @@
+--# This is a sample Python script.
+--
+--# Press Shift+F10 to execute it or replace it with your code.
+--# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
+--
+--
+--def print_hi(name):
+--    # Use a breakpoint in the code line below to debug your script.
+--    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
+--
+--
+--# Press the green button in the gutter to run the script.
+--if __name__ == '__main__':
+--    print_hi('PyCharm')
+--
+--# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+-Index: .idea/.gitignore
+-===================================================================
+-diff --git a/.idea/.gitignore b/.idea/.gitignore
+-deleted file mode 100644
+---- a/.idea/.gitignore	(revision a8fae88d7d5a46a2124d09976ffda602f07509ce)
+-+++ /dev/null	(revision a8fae88d7d5a46a2124d09976ffda602f07509ce)
+-@@ -1,3 +0,0 @@
+--# Default ignored files
+--/shelf/
+--/workspace.xml
+-Index: .idea/RentBot2.iml
+-===================================================================
+-diff --git a/.idea/RentBot2.iml b/.idea/RentBot2.iml
+-deleted file mode 100644
+---- a/.idea/RentBot2.iml	(revision a8fae88d7d5a46a2124d09976ffda602f07509ce)
+-+++ /dev/null	(revision a8fae88d7d5a46a2124d09976ffda602f07509ce)
+-@@ -1,10 +0,0 @@
+--<?xml version="1.0" encoding="UTF-8"?>
+--<module type="PYTHON_MODULE" version="4">
+--  <component name="NewModuleRootManager">
+--    <content url="file://$MODULE_DIR$">
+--      <excludeFolder url="file://$MODULE_DIR$/.venv" />
+--    </content>
+--    <orderEntry type="jdk" jdkName="Python 3.13 (RentBot2)" jdkType="Python SDK" />
+--    <orderEntry type="sourceFolder" forTests="false" />
+--  </component>
+--</module>
+-\ No newline at end of file
+-Index: .idea/modules.xml
+-===================================================================
+-diff --git a/.idea/modules.xml b/.idea/modules.xml
+-deleted file mode 100644
+---- a/.idea/modules.xml	(revision a8fae88d7d5a46a2124d09976ffda602f07509ce)
+-+++ /dev/null	(revision a8fae88d7d5a46a2124d09976ffda602f07509ce)
+-@@ -1,8 +0,0 @@
+--<?xml version="1.0" encoding="UTF-8"?>
+--<project version="4">
+--  <component name="ProjectModuleManager">
+--    <modules>
+--      <module fileurl="file://$PROJECT_DIR$/.idea/RentBot2.iml" filepath="$PROJECT_DIR$/.idea/RentBot2.iml" />
+--    </modules>
+--  </component>
+--</project>
+-\ No newline at end of file
+-Index: .idea/inspectionProfiles/profiles_settings.xml
+-===================================================================
+-diff --git a/.idea/inspectionProfiles/profiles_settings.xml b/.idea/inspectionProfiles/profiles_settings.xml
+-deleted file mode 100644
+---- a/.idea/inspectionProfiles/profiles_settings.xml	(revision a8fae88d7d5a46a2124d09976ffda602f07509ce)
+-+++ /dev/null	(revision a8fae88d7d5a46a2124d09976ffda602f07509ce)
+-@@ -1,6 +0,0 @@
+--<component name="InspectionProjectProfileManager">
+--  <settings>
+--    <option name="USE_PROJECT_PROFILE" value="false" />
+--    <version value="1.0" />
+--  </settings>
+--</component>
+-\ No newline at end of file
+Index: .idea/shelf/Uncommitted_changes_before_Checkout_at_10_01_2025_0_03__Changes_1.xml
+===================================================================
+diff --git a/.idea/shelf/Uncommitted_changes_before_Checkout_at_10_01_2025_0_03__Changes_1.xml b/.idea/shelf/Uncommitted_changes_before_Checkout_at_10_01_2025_0_03__Changes_1.xml
+deleted file mode 100644
+--- a/.idea/shelf/Uncommitted_changes_before_Checkout_at_10_01_2025_0_03__Changes_1.xml	(revision 8b991d8e4fc71efb4bad7263080cab10451fab38)
++++ /dev/null	(revision 8b991d8e4fc71efb4bad7263080cab10451fab38)
+@@ -1,4 +0,0 @@
+-<changelist name="Uncommitted_changes_before_Checkout_at_10_01_2025_0_03_[Changes]1" date="1736456629432" recycled="true" deleted="true">
+-  <option name="PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_10_01_2025_0_03_[Changes]1/shelved.patch" />
+-  <option name="DESCRIPTION" value="Uncommitted changes before Checkout at 10.01.2025 0:03 [Changes]" />
+-</changelist>
+\ No newline at end of file
+Index: requirements.txt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>aiogram==3.17.0\r\naiogram_dialog==2.3.0\r\nattr==0.3.2\r\nConfigParser==7.1.0\r\ncontextlib2==21.6.0\r\ncryptography==44.0.0\r\ndocutils==0.21.2\r\nHTMLParser==0.0.2\r\nimportlib_metadata==8.5.0\r\nipython==8.31.0\r\nipywidgets==8.1.5\r\nJinja2==3.1.5\r\nkeyring==25.6.0\r\nlockfile==0.12.2\r\nmock==5.1.0\r\nPillow==11.1.0\r\nprotobuf==5.29.3\r\npyOpenSSL==24.3.0\r\npytz==2024.2\r\nrailroad==0.5.0\r\nSphinx==8.1.3\r\nSQLAlchemy==2.0.36\r\nthread==2.0.5\r\ntornado==6.4.2\r\ntruststore==0.10.0\r\nurllib3_secure_extra==0.1.0\r\naiosqlite\r\ngreenlet\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/requirements.txt b/requirements.txt
+--- a/requirements.txt	(revision 8b991d8e4fc71efb4bad7263080cab10451fab38)
++++ b/requirements.txt	(date 1737031647097)
+@@ -26,3 +26,4 @@
+ urllib3_secure_extra==0.1.0
+ aiosqlite
+ greenlet
++kurigram
+\ No newline at end of file
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"AutoImportSettings\">\r\n    <option name=\"autoReloadType\" value=\"SELECTIVE\" />\r\n  </component>\r\n  <component name=\"ChangeListManager\">\r\n    <list default=\"true\" id=\"1bd5e2e9-72a5-4a8d-b09e-36008a260f3c\" name=\"Changes\" comment=\"Commit\">\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/workspace.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/workspace.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/dialogs/getters/edit_object.py\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/dialogs/getters/edit_object.py\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/dialogs/windows/objects_manager.py\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/dialogs/windows/objects_manager.py\" afterDir=\"false\" />\r\n    </list>\r\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\r\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\r\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\r\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\r\n  </component>\r\n  <component name=\"FileTemplateManagerImpl\">\r\n    <option name=\"RECENT_TEMPLATES\">\r\n      <list>\r\n        <option value=\"Python Script\" />\r\n      </list>\r\n    </option>\r\n  </component>\r\n  <component name=\"Git.Settings\">\r\n    <option name=\"RECENT_BRANCH_BY_REPOSITORY\">\r\n      <map>\r\n        <entry key=\"$PROJECT_DIR$\" value=\"RentBot2_v2\" />\r\n      </map>\r\n    </option>\r\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\r\n  </component>\r\n  <component name=\"GitHubPullRequestSearchHistory\">{\r\n  &quot;lastFilter&quot;: {\r\n    &quot;state&quot;: &quot;OPEN&quot;,\r\n    &quot;assignee&quot;: &quot;Affarsi&quot;\r\n  }\r\n}</component>\r\n  <component name=\"GithubPullRequestsUISettings\">{\r\n  &quot;selectedUrlAndAccountId&quot;: {\r\n    &quot;url&quot;: &quot;https://github.com/Affarsi/RentBot2.git&quot;,\r\n    &quot;accountId&quot;: &quot;54f2b555-64cf-4956-b608-2e4ee5a2afb4&quot;\r\n  }\r\n}</component>\r\n  <component name=\"ProjectColorInfo\">{\r\n  &quot;associatedIndex&quot;: 0\r\n}</component>\r\n  <component name=\"ProjectId\" id=\"2rHhP58K3jmeLwBdcft16bCM8OL\" />\r\n  <component name=\"ProjectLevelVcsManager\">\r\n    <ConfirmationsSetting value=\"2\" id=\"Add\" />\r\n  </component>\r\n  <component name=\"ProjectViewState\">\r\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\r\n    <option name=\"showLibraryContents\" value=\"true\" />\r\n  </component>\r\n  <component name=\"PropertiesComponent\">{\r\n  &quot;keyToString&quot;: {\r\n    &quot;Python.bot.executor&quot;: &quot;Run&quot;,\r\n    &quot;Python.main_menu.executor&quot;: &quot;Run&quot;,\r\n    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,\r\n    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,\r\n    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,\r\n    &quot;git-widget-placeholder&quot;: &quot;RentBot2__v3&quot;,\r\n    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,\r\n    &quot;last_opened_file_path&quot;: &quot;C:/Users/vladn/Downloads/discord-intellij-3.0.0.zip&quot;,\r\n    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;\r\n  }\r\n}</component>\r\n  <component name=\"RecentsManager\">\r\n    <key name=\"CopyFile.RECENT_KEYS\">\r\n      <recent name=\"D:\\PCFather\\Files\\other_files\\pycharmProjects\\Kwork\\RentBot2\\src\\filters\" />\r\n      <recent name=\"D:\\PCFather\\Files\\other_files\\pycharmProjects\\Kwork\\RentBot2\" />\r\n    </key>\r\n    <key name=\"MoveFile.RECENT_KEYS\">\r\n      <recent name=\"D:\\PCFather\\Files\\other_files\\pycharmProjects\\Kwork\\RentBot2\" />\r\n    </key>\r\n  </component>\r\n  <component name=\"RunManager\">\r\n    <configuration name=\"bot\" type=\"PythonConfigurationType\" factoryName=\"Python\" temporary=\"true\" nameIsGenerated=\"true\">\r\n      <module name=\"RentBot2\" />\r\n      <option name=\"ENV_FILES\" value=\"\" />\r\n      <option name=\"INTERPRETER_OPTIONS\" value=\"\" />\r\n      <option name=\"PARENT_ENVS\" value=\"true\" />\r\n      <envs>\r\n        <env name=\"PYTHONUNBUFFERED\" value=\"1\" />\r\n      </envs>\r\n      <option name=\"SDK_HOME\" value=\"\" />\r\n      <option name=\"WORKING_DIRECTORY\" value=\"$PROJECT_DIR$\" />\r\n      <option name=\"IS_MODULE_SDK\" value=\"true\" />\r\n      <option name=\"ADD_CONTENT_ROOTS\" value=\"true\" />\r\n      <option name=\"ADD_SOURCE_ROOTS\" value=\"true\" />\r\n      <option name=\"SCRIPT_NAME\" value=\"$PROJECT_DIR$/bot.py\" />\r\n      <option name=\"PARAMETERS\" value=\"\" />\r\n      <option name=\"SHOW_COMMAND_LINE\" value=\"false\" />\r\n      <option name=\"EMULATE_TERMINAL\" value=\"false\" />\r\n      <option name=\"MODULE_MODE\" value=\"false\" />\r\n      <option name=\"REDIRECT_INPUT\" value=\"false\" />\r\n      <option name=\"INPUT_FILE\" value=\"\" />\r\n      <method v=\"2\" />\r\n    </configuration>\r\n    <recent_temporary>\r\n      <list>\r\n        <item itemvalue=\"Python.bot\" />\r\n      </list>\r\n    </recent_temporary>\r\n  </component>\r\n  <component name=\"SharedIndexes\">\r\n    <attachedChunks>\r\n      <set>\r\n        <option value=\"bundled-python-sdk-495700d161d3-aa17d162503b-com.jetbrains.pycharm.community.sharedIndexes.bundled-PC-243.22562.220\" />\r\n      </set>\r\n    </attachedChunks>\r\n  </component>\r\n  <component name=\"SpellCheckerSettings\" RuntimeDictionaries=\"0\" Folders=\"0\" CustomDictionaries=\"0\" DefaultDictionary=\"application-level\" UseSingleDictionary=\"true\" transferred=\"true\" />\r\n  <component name=\"TaskManager\">\r\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\r\n      <changelist id=\"1bd5e2e9-72a5-4a8d-b09e-36008a260f3c\" name=\"Changes\" comment=\"\" />\r\n      <created>1736221880772</created>\r\n      <option name=\"number\" value=\"Default\" />\r\n      <option name=\"presentableId\" value=\"Default\" />\r\n      <updated>1736221880772</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00001\" summary=\"Commit\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1736448052691</created>\r\n      <option name=\"number\" value=\"00001\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00001\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1736448052691</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00002\" summary=\"Commit\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1736460317344</created>\r\n      <option name=\"number\" value=\"00002\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00002\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1736460317344</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00003\" summary=\"Commit\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1736507843951</created>\r\n      <option name=\"number\" value=\"00003\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00003\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1736507843951</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00004\" summary=\"Commit\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1736509502047</created>\r\n      <option name=\"number\" value=\"00004\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00004\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1736509502047</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00005\" summary=\"Commit\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1736521802929</created>\r\n      <option name=\"number\" value=\"00005\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00005\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1736521802929</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00006\" summary=\"Commit\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1736523724579</created>\r\n      <option name=\"number\" value=\"00006\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00006\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1736523724579</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00007\" summary=\"Commit\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1736524081554</created>\r\n      <option name=\"number\" value=\"00007\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00007\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1736524081554</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00008\" summary=\"Commit\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1736524309257</created>\r\n      <option name=\"number\" value=\"00008\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00008\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1736524309257</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00009\" summary=\"Commit\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1736527613797</created>\r\n      <option name=\"number\" value=\"00009\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00009\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1736527613797</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00010\" summary=\"Commit\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1736614990545</created>\r\n      <option name=\"number\" value=\"00010\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00010\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1736614990545</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00011\" summary=\"Commit\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1736615234963</created>\r\n      <option name=\"number\" value=\"00011\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00011\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1736615234963</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00012\" summary=\"Commit\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1736615246875</created>\r\n      <option name=\"number\" value=\"00012\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00012\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1736615246875</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00013\" summary=\"Commit\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1736615648955</created>\r\n      <option name=\"number\" value=\"00013\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00013\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1736615648955</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00014\" summary=\"Commit\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1736616472712</created>\r\n      <option name=\"number\" value=\"00014\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00014\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1736616472712</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00015\" summary=\"Commit\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1736617165559</created>\r\n      <option name=\"number\" value=\"00015\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00015\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1736617165559</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00016\" summary=\"Commit\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1736617626055</created>\r\n      <option name=\"number\" value=\"00016\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00016\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1736617626055</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00017\" summary=\"Commit\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1736617820657</created>\r\n      <option name=\"number\" value=\"00017\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00017\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1736617820657</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00018\" summary=\"Commit\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1736783924365</created>\r\n      <option name=\"number\" value=\"00018\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00018\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1736783924365</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00019\" summary=\"Commit\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1736790637428</created>\r\n      <option name=\"number\" value=\"00019\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00019\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1736790637428</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00020\" summary=\"Commit\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1736790914311</created>\r\n      <option name=\"number\" value=\"00020\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00020\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1736790914311</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00021\" summary=\"Commit\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1736791257795</created>\r\n      <option name=\"number\" value=\"00021\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00021\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1736791257795</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00022\" summary=\"Commit\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1736796287883</created>\r\n      <option name=\"number\" value=\"00022\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00022\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1736796287883</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00023\" summary=\"Commit\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1736798383523</created>\r\n      <option name=\"number\" value=\"00023\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00023\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1736798383523</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00024\" summary=\"Commit\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1736798650640</created>\r\n      <option name=\"number\" value=\"00024\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00024\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1736798650640</updated>\r\n    </task>\r\n    <option name=\"localTasksCounter\" value=\"25\" />\r\n    <servers />\r\n  </component>\r\n  <component name=\"VcsManagerConfiguration\">\r\n    <MESSAGE value=\"Commit\" />\r\n    <option name=\"LAST_COMMIT_MESSAGE\" value=\"Commit\" />\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+--- a/.idea/workspace.xml	(revision 8b991d8e4fc71efb4bad7263080cab10451fab38)
++++ b/.idea/workspace.xml	(date 1737311417976)
+@@ -5,9 +5,13 @@
+   </component>
+   <component name="ChangeListManager">
+     <list default="true" id="1bd5e2e9-72a5-4a8d-b09e-36008a260f3c" name="Changes" comment="Commit">
++      <change beforePath="$PROJECT_DIR$/.idea/RentBot2.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/RentBot2.iml" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/dialogs/getters/edit_object.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/dialogs/getters/edit_object.py" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/dialogs/windows/objects_manager.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/dialogs/windows/objects_manager.py" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/config.py" beforeDir="false" afterPath="$PROJECT_DIR$/config.py" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/database/db.sqlite3" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/utils/media_group_creator.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/media_group_creator.py" afterDir="false" />
+     </list>
+     <option name="SHOW_DIALOG" value="false" />
+     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+@@ -38,7 +42,7 @@
+   <component name="GithubPullRequestsUISettings">{
+   &quot;selectedUrlAndAccountId&quot;: {
+     &quot;url&quot;: &quot;https://github.com/Affarsi/RentBot2.git&quot;,
+-    &quot;accountId&quot;: &quot;54f2b555-64cf-4956-b608-2e4ee5a2afb4&quot;
++    &quot;accountId&quot;: &quot;8d394c9e-a28d-4a6d-b94b-aec1999f7cb6&quot;
+   }
+ }</component>
+   <component name="ProjectColorInfo">{
+Index: src/utils/media_group_creator.py
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import random\r\nfrom typing import List\r\n\r\nfrom aiogram.utils.media_group import MediaGroupBuilder\r\n\r\n\r\n# Формирование описание из информации объекта\r\nasync def create_description_for_obj(\r\n        dict_data: dict=None,\r\n        state_data: dict=None,\r\n        edit_data: dict=None\r\n):\r\n    # Возвращает значение с приоритетом edit_data, затем state_data, затем dict_data.\r\n    def get_priority_value(key, default_value):\r\n        edit_key = f'edit_object_data_{key}'\r\n        state_key = f'state_object_data_{key}'\r\n\r\n        if edit_data and edit_key in edit_data:\r\n            return edit_data[edit_key]\r\n        if state_data and state_key in state_data:\r\n            return state_data[state_key]\r\n        return default_value\r\n\r\n    # Получение данных объекта\r\n    obj_type = get_priority_value('type', dict_data.get('obj_type'))\r\n    country = get_priority_value('country_name', dict_data.get('country'))\r\n    address = get_priority_value('address', dict_data.get('address'))\r\n    conditions = get_priority_value('conditions', dict_data.get('conditions'))\r\n    description = get_priority_value('description', dict_data.get('description'))\r\n    contacts = get_priority_value('contacts', dict_data.get('contacts'))\r\n    generate_id = get_priority_value('generate_id', dict_data.get('generate_id'))\r\n\r\n    # Формирование текста\r\n    caption = (f\"<b>\uD83C\uDFE2 {obj_type} (ID{generate_id})</b>\\n\"\r\n               f\"<b>\uD83D\uDCCD Местоположение:</b>\\n\"\r\n               f\"{country}, {address}\\n\"\r\n               f\"\uD83D\uDCB8<b> Цена и условия:</b>\\n\"\r\n               f\"{conditions}\\n\"\r\n               f\"<b>\uD83D\uDECB Описание:</b>\\n\"\r\n               f\"{description}\\n\\n\"\r\n               f\"<b>☎\uFE0F Контакты:</b>\\n\"\r\n               f\"{contacts}\")\r\n\r\n    return caption\r\n\r\n\r\n# Формирование медиа группы c информацией об объекте\r\nasync def create_media_group(\r\n        dict_data: dict = None,\r\n        state_data: dict = None,\r\n        photo_list: List[str] = None,\r\n        edit_data: dict = None\r\n):\r\n    # Формирование описания\r\n    caption = await create_description_for_obj(dict_data, state_data, edit_data)\r\n\r\n    # Формирование медиа группы\r\n    media_group = MediaGroupBuilder(caption=caption)\r\n\r\n    # Работа с фотографиями\r\n    if photo_list is None:\r\n        if edit_data is None or 'edit_object_data_photos' not in edit_data:\r\n            photo_list = dict_data['photos']\r\n            photo_list = photo_list.split(', ')\r\n        else:\r\n            photo_list = edit_data['edit_object_data_photos']\r\n\r\n    # Сохраняем фотографии в медиа группе\r\n    for photo in photo_list:\r\n        media_group.add_photo(media=photo)\r\n\r\n    # Собираем и выводим медиа группу\r\n    media_group = media_group.build()\r\n    return media_group
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/utils/media_group_creator.py b/src/utils/media_group_creator.py
+--- a/src/utils/media_group_creator.py	(revision 8b991d8e4fc71efb4bad7263080cab10451fab38)
++++ b/src/utils/media_group_creator.py	(date 1737032227982)
+@@ -21,6 +21,9 @@
+             return state_data[state_key]
+         return default_value
+ 
++    # Убедитесь, что dict_data не None, если да - используйте пустой словарь
++    dict_data = dict_data or {}
++
+     # Получение данных объекта
+     obj_type = get_priority_value('type', dict_data.get('obj_type'))
+     country = get_priority_value('country_name', dict_data.get('country'))
+Index: .idea/RentBot2.iml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<module type=\"PYTHON_MODULE\" version=\"4\">\r\n  <component name=\"NewModuleRootManager\">\r\n    <content url=\"file://$MODULE_DIR$\">\r\n      <excludeFolder url=\"file://$MODULE_DIR$/.venv\" />\r\n    </content>\r\n    <orderEntry type=\"jdk\" jdkName=\"Python 3.13 (RentBot2)\" jdkType=\"Python SDK\" />\r\n    <orderEntry type=\"sourceFolder\" forTests=\"false\" />\r\n  </component>\r\n  <component name=\"PyDocumentationSettings\">\r\n    <option name=\"format\" value=\"PLAIN\" />\r\n    <option name=\"myDocStringFormat\" value=\"Plain\" />\r\n  </component>\r\n</module>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/RentBot2.iml b/.idea/RentBot2.iml
+--- a/.idea/RentBot2.iml	(revision 8b991d8e4fc71efb4bad7263080cab10451fab38)
++++ b/.idea/RentBot2.iml	(date 1737031647436)
+@@ -4,7 +4,7 @@
+     <content url="file://$MODULE_DIR$">
+       <excludeFolder url="file://$MODULE_DIR$/.venv" />
+     </content>
+-    <orderEntry type="jdk" jdkName="Python 3.13 (RentBot2)" jdkType="Python SDK" />
++    <orderEntry type="jdk" jdkName="Python 3.13" jdkType="Python SDK" />
+     <orderEntry type="sourceFolder" forTests="false" />
+   </component>
+   <component name="PyDocumentationSettings">
+Index: .idea/misc.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"Black\">\r\n    <option name=\"sdkName\" value=\"Python 3.13 (RentBot)\" />\r\n  </component>\r\n  <component name=\"ProjectRootManager\" version=\"2\" project-jdk-name=\"Python 3.13 (RentBot2)\" project-jdk-type=\"Python SDK\" />\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/misc.xml b/.idea/misc.xml
+--- a/.idea/misc.xml	(revision 8b991d8e4fc71efb4bad7263080cab10451fab38)
++++ b/.idea/misc.xml	(date 1737031647454)
+@@ -3,5 +3,5 @@
+   <component name="Black">
+     <option name="sdkName" value="Python 3.13 (RentBot)" />
+   </component>
+-  <component name="ProjectRootManager" version="2" project-jdk-name="Python 3.13 (RentBot2)" project-jdk-type="Python SDK" />
++  <component name="ProjectRootManager" version="2" project-jdk-name="Python 3.13" project-jdk-type="Python SDK" />
+ </project>
+\ No newline at end of file

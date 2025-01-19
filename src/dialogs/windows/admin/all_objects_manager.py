@@ -8,7 +8,8 @@ from aiogram_dialog.widgets.kbd import Start, Button, Group, ScrollingGroup, Sel
 
 from src.dialogs.dialogs_states import UserDialog, AdminDialog
 from src.dialogs.getters.admin.all_objects_manager import all_objects_count_getter, \
-    all_objects_count_and_sg_list_getter, admin_open_object
+    all_objects_count_and_sg_list_getter, admin_open_object, admin_open_object_confirmed_getter, \
+    invert_admin_edit_menu_open, invert_admin_dell_obj_confirm_menu, admin_delete_object
 from src.dialogs.getters.admin.main_menu import admin_menu_getter
 from src.dialogs.getters.admin.users_manager import all_users_getter, admin_open_user_account, user_account_getter, \
     new_user_status_input, new_user_obj_limit_input
@@ -117,18 +118,18 @@ admin_open_object_moderated_window = Window(
 
 # Просмотр объекта со статусом "Одобрено"
 admin_open_object_confirmed_window = Window(
-    Const('<b>Объект был одобрен.\n\nИнформация о его владельце:\n...</b>'),
+    Const('<b>Объект был одобрен.\n\nИнформация о владельце:\n...</b>'),
 
-    Button(Const('✏️ Меню редактирования'), id='invert_edit_menu_my_object', on_click=invert_edit_menu_open),
+    Button(Const('✏️ Меню редактирования'), id='invert_admin_edit_menu_object', on_click=invert_admin_edit_menu_open),
     Row(
-        Button(Const('Адрес'), id='edit_address', on_click=start_edit_menu_dialog),
-        Button(Const('Цена и Условия'), id='edit_conditions', on_click=start_edit_menu_dialog),
-        Button(Const('Описание'), id='edit_description', on_click=start_edit_menu_dialog),
-        Button(Const('Фотографии'), id='edit_photos', on_click=start_edit_menu_dialog),
+        Button(Const('Адрес'), id='admin_edit_address', on_click=),
+        Button(Const('Цена и Условия'), id='admin_edit_conditions', on_click=),
+        Button(Const('Описание'), id='admin_edit_description', on_click=),
+        Button(Const('Фотографии'), id='admin_edit_photos', on_click=),
 
-        when=F['edit_menu_open']
+        when=F['admin_dit_menu_open']
     ),
-    Button(Const('❌ Удалить объект'), id='admin_invert_delete_object_confirm_menu', on_click=admin_invert_delete_object_confirm_menu),
+    Button(Const('❌ Удалить объект'), id='admin_invert_delete_object_confirm_menu', on_click=invert_admin_dell_obj_confirm_menu),
     Row(
         Button(Const('🚨ПОДТВЕРДИТЬ УДАЛЕНИЕ ОБЪЕКТА🚨'), id='admin_delete_object', on_click=admin_delete_object),
 

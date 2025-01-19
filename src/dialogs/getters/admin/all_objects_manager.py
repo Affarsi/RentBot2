@@ -99,5 +99,50 @@ async def admin_open_object(
         await dialog_manager.switch_to(AdminDialog.admin_open_object_deleted)
 
 
+# Инверсия переменной is_admin_edit_menu_open
+async def invert_admin_edit_menu_open(
+        callback: CallbackQuery,
+        widget: Button,
+        dialog_manager: DialogManager
+):
+    is_admin_edit_menu_open = dialog_manager.dialog_data.get('is_admin_edit_menu_open', False)
+
+    # Инверсируем значение
+    dialog_manager.dialog_data['is_admin_edit_menu_open'] = not is_admin_edit_menu_open
+
+
+# Инверсия переменной is_admin_delete_object_confirm_menu
+async def invert_admin_dell_obj_confirm_menu(
+        callback: CallbackQuery,
+        widget: Button,
+        dialog_manager: DialogManager
+):
+    is_admin_delete_object_confirm_menu = dialog_manager.dialog_data.get('is_admin_delete_object_confirm_menu', False)
+
+    # Инверсируем значение
+    dialog_manager.dialog_data['is_admin_delete_object_confirm_menu'] = not is_admin_delete_object_confirm_menu
+
+
 # Getter, сообщающий, открыто ли edit_menu/delete_menu или нет
-async def admin_open_object_confirmed_getter()
+async def admin_open_object_confirmed_getter(dialog_manager: DialogManager, **kwargs):
+    is_edit_menu_open = dialog_manager.dialog_data.get('is_admin_edit_menu_open')
+    is_delete_object_confirm_menu = dialog_manager.dialog_data.get('is_admin_delete_object_confirm_menu')
+    return {'admin_dit_menu_open': is_edit_menu_open,
+            'admin_delete_object_confirm_menu': is_delete_object_confirm_menu}
+
+
+# Удалить созданный объект
+async def admin_delete_object(
+        callback: CallbackQuery,
+        widget: Button,
+        dialog_manager: DialogManager
+):
+    object_id = dialog_manager.dialog_data.get('admin_open_object_id')
+
+    # Изменяем статус объекта на 'Удалён'
+    new_object_data = {'status': '❌'}
+    await db_update_object(object_id=object_id, object_data=new_object_data)
+
+    # Оповещаем Администратора и отправляем в предыдущие окно
+    await dialog_manager.event.answer('Объект успешно удалён!')
+    await dialog_manager.switch_to(AdminDialog.all_objects_confirmed)
