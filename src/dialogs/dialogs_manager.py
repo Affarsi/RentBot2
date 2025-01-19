@@ -1,7 +1,8 @@
 from aiogram_dialog import Dialog
 
 from src.dialogs.windows.admin.all_objects_manager import all_objects_manager_window, all_objects_confirmed_window, \
-    all_objects_moderated_window, all_objects_deleted_window
+    all_objects_moderated_window, all_objects_deleted_window, admin_open_object_deleted_window, \
+    admin_open_object_confirmed_window, admin_open_object_moderated_window
 from src.dialogs.windows.admin.main_menu import admin_menu_window
 from src.dialogs.windows.admin.users_manager import users_manager_window, open_user_account_window, \
     change_user_status_window, change_user_obj_limit_window
@@ -38,6 +39,10 @@ admin_dialog = Dialog(
     all_objects_confirmed_window,
     all_objects_moderated_window,
     all_objects_deleted_window,
+    admin_open_object_confirmed_window,
+    admin_open_object_moderated_window,
+    admin_open_object_deleted_window
+,
 )
 
 # Диалог с созданием нового объекта

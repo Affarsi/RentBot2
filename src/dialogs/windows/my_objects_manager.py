@@ -55,20 +55,16 @@ my_object_confirmed_window = Window(
 
             when=F['edit_menu_open']
         ),
-        Button(
-            Const('❌ Удалить объект'),
-            id='invert_delete_object_confirm_menu',
-            on_click=invert_delete_object_confirm_menu
-        ),
+        Button(Const('❌ Удалить объект'), id='invert_delete_object_confirm_menu', on_click=invert_delete_object_confirm_menu),
         Row(
             Button(Const('🚨ПОДТВЕРДИТЬ УДАЛЕНИЕ ОБЪЕКТА🚨'), id='dell_my_object', on_click=delete_my_object),
 
             when=F['delete_object_confirm_menu']
         ),
-        SwitchTo(Const('Назад'), id='to_main_menu', state=UserDialog.main_menu),
+        SwitchTo(Const('Назад'), id='back_to_my_objects_manager', state=UserDialog.my_objects_manager),
 
     getter=object_confirmed_getter,
-    state=UserDialog.my_open_my_object_confirmed
+    state=UserDialog.my_open_object_confirmed
 )
 
 # Просмотр объекта, находящегося в статусе 'На модерации'
@@ -78,9 +74,9 @@ my_object_moderated_window = Window(
           'напишите в Тех. Поддержку!\n'
           'Спасибо за понимание!</b>'),
 
-        SwitchTo(Const('Назад'), id='to_main_menu', state=UserDialog.main_menu),
+        SwitchTo(Const('Назад'), id='back_to_my_objects_manager', state=UserDialog.my_objects_manager),
 
-    state=UserDialog.my_open_my_object_moderated
+    state=UserDialog.my_open_object_moderated
 )
 
 # Просмотр объекта, находящегося в статусе 'Удалён'
@@ -90,7 +86,7 @@ my_object_deleted_window = Window(
           '\n\n'
           'Если вы не согласны с решением администратора - обратитесь в Тех. Поддержку.</b>'),
 
-        SwitchTo(Const('Назад'), id='to_main_menu', state=UserDialog.main_menu),
+        SwitchTo(Const('Назад'), id='back_to_my_objects_manager', state=UserDialog.my_objects_manager),
 
-    state=UserDialog.my_open_my_object_deleted
+    state=UserDialog.my_open_object_deleted
 )

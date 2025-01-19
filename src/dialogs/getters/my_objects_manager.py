@@ -78,11 +78,11 @@ async def open_my_object(
 
     # В зависимости от статуса выводим меню взаимодействия
     if object_data['status'] == '✅':
-        await dialog_manager.switch_to(UserDialog.my_open_my_object_confirmed)
+        await dialog_manager.switch_to(UserDialog.my_open_object_confirmed)
     elif object_data['status'] == '🔄':
-        await dialog_manager.switch_to(UserDialog.my_open_my_object_moderated)
+        await dialog_manager.switch_to(UserDialog.my_open_object_moderated)
     else:
-        await dialog_manager.switch_to(UserDialog.my_open_my_object_deleted)
+        await dialog_manager.switch_to(UserDialog.my_open_object_deleted)
 
 
 # Удалить созданный объект
@@ -125,7 +125,7 @@ async def invert_delete_object_confirm_menu(
     dialog_manager.dialog_data['is_delete_object_confirm_menu'] = not is_delete_object_confirm_menu
 
 
-# Getter, сообщающий, открыто ли edit_menu или нет
+# Getter, сообщающий, открыто ли edit_menu/delete_menu или нет
 async def object_confirmed_getter(dialog_manager: DialogManager, **kwargs):
     is_edit_menu_open = dialog_manager.dialog_data.get('is_edit_menu_open')
     is_delete_object_confirm_menu = dialog_manager.dialog_data.get('is_delete_object_confirm_menu')

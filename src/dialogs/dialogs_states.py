@@ -4,9 +4,9 @@ class UserDialog(StatesGroup):
     main_menu = State()
 
     my_objects_manager = State()
-    my_open_my_object_confirmed = State()
-    my_open_my_object_moderated = State()
-    my_open_my_object_deleted = State()
+    my_open_object_confirmed = State()
+    my_open_object_moderated = State()
+    my_open_object_deleted = State()
 
     info = State() # Информационная доска
 
@@ -22,6 +22,9 @@ class AdminDialog(StatesGroup):
     all_objects_confirmed = State()
     all_objects_moderated = State()
     all_objects_deleted = State()
+    admin_open_object_confirmed = State()
+    admin_open_object_moderated = State()
+    admin_open_object_deleted = State()
 
 class CreateObject(StatesGroup):
     get_country = State()

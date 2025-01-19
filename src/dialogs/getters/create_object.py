@@ -176,7 +176,14 @@ async def go_final_result_create_onject(
     try:
         chat_id = dialog_manager.event.message.chat.id
         photo_list = dialog_manager.dialog_data.get('create_object_data_photos')
+
+        if len(photo_list) == 0:
+            await dialog_manager.event.answer('У вас нет загруженных фотографий')
+            return
     except KeyError:
+        await dialog_manager.event.answer('У вас нет загруженных фотографий')
+        return
+    except TypeError:
         await dialog_manager.event.answer('У вас нет загруженных фотографий')
         return
 

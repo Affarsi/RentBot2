@@ -63,7 +63,7 @@ open_user_account_window = Window(
 
 # Окно изменения статуса Пользователя
 change_user_status_window = Window(
-    Const('Отправьте новый статус, который будет присвоен Пользователю:'),
+    Const('<b>Отправьте новый статус, который будет присвоен Пользователю:</b>'),
 
     MessageInput(new_user_status_input, filter=F.text),
 
@@ -74,7 +74,7 @@ change_user_status_window = Window(
 
 # Окно изменения лимита объектов Пользователя
 change_user_obj_limit_window = Window(
-    Const('Отправьте новый лимит объектов, который будет прикреплен к Пользователю:'),
+    Const('<b>Отправьте новый лимит объектов, который будет прикреплен к Пользователю:</b>'),
 
     MessageInput(new_user_obj_limit_input, filter=F.text),
 

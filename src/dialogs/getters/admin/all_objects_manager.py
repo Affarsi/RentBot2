@@ -62,4 +62,42 @@ async def all_objects_count_and_sg_list_getter(**kwargs):
     return result_summary
 
 
-# Возвращает список всех объектов по типам
+# Просмотр объекта со статусом "Удалено"
+async def admin_open_object(
+        callback: CallbackQuery,
+        widget: Select,
+        dialog_manager: DialogManager,
+        item_id: str
+):
+    # Сбор данных
+    object_id = int(item_id)
+    object_data = await db_get_object(object_id=object_id)
+    object_data = object_data[0]
+    chat_id = dialog_manager.event.message.chat.id
+
+    # Сохраняем id открытого объета
+    dialog_manager.dialog_data['admin_open_object_id'] = object_id
+
+    # Создание media_group
+    media_group = await create_media_group(dict_data=object_data)
+
+    # Отправка media_group
+    await dialog_manager.event.bot.send_media_group(
+        chat_id=chat_id,
+        media=media_group
+    )
+
+    # Чтобы медиа группа отправилась раньше чем смс от бота
+    dialog_manager.show_mode = ShowMode.DELETE_AND_SEND
+
+    # В зависимости от статуса выводим меню взаимодействия
+    if object_data['status'] == '✅':
+        await dialog_manager.switch_to(AdminDialog.admin_open_object_confirmed)
+    elif object_data['status'] == '🔄':
+        await dialog_manager.switch_to(AdminDialog.admin_open_object_moderated)
+    else:
+        await dialog_manager.switch_to(AdminDialog.admin_open_object_deleted)
+
+
+# Getter, сообщающий, открыто ли edit_menu/delete_menu или нет
+async def admin_open_object_confirmed_getter()
