@@ -1,5 +1,6 @@
 from aiogram.fsm.state import State, StatesGroup
 
+# Основные состояния Пользователя
 class UserDialog(StatesGroup):
     main_menu = State()
 
@@ -10,6 +11,26 @@ class UserDialog(StatesGroup):
 
     info = State() # Информационная доска
 
+# Отдельные состояния для создания объекта
+class CreateObject(StatesGroup):
+    get_country = State()
+    get_type = State()
+    get_address = State()
+    get_conditions = State()
+    get_description = State()
+    get_contacts = State()
+    get_photos = State()
+    final_result = State()
+
+# Отдельные состояния для изменения объекта
+class EditObject(StatesGroup):
+    result_and_edit_menu = State()
+    edit_address = State()
+    edit_conditions = State()
+    edit_description = State()
+    edit_photos = State()
+
+# Основной диалог для Администратора
 class AdminDialog(StatesGroup):
     menu = State()
 
@@ -26,17 +47,8 @@ class AdminDialog(StatesGroup):
     admin_open_object_moderated = State()
     admin_open_object_deleted = State()
 
-class CreateObject(StatesGroup):
-    get_country = State()
-    get_type = State()
-    get_address = State()
-    get_conditions = State()
-    get_description = State()
-    get_contacts = State()
-    get_photos = State()
-    final_result = State()
-
-class EditObject(StatesGroup):
+# Отдельные состояния для изменения объекта для Администратора
+class AdminEditObject(StatesGroup):
     result_and_edit_menu = State()
     edit_address = State()
     edit_conditions = State()

@@ -5,7 +5,7 @@ from aiogram_dialog.widgets.input import MessageInput
 
 from src.database.requests.object import db_get_object, db_delete_object, db_update_object
 from src.database.requests.user import db_get_user, db_update_user
-from src.dialogs.dialogs_states import CreateObject, UserDialog, AdminDialog
+from src.dialogs.dialogs_states import CreateObject, UserDialog, AdminDialog, AdminEditObject
 from src.utils.media_group_creator import create_media_group
 
 

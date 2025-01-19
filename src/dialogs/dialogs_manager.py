@@ -3,6 +3,8 @@ from aiogram_dialog import Dialog
 from src.dialogs.windows.admin.all_objects_manager import all_objects_manager_window, all_objects_confirmed_window, \
     all_objects_moderated_window, all_objects_deleted_window, admin_open_object_deleted_window, \
     admin_open_object_confirmed_window, admin_open_object_moderated_window
+from src.dialogs.windows.admin.edit_object import admin_result_and_edit_menu_window, admin_edit_address_window, \
+    admin_edit_conditions_window, admin_edit_description_window, admin_edit_photos_window
 from src.dialogs.windows.admin.main_menu import admin_menu_window
 from src.dialogs.windows.admin.users_manager import users_manager_window, open_user_account_window, \
     change_user_status_window, change_user_obj_limit_window
@@ -26,25 +28,6 @@ user_dialog = Dialog(
     info_window
 )
 
-# Диалог для Администраторов
-admin_dialog = Dialog(
-    admin_menu_window,
-
-    users_manager_window,
-    open_user_account_window,
-    change_user_status_window,
-    change_user_obj_limit_window,
-
-    all_objects_manager_window,
-    all_objects_confirmed_window,
-    all_objects_moderated_window,
-    all_objects_deleted_window,
-    admin_open_object_confirmed_window,
-    admin_open_object_moderated_window,
-    admin_open_object_deleted_window
-,
-)
-
 # Диалог с созданием нового объекта
 create_object_dialog = Dialog(
     get_country_window,
@@ -64,4 +47,31 @@ edit_object_dialog = Dialog(
     edit_conditions_window,
     edit_description_window,
     edit_photos_window
+)
+
+# Основной диалог у Администратора
+admin_dialog = Dialog(
+    admin_menu_window,
+
+    users_manager_window,
+    open_user_account_window,
+    change_user_status_window,
+    change_user_obj_limit_window,
+
+    all_objects_manager_window,
+    all_objects_confirmed_window,
+    all_objects_moderated_window,
+    all_objects_deleted_window,
+    admin_open_object_confirmed_window,
+    admin_open_object_moderated_window,
+    admin_open_object_deleted_window
+)
+
+# Диалог редактирования существующего объекта для Администратора
+admin_edit_object_dialog = Dialog(
+    admin_result_and_edit_menu_window,
+    admin_edit_address_window,
+    admin_edit_conditions_window,
+    admin_edit_description_window,
+    admin_edit_photos_window
 )

@@ -10,6 +10,7 @@ from src.dialogs.dialogs_states import UserDialog, AdminDialog
 from src.dialogs.getters.admin.all_objects_manager import all_objects_count_getter, \
     all_objects_count_and_sg_list_getter, admin_open_object, admin_open_object_confirmed_getter, \
     invert_admin_edit_menu_open, invert_admin_dell_obj_confirm_menu, admin_delete_object
+from src.dialogs.getters.admin.edit_object import start_admin_edit_menu_dialog
 from src.dialogs.getters.admin.main_menu import admin_menu_getter
 from src.dialogs.getters.admin.users_manager import all_users_getter, admin_open_user_account, user_account_getter, \
     new_user_status_input, new_user_obj_limit_input
@@ -122,10 +123,10 @@ admin_open_object_confirmed_window = Window(
 
     Button(Const('✏️ Меню редактирования'), id='invert_admin_edit_menu_object', on_click=invert_admin_edit_menu_open),
     Row(
-        Button(Const('Адрес'), id='admin_edit_address', on_click=),
-        Button(Const('Цена и Условия'), id='admin_edit_conditions', on_click=),
-        Button(Const('Описание'), id='admin_edit_description', on_click=),
-        Button(Const('Фотографии'), id='admin_edit_photos', on_click=),
+        Button(Const('Адрес'), id='admin_edit_address', on_click=start_admin_edit_menu_dialog),
+        Button(Const('Цена и Условия'), id='admin_edit_conditions', on_click=start_admin_edit_menu_dialog),
+        Button(Const('Описание'), id='admin_edit_description', on_click=start_admin_edit_menu_dialog),
+        Button(Const('Фотографии'), id='admin_edit_photos', on_click=start_admin_edit_menu_dialog),
 
         when=F['admin_dit_menu_open']
     ),
