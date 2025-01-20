@@ -132,6 +132,8 @@ async def admin_delete_object(
 ):
     object_id = dialog_manager.dialog_data.get('admin_open_object_id')
 
+    # Удаление поста с группы
+
     # Изменяем статус объекта на 'Удалён'
     new_object_data = {'status': '❌'}
     await db_update_object(object_id=object_id, object_data=new_object_data)
