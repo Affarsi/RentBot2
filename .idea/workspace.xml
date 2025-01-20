@@ -4,9 +4,24 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1bd5e2e9-72a5-4a8d-b09e-36008a260f3c" name="Changes" comment="all_objects_manager and accept_moderated_object">
+    <list default="true" id="1bd5e2e9-72a5-4a8d-b09e-36008a260f3c" name="Changes" comment="pred_admin_delete_object">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/database/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/src/database/db.sqlite3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/database/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/database/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/database/requests/country.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/database/requests/country.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/database/requests/object.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/database/requests/object.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dialogs/getters/admin/all_objects_manager.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/dialogs/getters/admin/all_objects_manager.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dialogs/getters/admin/edit_object.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/dialogs/getters/admin/edit_object.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dialogs/getters/admin/main_menu.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/dialogs/getters/admin/main_menu.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dialogs/getters/admin/users_manager.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/dialogs/getters/admin/users_manager.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dialogs/getters/create_object.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/dialogs/getters/create_object.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dialogs/getters/edit_object.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/dialogs/getters/edit_object.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dialogs/getters/my_objects_manager.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/dialogs/getters/my_objects_manager.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dialogs/windows/admin/all_objects_manager.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/dialogs/windows/admin/all_objects_manager.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dialogs/windows/admin/edit_object.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/dialogs/windows/admin/edit_object.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dialogs/windows/admin/users_manager.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/dialogs/windows/admin/users_manager.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dialogs/windows/create_object.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/dialogs/windows/create_object.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/utils/media_group_creator.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/media_group_creator.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -54,6 +69,7 @@
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
     &quot;Python.bot.executor&quot;: &quot;Run&quot;,
+    &quot;Python.dolbobot.executor&quot;: &quot;Run&quot;,
     &quot;Python.main_menu.executor&quot;: &quot;Run&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
@@ -408,7 +424,15 @@
       <option name="project" value="LOCAL" />
       <updated>1737377977361</updated>
     </task>
-    <option name="localTasksCounter" value="37" />
+    <task id="LOCAL-00037" summary="pred_admin_delete_object">
+      <option name="closed" value="true" />
+      <created>1737380928552</created>
+      <option name="number" value="00037" />
+      <option name="presentableId" value="LOCAL-00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1737380928552</updated>
+    </task>
+    <option name="localTasksCounter" value="38" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -430,6 +454,17 @@
     <MESSAGE value="admin_info_razdel" />
     <MESSAGE value="admin_user_manager" />
     <MESSAGE value="all_objects_manager and accept_moderated_object" />
-    <option name="LAST_COMMIT_MESSAGE" value="all_objects_manager and accept_moderated_object" />
+    <MESSAGE value="pred_admin_delete_object" />
+    <option name="LAST_COMMIT_MESSAGE" value="pred_admin_delete_object" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/src/dialogs/getters/main_menu.py</url>
+          <option name="timeStamp" value="4" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

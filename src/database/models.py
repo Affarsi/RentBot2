@@ -1,6 +1,6 @@
 from sqlalchemy import ForeignKey
 from sqlalchemy.ext.asyncio import AsyncAttrs
-from sqlalchemy.orm import Mapped, mapped_column, DeclarativeBase, relationship
+from sqlalchemy.orm import Mapped, mapped_column, DeclarativeBase
 
 class Base(AsyncAttrs, DeclarativeBase):
     pass
@@ -39,24 +39,10 @@ class Object(Base):
     contacts: Mapped[int] = mapped_column(nullable=True)
     photos: Mapped[str] = mapped_column(nullable=True)
     delete_reason: Mapped[str] = mapped_column(nullable=True)
+    message_ids: Mapped[str] = mapped_column(nullable=True)
 
     # Связь с пользователем
     owner_id: Mapped[int] = mapped_column(ForeignKey('users.id'))  # Внешний ключ на пользователя
-
-    # Связь с постами
-    posts: Mapped[list['Post']] = relationship("Post", back_populates="object", cascade="all, delete-orphan")
-
-# Созданные посты
-class Post(Base):
-    __tablename__ = "posts"
-
-    id: Mapped[int] = mapped_column(primary_key=True)
-    message_id: Mapped[int]
-    thread_id: Mapped[int]
-
-    # Внешний ключ на объект
-    object_id: Mapped[int] = mapped_column(ForeignKey('objects.id'))  # Внешний ключ на объект
-    object: Mapped[Object] = relationship("Object", back_populates="posts")
 
 # Настройка бота
 class Setting(Base):

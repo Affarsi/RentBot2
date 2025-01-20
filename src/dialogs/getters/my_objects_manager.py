@@ -2,10 +2,10 @@ from aiogram.types import CallbackQuery
 from aiogram_dialog import DialogManager, ShowMode
 from aiogram_dialog.widgets.kbd import Button, Select
 
-from src.database.requests.object import db_get_object, db_delete_object, db_update_object
+from src.database.requests.object import db_get_object, db_update_object
 from src.database.requests.user import db_get_user
 from src.dialogs.dialogs_states import CreateObject, UserDialog
-from src.utils.media_group_creator import create_media_group, send_media_group
+from src.utils.media_group_creator import send_media_group
 
 
 # Возвращает текст для раздела Информация

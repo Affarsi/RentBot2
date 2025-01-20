@@ -4,17 +4,13 @@ from aiogram import F
 from aiogram_dialog import Window
 from aiogram_dialog.widgets.text import Const, Format
 from aiogram_dialog.widgets.input import MessageInput
-from aiogram_dialog.widgets.kbd import Start, Button, Group, ScrollingGroup, Select, SwitchTo, Row, Url
+from aiogram_dialog.widgets.kbd import Button, Group, ScrollingGroup, Select, SwitchTo, Row
 
-from src.dialogs.dialogs_states import UserDialog, AdminDialog
-from src.dialogs.getters.admin.all_objects_manager import all_objects_count_getter, \
-    all_objects_count_and_sg_list_getter, admin_open_object, \
+from src.dialogs.dialogs_states import AdminDialog
+from src.dialogs.getters.admin.all_objects_manager import all_objects_count_and_sg_list_getter, admin_open_object, \
     invert_admin_edit_menu_open, invert_admin_dell_obj_confirm_menu, admin_delete_object, accept_moderated_object, \
     reason_object_reject_input, admin_edit_and_delete_menu_getter
 from src.dialogs.getters.admin.edit_object import start_admin_edit_menu_dialog
-from src.dialogs.getters.admin.main_menu import admin_menu_getter
-from src.dialogs.getters.admin.users_manager import all_users_getter, admin_open_user_account, user_account_getter, \
-    new_user_status_input, new_user_obj_limit_input
 
 # Выбор категории объектов, которые Администратор хочет посмотреть
 all_objects_manager_window = Window(

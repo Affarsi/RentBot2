@@ -4,10 +4,9 @@ from aiogram_dialog.widgets.kbd import Button, Select
 from aiogram_dialog.widgets.input import MessageInput
 
 from config import Config
-from src.database.requests.object import db_get_object, db_delete_object, db_update_object
-from src.database.requests.user import db_get_user, db_update_user
-from src.dialogs.dialogs_states import CreateObject, UserDialog, AdminDialog, AdminEditObject
-from src.utils.media_group_creator import create_media_group, send_media_group
+from src.database.requests.object import db_get_object, db_update_object
+from src.dialogs.dialogs_states import AdminDialog
+from src.utils.media_group_creator import send_media_group
 
 
 # Возвращает количество всех объектов по типам
@@ -30,6 +29,7 @@ async def all_objects_count_getter(**kwargs):
     return status_counts
 
 
+# геттер, возвращает количество объектов по статусу, а также списки этих объектов для scrolling group
 async def all_objects_count_and_sg_list_getter(**kwargs):
     all_object_list = await db_get_object()
 
@@ -74,11 +74,12 @@ async def admin_open_object(
     object_id = int(item_id)
     chat_id = dialog_manager.event.message.chat.id
 
-    # Сохраняем id открытого объета
-    dialog_manager.dialog_data['admin_open_object_id'] = object_id
-
     # Отправка медиа группы
     object_data = await send_media_group(dialog_manager, object_id, chat_id)
+
+    # Сохраняем id и data открытого объета
+    dialog_manager.dialog_data['admin_open_object_id'] = object_id
+    dialog_manager.dialog_data['admin_open_object_data'] = object_data
 
     # Чтобы медиа группа отправилась раньше чем смс от бота
     dialog_manager.show_mode = ShowMode.DELETE_AND_SEND
@@ -131,8 +132,12 @@ async def admin_delete_object(
         dialog_manager: DialogManager
 ):
     object_id = dialog_manager.dialog_data.get('admin_open_object_id')
+    object_data = dialog_manager.dialog_data.get('admin_open_object_data')
 
     # Удаление поста с группы
+    message_ids = object_data['message_ids']
+    message_ids = message_ids.split(', ')
+    await dialog_manager.event.bot.delete_messages(chat_id=Config.chat, message_ids=message_ids)
 
     # Изменяем статус объекта на 'Удалён'
     new_object_data = {'status': '❌'}
@@ -155,14 +160,14 @@ async def accept_moderated_object(
     send_to_chat = True # отправляем пост в группу, а не в лс
 
     # Отправляем пост в группу
-    is_send_post = await send_media_group(dialog_manager, object_id, chat_id, send_to_chat)
+    object_data = await send_media_group(dialog_manager, object_id, chat_id, send_to_chat)
 
-    if not is_send_post:
+    if not object_data:
         await dialog_manager.event.answer('Ошибка при отправки поста. Обратитесь к тех администратору!')
         return
 
     # Изменяем статус объекта на 'Одобрен'
-    new_object_data = {'status': '✅'}
+    new_object_data = {'status': '✅', 'message_ids': object_data.get('message_ids')}
     await db_update_object(object_id=object_id, object_data=new_object_data)
 
     # Оповещаем Администратора и отправляем в предыдущие окно

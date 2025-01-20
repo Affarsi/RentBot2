@@ -2,11 +2,11 @@ import operator
 
 from aiogram import F
 from aiogram_dialog import Window
-from aiogram_dialog.widgets.text import Const, Format, Multi
-from aiogram_dialog.widgets.input import MessageInput, TextInput
-from aiogram_dialog.widgets.kbd import Start, Group, Row, SwitchTo, Url, Cancel, Select, ScrollingGroup, Back, Button
+from aiogram_dialog.widgets.input import MessageInput
+from aiogram_dialog.widgets.kbd import Group, Row, Cancel, Select, ScrollingGroup, Back, Button
+from aiogram_dialog.widgets.text import Const, Format
 
-from src.dialogs.dialogs_states import UserDialog, CreateObject
+from src.dialogs.dialogs_states import CreateObject
 from src.dialogs.getters.create_object import (
     clear_dialog_data_create_object, country_list_getter,
     create_object_country_input, create_object_type_input, create_object_address_input, create_object_conditions_input,

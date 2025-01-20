@@ -1,4 +1,3 @@
-import random
 from typing import List
 
 from aiogram.utils.media_group import MediaGroupBuilder
@@ -50,7 +49,7 @@ async def create_description_for_obj(
     return caption
 
 
-# Формирование медиа группы c информацией об объекте
+# Формирование медиа группы с информацией об объекте
 async def create_media_group(
         dict_data: dict = None,
         state_data: dict = None,
@@ -101,10 +100,18 @@ async def send_media_group(
     media_group = await create_media_group(dict_data=object_data)
 
     # Отправка media_group
-    await dialog_manager.event.bot.send_media_group(
+    result = await dialog_manager.event.bot.send_media_group(
         chat_id=chat_id,
         message_thread_id=message_thread_id,
         media=media_group,
     )
+
+    # Сохраняем message_ids
+    if send_to_chat:
+        message_ids = []
+        for msg in result:
+            message_ids.append(str(msg.message_id))
+        message_ids_str = ', '.join(message_ids)
+        object_data['message_ids'] = message_ids_str
 
     return object_data

@@ -1,10 +1,10 @@
 from aiogram import F
 from aiogram_dialog import Window
-from aiogram_dialog.widgets.text import Const, Format, Multi
-from aiogram_dialog.widgets.kbd import Start, Group, Row, SwitchTo, Url, Button
+from aiogram_dialog.widgets.kbd import Start, Group, Row, SwitchTo, Url
+from aiogram_dialog.widgets.text import Const, Format
 
 from src.dialogs.dialogs_states import UserDialog, AdminDialog
-from src.dialogs.getters.main_menu import user_main_getter, info_text_getter, info_text_getter
+from src.dialogs.getters.main_menu import user_main_getter, info_text_getter
 
 # Основное меню Пользователя
 main_menu_window = Window(

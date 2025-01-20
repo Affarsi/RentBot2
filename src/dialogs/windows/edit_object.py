@@ -1,16 +1,13 @@
-import operator
-
 from aiogram import F
 from aiogram_dialog import Window
 from aiogram_dialog.widgets.input import MessageInput
-from aiogram_dialog.widgets.text import Const, Format, Multi
-from aiogram_dialog.widgets.kbd import Start, Group, Row, SwitchTo, Url, Back, ScrollingGroup, Select, Button, Cancel
+from aiogram_dialog.widgets.kbd import Row, SwitchTo, Button, Cancel
+from aiogram_dialog.widgets.text import Const
 
-from src.dialogs.dialogs_states import UserDialog, CreateObject, EditObject
+from src.dialogs.dialogs_states import EditObject
 from src.dialogs.getters.edit_object import edit_object_address_input, edit_object_conditions_input, \
     edit_object_description_input, edit_object_photos_input, dell_photos_edit_object, \
     confirm_edit_photo_and_go_to_finaly, clear_dialog_data_edit_object, submit_edit_object
-
 
 # Итоговый вариант редактирование с edit_menu
 result_and_edit_menu_window = Window(

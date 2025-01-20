@@ -1,13 +1,14 @@
 import operator
 
 from aiogram import F
-from aiogram_dialog import Window, DialogManager
-from aiogram_dialog.widgets.text import Const, Format, Multi
-from aiogram_dialog.widgets.kbd import Start, Group, Row, SwitchTo, Url, Back, ScrollingGroup, Select, Button
+from aiogram_dialog import Window
+from aiogram_dialog.widgets.kbd import Group, Row, SwitchTo, ScrollingGroup, Select, Button
+from aiogram_dialog.widgets.text import Const, Format
 
-from src.dialogs.dialogs_states import UserDialog, CreateObject, EditObject
+from src.dialogs.dialogs_states import UserDialog
 from src.dialogs.getters.edit_object import start_edit_menu_dialog
-from src.dialogs.getters.my_objects_manager import my_objects_getter, start_create_object, open_my_object, delete_my_object, \
+from src.dialogs.getters.my_objects_manager import my_objects_getter, start_create_object, open_my_object, \
+    delete_my_object, \
     object_confirmed_getter, invert_edit_menu_open, invert_delete_object_confirm_menu
 
 # Раздел 'Мои объекты'

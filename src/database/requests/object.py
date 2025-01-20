@@ -1,4 +1,4 @@
-from sqlalchemy import select, func, update
+from sqlalchemy import select
 
 from src.database.requests.user import db_get_user
 from src.database.run_db import async_session
@@ -95,7 +95,7 @@ async def db_get_object(
         for obj, country_name, country_id, country_thread_id in objects:
             objects_list.append({
                 "id": obj.id,
-                'generate_id': obj.generate_id,
+                "generate_id": obj.generate_id,
                 "status": obj.status,
                 "obj_type": obj.obj_type,
                 "country_id": country_id,
@@ -106,6 +106,7 @@ async def db_get_object(
                 "description": obj.description,
                 "contacts": obj.contacts,
                 "photos": obj.photos,
+                "message_ids": obj.message_ids,
                 "owner_id": obj.owner_id,
             })
 
@@ -140,9 +141,12 @@ async def db_update_object(object_id: int, object_data: dict) -> bool:
             print(f'Объект с ID {object_id} не найден в базе данных.')
             return False
 
+        key_list = ['status', 'obj_type', 'country_id', 'address', 'conditions', 'description', 'contacts', 'photos',
+                    'delete_reason', 'message_ids']
+
         # Обновляем только указанные поля объекта
         for key, value in object_data.items():
-            if key in ['status', 'obj_type', 'country_id', 'address', 'conditions', 'description', 'contacts', 'photos', 'delete_reason']:
+            if key in key_list:
                 if key == 'photos':
                     obj.photos = ", ".join(value) if isinstance(value, list) else value
                 else:

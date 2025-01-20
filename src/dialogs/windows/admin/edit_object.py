@@ -1,12 +1,10 @@
-import operator
-
 from aiogram import F
 from aiogram_dialog import Window
 from aiogram_dialog.widgets.input import MessageInput
-from aiogram_dialog.widgets.text import Const, Format, Multi
-from aiogram_dialog.widgets.kbd import Start, Group, Row, SwitchTo, Url, Back, ScrollingGroup, Select, Button, Cancel
+from aiogram_dialog.widgets.kbd import Row, SwitchTo, Button, Cancel
+from aiogram_dialog.widgets.text import Const
 
-from src.dialogs.dialogs_states import UserDialog, CreateObject, EditObject, AdminEditObject
+from src.dialogs.dialogs_states import AdminEditObject
 from src.dialogs.getters.admin.edit_object import admin_submit_edit_object, \
     admin_edit_object_address_input, admin_edit_object_conditions_input, admin_edit_object_description_input, \
     admin_edit_object_photos_input, dell_photos_admin_edit_object, admin_confirm_edit_photo_and_go_to_finaly

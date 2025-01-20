@@ -1,14 +1,11 @@
-from datetime import datetime
-
 from aiogram import Router, F
 from aiogram.enums import ChatType
-from aiogram.types import Message
 from aiogram.filters import CommandStart
+from aiogram.types import Message
 from aiogram_dialog import DialogManager, StartMode
 
-from src.dialogs.dialogs_states import UserDialog
-
 from src.database.requests.user import db_new_user
+from src.dialogs.dialogs_states import UserDialog
 
 router = Router()
 router.message.filter(F.chat.type == ChatType.PRIVATE) # Принимает только личные сообщения

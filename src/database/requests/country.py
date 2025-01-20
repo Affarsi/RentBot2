@@ -1,7 +1,7 @@
-from sqlalchemy import select, delete, func
+from sqlalchemy import select
 
 from src.database.run_db import async_session
-from src.database.models import Country, Object
+from src.database.models import Country
 
 
 # Получить список всех стран

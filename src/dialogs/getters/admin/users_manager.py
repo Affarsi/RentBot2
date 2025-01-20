@@ -1,12 +1,10 @@
 from aiogram.types import CallbackQuery, Message
-from aiogram_dialog import DialogManager, ShowMode
-from aiogram_dialog.widgets.kbd import Button, Select
+from aiogram_dialog import DialogManager
+from aiogram_dialog.widgets.kbd import Select
 from aiogram_dialog.widgets.input import MessageInput
 
-from src.database.requests.object import db_get_object, db_delete_object, db_update_object
 from src.database.requests.user import db_get_user, db_update_user, find_user_by_username
-from src.dialogs.dialogs_states import CreateObject, UserDialog, AdminDialog
-from src.utils.media_group_creator import create_media_group
+from src.dialogs.dialogs_states import AdminDialog
 
 
 # Возвращает список всех пользователей для admin scrolling group

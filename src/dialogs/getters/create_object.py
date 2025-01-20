@@ -1,10 +1,9 @@
-import asyncio
 from random import randrange
 
 from aiogram_dialog import DialogManager, ShowMode
 from aiogram_dialog.widgets.kbd import Button
-from aiogram.types import CallbackQuery, Message, ReactionType, ReactionTypeEmoji
-from aiogram_dialog.widgets.input import MessageInput, TextInput
+from aiogram.types import CallbackQuery, Message
+from aiogram_dialog.widgets.input import MessageInput
 
 from src.database.requests.country import db_get_country, db_get_country_name_by_id
 from src.database.requests.object import db_new_object

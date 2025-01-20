@@ -2,12 +2,11 @@ import operator
 
 from aiogram import F
 from aiogram_dialog import Window
-from aiogram_dialog.widgets.text import Const, Format
 from aiogram_dialog.widgets.input import MessageInput
-from aiogram_dialog.widgets.kbd import Start, Button, Group, ScrollingGroup, Select, SwitchTo, Row, Url
+from aiogram_dialog.widgets.kbd import Button, Group, ScrollingGroup, Select, SwitchTo, Row, Url
+from aiogram_dialog.widgets.text import Const, Format
 
-from src.dialogs.dialogs_states import UserDialog, AdminDialog
-from src.dialogs.getters.admin.main_menu import admin_menu_getter
+from src.dialogs.dialogs_states import AdminDialog
 from src.dialogs.getters.admin.users_manager import all_users_getter, admin_open_user_account, user_account_getter, \
     new_user_status_input, new_user_obj_limit_input, search_user_by_username
 
