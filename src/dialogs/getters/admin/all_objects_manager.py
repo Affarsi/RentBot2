@@ -3,10 +3,11 @@ from aiogram_dialog import DialogManager, ShowMode
 from aiogram_dialog.widgets.kbd import Button, Select
 from aiogram_dialog.widgets.input import MessageInput
 
+from config import Config
 from src.database.requests.object import db_get_object, db_delete_object, db_update_object
 from src.database.requests.user import db_get_user, db_update_user
 from src.dialogs.dialogs_states import CreateObject, UserDialog, AdminDialog, AdminEditObject
-from src.utils.media_group_creator import create_media_group
+from src.utils.media_group_creator import create_media_group, send_media_group
 
 
 # Возвращает количество всех объектов по типам
@@ -62,7 +63,7 @@ async def all_objects_count_and_sg_list_getter(**kwargs):
     return result_summary
 
 
-# Просмотр объекта со статусом "Удалено"
+# Функция просмотра открытого объекта (отправки media_group)
 async def admin_open_object(
         callback: CallbackQuery,
         widget: Select,
@@ -71,21 +72,13 @@ async def admin_open_object(
 ):
     # Сбор данных
     object_id = int(item_id)
-    object_data = await db_get_object(object_id=object_id)
-    object_data = object_data[0]
     chat_id = dialog_manager.event.message.chat.id
 
     # Сохраняем id открытого объета
     dialog_manager.dialog_data['admin_open_object_id'] = object_id
 
-    # Создание media_group
-    media_group = await create_media_group(dict_data=object_data)
-
-    # Отправка media_group
-    await dialog_manager.event.bot.send_media_group(
-        chat_id=chat_id,
-        media=media_group
-    )
+    # Отправка медиа группы
+    object_data = await send_media_group(dialog_manager, object_id, chat_id)
 
     # Чтобы медиа группа отправилась раньше чем смс от бота
     dialog_manager.show_mode = ShowMode.DELETE_AND_SEND
@@ -154,7 +147,17 @@ async def accept_moderated_object(
         widget: Button,
         dialog_manager: DialogManager
 ):
+    # Формируем данные
     object_id = dialog_manager.dialog_data.get('admin_open_object_id')
+    chat_id = Config.chat
+    send_to_chat = True # отправляем пост в группу, а не в лс
+
+    # Отправляем пост в группу
+    is_send_post = await send_media_group(dialog_manager, object_id, chat_id, send_to_chat)
+
+    if not is_send_post:
+        await dialog_manager.event.answer('Ошибка при отправки поста. Обратитесь к тех администратору!')
+        return
 
     # Изменяем статус объекта на 'Одобрен'
     new_object_data = {'status': '✅'}

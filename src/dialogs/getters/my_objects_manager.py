@@ -5,7 +5,7 @@ from aiogram_dialog.widgets.kbd import Button, Select
 from src.database.requests.object import db_get_object, db_delete_object, db_update_object
 from src.database.requests.user import db_get_user
 from src.dialogs.dialogs_states import CreateObject, UserDialog
-from src.utils.media_group_creator import create_media_group
+from src.utils.media_group_creator import create_media_group, send_media_group
 
 
 # Возвращает текст для раздела Информация
@@ -49,7 +49,7 @@ async def start_create_object(
     await dialog_manager.start(CreateObject.get_country)
 
 
-# Вывод информации об объекте Пользователю с меню взаимодействия
+# Вывод информации об объекте Пользователю (send media_group) с меню взаимодействия
 async def open_my_object(
         callback: CallbackQuery,
         widget: Select,
@@ -57,21 +57,13 @@ async def open_my_object(
         item_id: str
 ):
     object_id = int(item_id)
-    object_data = await db_get_object(object_id=object_id)
-    object_data = object_data[0]
     chat_id = dialog_manager.event.message.chat.id
 
     # Сохраняем id открытого объета
     dialog_manager.dialog_data['open_object_id'] = object_id
 
-    # Формирование медиа группы
-    media_group = await create_media_group(dict_data=object_data)
-
     # Отправка медиа группы
-    await dialog_manager.event.bot.send_media_group(
-        chat_id=chat_id,
-        media=media_group
-    )
+    object_data = await send_media_group(dialog_manager, object_id, chat_id)
 
     # Чтобы медиа группа отправилась раньше чем смс от бота
     dialog_manager.show_mode = ShowMode.DELETE_AND_SEND

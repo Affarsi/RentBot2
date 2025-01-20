@@ -63,7 +63,8 @@ async def db_get_object(
     - list: Список словарей, представляющих объекты из базы данных, соответствующие заданным критериям.
     """
     async with async_session() as session:
-        query = select(Object, Country.name).join(Country)
+        # Начинаем запрос с соединения Object и Country
+        query = select(Object, Country.name, Country.id, Country.thread_id).join(Country)
 
         if telegram_id is not None:
             # Сначала получаем user_id по telegram_id
@@ -72,7 +73,7 @@ async def db_get_object(
             user_id = user_result.scalar()
 
             if user_id is not None:
-                # Сортируем по owner_id и status
+                # Сортируем по owner_id и статусу
                 query = query.where(Object.owner_id == user_id).order_by(Object.status)
 
         if object_id is not None:
@@ -91,14 +92,15 @@ async def db_get_object(
 
         # Преобразуем объекты в список словарей
         objects_list = []
-        for obj, country_name in objects:
+        for obj, country_name, country_id, country_thread_id in objects:
             objects_list.append({
                 "id": obj.id,
                 'generate_id': obj.generate_id,
                 "status": obj.status,
                 "obj_type": obj.obj_type,
-                "country_id": obj.country_id,
+                "country_id": country_id,
                 "country": country_name,
+                "country_thread_id": country_thread_id,
                 "address": obj.address,
                 "conditions": obj.conditions,
                 "description": obj.description,

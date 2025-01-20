@@ -2,6 +2,9 @@ import random
 from typing import List
 
 from aiogram.utils.media_group import MediaGroupBuilder
+from aiogram_dialog import DialogManager
+
+from src.database.requests.object import db_get_object
 
 
 # Формирование описание из информации объекта
@@ -75,3 +78,33 @@ async def create_media_group(
     # Собираем и выводим медиа группу
     media_group = media_group.build()
     return media_group
+
+
+# Отправка медиа группы
+async def send_media_group(
+        dialog_manager: DialogManager,
+        object_id: int,
+        chat_id: int | str,
+        send_to_chat: bool=False
+) -> dict:
+    # Сбор данных
+    object_data = await db_get_object(object_id=object_id)
+    object_data = object_data[0]
+
+    # Получение message_thread_id
+    if send_to_chat:
+        message_thread_id = object_data.get('country_thread_id')
+    else:
+        message_thread_id = None
+
+    # Создание media_group
+    media_group = await create_media_group(dict_data=object_data)
+
+    # Отправка media_group
+    await dialog_manager.event.bot.send_media_group(
+        chat_id=chat_id,
+        message_thread_id=message_thread_id,
+        media=media_group,
+    )
+
+    return object_data
