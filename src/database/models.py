@@ -38,6 +38,7 @@ class Object(Base):
     description: Mapped[str] = mapped_column(nullable=True)
     contacts: Mapped[int] = mapped_column(nullable=True)
     photos: Mapped[str] = mapped_column(nullable=True)
+    delete_reason: Mapped[str] = mapped_column(nullable=True)
 
     # Связь с пользователем
     owner_id: Mapped[int] = mapped_column(ForeignKey('users.id'))  # Внешний ключ на пользователя

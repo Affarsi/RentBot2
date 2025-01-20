@@ -124,7 +124,7 @@ async def invert_admin_dell_obj_confirm_menu(
 
 
 # Getter, сообщающий, открыто ли edit_menu/delete_menu или нет
-async def admin_open_object_confirmed_getter(dialog_manager: DialogManager, **kwargs):
+async def admin_edit_and_delete_menu_getter(dialog_manager: DialogManager, **kwargs):
     is_edit_menu_open = dialog_manager.dialog_data.get('is_admin_edit_menu_open')
     is_delete_object_confirm_menu = dialog_manager.dialog_data.get('is_admin_delete_object_confirm_menu')
     return {'admin_dit_menu_open': is_edit_menu_open,
@@ -146,3 +146,38 @@ async def admin_delete_object(
     # Оповещаем Администратора и отправляем в предыдущие окно
     await dialog_manager.event.answer('Объект успешно удалён!')
     await dialog_manager.switch_to(AdminDialog.all_objects_confirmed)
+
+
+# Одобрить объект, находящийся на модерации
+async def accept_moderated_object(
+        callback: CallbackQuery,
+        widget: Button,
+        dialog_manager: DialogManager
+):
+    object_id = dialog_manager.dialog_data.get('admin_open_object_id')
+
+    # Изменяем статус объекта на 'Одобрен'
+    new_object_data = {'status': '✅'}
+    await db_update_object(object_id=object_id, object_data=new_object_data)
+
+    # Оповещаем Администратора и отправляем в предыдущие окно
+    await dialog_manager.event.answer('Объект успешно одобрен!\nСегодня вы в ударе :)')
+    await dialog_manager.switch_to(AdminDialog.all_objects_moderated)
+
+
+# Отклонить объект, находящийся на модерации
+async def reason_object_reject_input(
+        message: Message,
+        widget: MessageInput,
+        dialog_manager: DialogManager
+):
+    delete_reason = message.html_text
+    object_id = dialog_manager.dialog_data.get('admin_open_object_id')
+
+    # Обновляем объект в БД
+    new_object_data = {'status': '❌', 'delete_reason': delete_reason}
+    await db_update_object(object_id=object_id, object_data=new_object_data)
+
+    # Оповещаем Администратора и отправляем в предыдущие окно
+    await dialog_manager.event.answer('Объект отклонён!')
+    await dialog_manager.switch_to(AdminDialog.all_objects_moderated)

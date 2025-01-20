@@ -8,8 +8,9 @@ from aiogram_dialog.widgets.kbd import Start, Button, Group, ScrollingGroup, Sel
 
 from src.dialogs.dialogs_states import UserDialog, AdminDialog
 from src.dialogs.getters.admin.all_objects_manager import all_objects_count_getter, \
-    all_objects_count_and_sg_list_getter, admin_open_object, admin_open_object_confirmed_getter, \
-    invert_admin_edit_menu_open, invert_admin_dell_obj_confirm_menu, admin_delete_object
+    all_objects_count_and_sg_list_getter, admin_open_object, \
+    invert_admin_edit_menu_open, invert_admin_dell_obj_confirm_menu, admin_delete_object, accept_moderated_object, \
+    reason_object_reject_input, admin_edit_and_delete_menu_getter
 from src.dialogs.getters.admin.edit_object import start_admin_edit_menu_dialog
 from src.dialogs.getters.admin.main_menu import admin_menu_getter
 from src.dialogs.getters.admin.users_manager import all_users_getter, admin_open_user_account, user_account_getter, \
@@ -107,13 +108,22 @@ all_objects_deleted_window = Window(
 admin_open_object_moderated_window = Window(
     Const('<b>Объект на модерации</b>'),
 
+    Button(Const('✏️ Меню редактирования'), id='invert_admin_edit_menu_object', on_click=invert_admin_edit_menu_open),
     Row(
-        SwitchTo(Const('❌ Отклонить'), id='back_to_all_deleted_objects', state=AdminDialog.all_objects_moderated),
-        SwitchTo(Const('✅ Одобрить'), id='back_to_all_deleted_objects', state=AdminDialog.all_objects_moderated),
+        Button(Const('Адрес'), id='admin_edit_address', on_click=start_admin_edit_menu_dialog),
+        Button(Const('Цена и Условия'), id='admin_edit_conditions', on_click=start_admin_edit_menu_dialog),
+        Button(Const('Описание'), id='admin_edit_description', on_click=start_admin_edit_menu_dialog),
+        Button(Const('Фотографии'), id='admin_edit_photos', on_click=start_admin_edit_menu_dialog),
+
+        when=F['admin_dit_menu_open']
     ),
-    SwitchTo(Const('✏️ Меню редактирования'), id='back_to_all_deleted_objects', state=AdminDialog.all_objects_confirmed),
+    Row(
+        SwitchTo(Const('❌ Отклонить'), id='reject_moderated_object', state=AdminDialog.enter_object_reject_reason),
+        Button(Const('✅ Одобрить'), id='accept_moderated_object', on_click=accept_moderated_object),
+    ),
     SwitchTo(Const('Назад'), id='back_to_all_deleted_objects', state=AdminDialog.all_objects_moderated),
 
+    getter=admin_edit_and_delete_menu_getter,
     state=AdminDialog.admin_open_object_moderated
 )
 
@@ -138,9 +148,10 @@ admin_open_object_confirmed_window = Window(
     ),
     SwitchTo(Const('Назад'), id='back_to_all_deleted_objects', state=AdminDialog.all_objects_confirmed),
 
-    getter=admin_open_object_confirmed_getter,
+    getter=admin_edit_and_delete_menu_getter,
     state=AdminDialog.admin_open_object_confirmed
 )
+
 
 # Просмотр объекта со статусом "Удалено"
 admin_open_object_deleted_window = Window(
@@ -149,4 +160,16 @@ admin_open_object_deleted_window = Window(
     SwitchTo(Const('Назад'), id='back_to_all_deleted_objects', state=AdminDialog.all_objects_deleted),
 
     state=AdminDialog.admin_open_object_deleted
+)
+
+
+# Ввести причину отклонения объекта, находящегося на модерации
+object_reject_reason_window = Window(
+    Const('<b>Вы собираетесь удалить объект!\n\nРаспишите ОБЪЕКТИВНО и ПОДРОБНО причину удаления:</b>'),
+
+    MessageInput(reason_object_reject_input, filter=F.text),
+
+    SwitchTo(Const('Назад'), id='back_to_admin_open_object_moderated', state=AdminDialog.admin_open_object_moderated),
+
+    state=AdminDialog.enter_object_reject_reason
 )

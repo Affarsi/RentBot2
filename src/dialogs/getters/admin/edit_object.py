@@ -161,7 +161,7 @@ async def admin_submit_edit_object(
     dialog_manager.show_mode = ShowMode.AUTO
 
     # Создаем новый словарь
-    new_object_data = {}
+    new_object_data = {'status': '✅'}
     dialog_data = dialog_manager.dialog_data
     if 'admin_edit_object_data_address' in dialog_data:
         new_object_data['address'] = dialog_data['admin_edit_object_data_address']
@@ -177,6 +177,6 @@ async def admin_submit_edit_object(
                            object_data=new_object_data)
 
     # Оповещаем пользователя и закрываем диалог
-    await dialog_manager.event.answer('Объект успешно изменён')
+    await dialog_manager.event.answer('Объект успешно изменён/одобрен')
     await clear_dialog_data_edit_object(dialog_manager=dialog_manager)
-    await dialog_manager.start(state=AdminDialog.admin_open_object_confirmed)
+    await dialog_manager.start(state=AdminDialog.all_objects_manager)

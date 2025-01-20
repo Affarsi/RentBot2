@@ -2,7 +2,8 @@ from aiogram_dialog import Dialog
 
 from src.dialogs.windows.admin.all_objects_manager import all_objects_manager_window, all_objects_confirmed_window, \
     all_objects_moderated_window, all_objects_deleted_window, admin_open_object_deleted_window, \
-    admin_open_object_confirmed_window, admin_open_object_moderated_window
+    admin_open_object_confirmed_window, admin_open_object_moderated_window, \
+    object_reject_reason_window
 from src.dialogs.windows.admin.edit_object import admin_result_and_edit_menu_window, admin_edit_address_window, \
     admin_edit_conditions_window, admin_edit_description_window, admin_edit_photos_window
 from src.dialogs.windows.admin.main_menu import admin_menu_window
@@ -64,7 +65,8 @@ admin_dialog = Dialog(
     all_objects_deleted_window,
     admin_open_object_confirmed_window,
     admin_open_object_moderated_window,
-    admin_open_object_deleted_window
+    admin_open_object_deleted_window,
+    object_reject_reason_window
 )
 
 # Диалог редактирования существующего объекта для Администратора

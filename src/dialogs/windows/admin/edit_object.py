@@ -24,7 +24,7 @@ admin_result_and_edit_menu_window = Window(
         SwitchTo(Const('Описание'), id='admin_edit_description', state=AdminEditObject.edit_description),
         SwitchTo(Const('Фотографии'), id='admin_edit_photos', state=AdminEditObject.edit_photos),
     ),
-    Button(Const('✅ Подтвердить и изменить'), id='submit_admin_edit_object', on_click=admin_submit_edit_object),
+    Button(Const('✅ Подтвердить и Изменить/Одобрить'), id='submit_admin_edit_object', on_click=admin_submit_edit_object),
     Cancel(Const('Отменить изменение объекта'), id='stop_admin_edit_object', on_click=clear_dialog_data_edit_object),
 
     state=AdminEditObject.result_and_edit_menu

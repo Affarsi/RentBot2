@@ -20,7 +20,7 @@ main_menu_window = Window(
             SwitchTo(Const('📕 Информация'), id='info', state=UserDialog.info),
             Url(Const('🦸‍♂️ Тех. Поддержка'), Const('https://t.me/sermseo')),
         ),
-        Start(Const('🖥 Панель Администрирования'), id='admin_menu', state=AdminDialog.menu, when=F['is_admin']),
+        Start(Const('🖥 Войти в панель Администрирования'), id='admin_menu', state=AdminDialog.menu, when=F['is_admin']),
     ),
 
     getter=user_main_getter,

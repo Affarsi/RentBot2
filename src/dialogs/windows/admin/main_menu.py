@@ -18,7 +18,7 @@ admin_menu_window = Window(
     SwitchTo(Const('🏠 Все объекты'), id='all_objects', state=AdminDialog.all_objects_manager),
     SwitchTo(Const('👥 Все пользователи'), id='all_users', state=AdminDialog.users_manager),
     Button(Const('🔄 Обновить страны'), id='update_countries', on_click=...),
-    Start(Const('🖥 Выйти из панели Администрирования'), id='user_menu', state=UserDialog.main_menu),
+    Start(Const('👨 Вернуться в панель Пользователя'), id='user_menu', state=UserDialog.main_menu),
 
     getter=admin_menu_getter,
     state=AdminDialog.menu

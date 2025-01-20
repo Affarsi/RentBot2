@@ -140,7 +140,7 @@ async def db_update_object(object_id: int, object_data: dict) -> bool:
 
         # Обновляем только указанные поля объекта
         for key, value in object_data.items():
-            if key in ['status', 'obj_type', 'country_id', 'address', 'conditions', 'description', 'contacts', 'photos']:
+            if key in ['status', 'obj_type', 'country_id', 'address', 'conditions', 'description', 'contacts', 'photos', 'delete_reason']:
                 if key == 'photos':
                     obj.photos = ", ".join(value) if isinstance(value, list) else value
                 else:
