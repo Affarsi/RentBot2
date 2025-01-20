@@ -9,11 +9,14 @@ from aiogram_dialog.widgets.kbd import Start, Button, Group, ScrollingGroup, Sel
 from src.dialogs.dialogs_states import UserDialog, AdminDialog
 from src.dialogs.getters.admin.main_menu import admin_menu_getter
 from src.dialogs.getters.admin.users_manager import all_users_getter, admin_open_user_account, user_account_getter, \
-    new_user_status_input, new_user_obj_limit_input
+    new_user_status_input, new_user_obj_limit_input, search_user_by_username
 
 # Менеджер всех пользователей
 users_manager_window = Window(
-    Const("<b>✨ Выберите пользователя:</b>"),
+    Const("<b>✨ Выберите пользователя:</b>\n\n"
+          "Или отправьте его @username для автоматического поиска!"),
+
+    MessageInput(search_user_by_username, filter=F.text),
 
     Group(
         ScrollingGroup(
@@ -28,7 +31,7 @@ users_manager_window = Window(
             width=2,
             height=7,
         ),
-        # поиск по @login
+        Button(Const('🔍 Отправьте @username для поиска'), id='find_user_by_username', on_click=...),
         SwitchTo(Const('Назад'), id='back_to_admin_menu', state=AdminDialog.menu)
     ),
 

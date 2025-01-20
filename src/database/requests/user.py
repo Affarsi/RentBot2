@@ -138,3 +138,16 @@ async def db_update_user(
         # Сохраняем изменения
         session.add(user)
         await session.commit()
+
+
+# Поиск Пользователя по telegram username
+async def find_user_by_username(username: str) -> int:
+    async with async_session() as session:
+        result = await session.execute(
+            select(User).where(User.username == username)
+        )
+        user = result.scalar_one_or_none()
+
+        if user is not None:
+            return user.id  # Возвращаем ID найденного пользователя
+        return None  # Возвращаем None, если пользователь не найден

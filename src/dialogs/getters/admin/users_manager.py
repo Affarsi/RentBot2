@@ -4,7 +4,7 @@ from aiogram_dialog.widgets.kbd import Button, Select
 from aiogram_dialog.widgets.input import MessageInput
 
 from src.database.requests.object import db_get_object, db_delete_object, db_update_object
-from src.database.requests.user import db_get_user, db_update_user
+from src.database.requests.user import db_get_user, db_update_user, find_user_by_username
 from src.dialogs.dialogs_states import CreateObject, UserDialog, AdminDialog
 from src.utils.media_group_creator import create_media_group
 
@@ -35,6 +35,26 @@ async def admin_open_user_account(
 
     # Следующее окно
     await dialog_manager.switch_to(state=AdminDialog.open_user_account)
+
+
+# Поиск Пользователя по username
+async def search_user_by_username(
+        message: Message,
+        widget: MessageInput,
+        dialog_manager: DialogManager
+):
+    username_for_find = message.text.replace('@', '').strip()
+    user_id = await find_user_by_username(username=username_for_find)
+
+    if user_id is None:
+        await dialog_manager.event.answer(f'{username_for_find}, не найден!')
+    else:
+        # Сохраняем ID выбранного пользователя в dialog_data
+        s_user_id = user_id
+        dialog_manager.dialog_data['s_user_id'] = s_user_id
+
+        # Следующее окно
+        await dialog_manager.switch_to(state=AdminDialog.open_user_account)
 
 
 # Возвращает информацию о выбранном Пользователе
