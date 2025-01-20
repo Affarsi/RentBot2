@@ -7,12 +7,10 @@ from aiogram_dialog.widgets.text import Const, Format, Multi
 from aiogram_dialog.widgets.kbd import Start, Group, Row, SwitchTo, Url, Back, ScrollingGroup, Select, Button, Cancel
 
 from src.dialogs.dialogs_states import UserDialog, CreateObject, EditObject, AdminEditObject
-from src.dialogs.getters.edit_object import admin_edit_object_address_input, admin_edit_object_conditions_input, \
-    admin_edit_object_description_input, admin_edit_object_photos_input, dell_photos_admin_edit_object, \
-    admin_confirm_edit_photo_and_go_to_finaly, admin_submit_edit_object, clear_dialog_data_admin_edit_object
-from src.dialogs.getters.my_objects_manager import my_objects_getter, start_create_object, open_my_object, delete_my_object, \
-    object_confirmed_getter, invert_edit_menu_open, invert_delete_object_confirm_menu
-
+from src.dialogs.getters.admin.edit_object import admin_submit_edit_object, \
+    admin_edit_object_address_input, admin_edit_object_conditions_input, admin_edit_object_description_input, \
+    admin_edit_object_photos_input, dell_photos_admin_edit_object, admin_confirm_edit_photo_and_go_to_finaly
+from src.dialogs.getters.edit_object import clear_dialog_data_edit_object
 
 # Итоговый вариант редактирование с admin_edit_menu
 admin_result_and_edit_menu_window = Window(
@@ -26,8 +24,8 @@ admin_result_and_edit_menu_window = Window(
         SwitchTo(Const('Описание'), id='admin_edit_description', state=AdminEditObject.edit_description),
         SwitchTo(Const('Фотографии'), id='admin_edit_photos', state=AdminEditObject.edit_photos),
     ),
-    Button(Const('✅ Отправить на модерацию'), id='submit_admin_edit_object', on_click=admin_submit_edit_object),
-    Cancel(Const('Отменить изменение объекта'), id='stop_admin_edit_object', on_click=clear_dialog_data_admin_edit_object),
+    Button(Const('✅ Подтвердить и изменить'), id='submit_admin_edit_object', on_click=admin_submit_edit_object),
+    Cancel(Const('Отменить изменение объекта'), id='stop_admin_edit_object', on_click=clear_dialog_data_edit_object),
 
     state=AdminEditObject.result_and_edit_menu
 )

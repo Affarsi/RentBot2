@@ -1,5 +1,5 @@
-aiogram==3.17.0
-aiogram_dialog==2.3.0
+aiogram
+aiogram_dialog
 attr==0.3.2
 ConfigParser==7.1.0
 contextlib2==21.6.0
