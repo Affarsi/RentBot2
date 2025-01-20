@@ -48,6 +48,8 @@ class AdminDialog(StatesGroup):
     admin_open_object_deleted = State()
     enter_object_reject_reason = State()
 
+    update_info = State()
+
 # Отдельные состояния для изменения объекта для Администратора
 class AdminEditObject(StatesGroup):
     result_and_edit_menu = State()

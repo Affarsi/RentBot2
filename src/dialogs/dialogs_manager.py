@@ -6,7 +6,7 @@ from src.dialogs.windows.admin.all_objects_manager import all_objects_manager_wi
     object_reject_reason_window
 from src.dialogs.windows.admin.edit_object import admin_result_and_edit_menu_window, admin_edit_address_window, \
     admin_edit_conditions_window, admin_edit_description_window, admin_edit_photos_window
-from src.dialogs.windows.admin.main_menu import admin_menu_window
+from src.dialogs.windows.admin.main_menu import admin_menu_window, update_info_window
 from src.dialogs.windows.admin.users_manager import users_manager_window, open_user_account_window, \
     change_user_status_window, change_user_obj_limit_window
 from src.dialogs.windows.create_object import get_country_window, get_type_window, get_address_window, \
@@ -66,7 +66,9 @@ admin_dialog = Dialog(
     admin_open_object_confirmed_window,
     admin_open_object_moderated_window,
     admin_open_object_deleted_window,
-    object_reject_reason_window
+    object_reject_reason_window,
+
+    update_info_window
 )
 
 # Диалог редактирования существующего объекта для Администратора

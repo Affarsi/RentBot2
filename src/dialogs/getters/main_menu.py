@@ -19,6 +19,6 @@ async def user_main_getter(dialog_manager: DialogManager, **kwargs):
 
 
 # Возвращает текст для раздела Информация
-async def info_getter(**kwargs):
-    res = {'info': await db_get_info()}
+async def info_text_getter(**kwargs):
+    res = {'info_text': await db_get_info()}
     return res
