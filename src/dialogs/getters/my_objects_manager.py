@@ -63,7 +63,7 @@ async def open_my_object(
     # Отправка медиа группы
     object_data = await send_media_group(dialog_manager, object_id, chat_id)
 
-    # Сохраняем id открытого объета
+    # Сохраняем id открытого объекта
     dialog_manager.dialog_data['open_object_id'] = object_id
     dialog_manager.dialog_data['open_object_data'] = object_data
 

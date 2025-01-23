@@ -22,7 +22,7 @@ class Country(Base):
 
     id: Mapped[int] = mapped_column(primary_key=True)
     name: Mapped[str]
-    thread_id: Mapped[int] = mapped_column(nullable=True)
+    thread_id: Mapped[int] = mapped_column(nullable=True, unique=True)
 
 # Объекты
 class Object(Base):
@@ -32,7 +32,7 @@ class Object(Base):
     generate_id: Mapped[int]
     status: Mapped[str]
     obj_type: Mapped[str] = mapped_column(nullable=True)
-    country_id: Mapped[int] = mapped_column(ForeignKey('countries.id'), nullable=False)
+    country_id: Mapped[int] = mapped_column(ForeignKey('countries.thread_id'), nullable=True)
     address: Mapped[str] = mapped_column(nullable=True)
     conditions: Mapped[str] = mapped_column(nullable=True) # Условия и цена
     description: Mapped[str] = mapped_column(nullable=True)
