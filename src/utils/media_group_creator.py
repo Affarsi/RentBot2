@@ -16,7 +16,7 @@ async def create_description_for_obj(
     # Возвращает значение с приоритетом edit_data, затем state_data, затем dict_data.
     def get_priority_value(key, default_value):
         edit_key = f'edit_object_data_{key}'
-        state_key = f'state_object_data_{key}'
+        state_key = f'create_object_state_data_{key}'
 
         if edit_data and edit_key in edit_data:
             return edit_data[edit_key]
@@ -107,16 +107,22 @@ async def send_media_group(
         media=media_group,
     )
 
-    # Удаляем предыдущие посты!
-    old_message_ids = object_data.get('message_ids')
-    if old_message_ids:
-        try:
-            await dialog_manager.event.bot.delete_messages(Config.chat, old_message_ids)
-        except:
-            print('Не смог удалить старые сообщения, когда админ одобрял или изменял объект')
-
-    # Сохраняем message_ids
     if send_to_chat:
+        # Удаляем предыдущие посты!
+        old_message_ids = object_data.get('message_ids')
+        print(f"old_message_ids: {old_message_ids}")
+        if old_message_ids:
+            try:    # удаляем медиа группу старых сообщений
+                await dialog_manager.event.bot.delete_messages(Config.chat, old_message_ids)
+                print(f'удалил несколько {old_message_ids}')
+            except:
+                try:    # если там только одно сообщение - удаляем одно сообщение
+                    await dialog_manager.event.bot.delete_message(Config.chat, old_message_ids)
+                    print(f'удалил одно {old_message_ids}')
+                except:    # если произошла какая-та ошибка
+                    print('Не смог удалить старые сообщения, когда админ одобрял или изменял объект')
+
+        # Сохраняем message_ids
         message_ids = []
         for msg in result:
             message_ids.append(str(msg.message_id))

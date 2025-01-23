@@ -103,7 +103,7 @@ async def admin_edit_object_photos_input(
     file_id = message.photo[-1].file_id
 
     # Смотрим, были ли ранее отправлены фотографии от Пользователя
-    new_photo_list = dialog_manager.dialog_data.get('admin_edit_object_data_photos')
+    new_photo_list = dialog_manager.dialog_data.get('edit_object_data_photos')
 
     # Формируем список фотографий
     if not new_photo_list:
@@ -112,7 +112,7 @@ async def admin_edit_object_photos_input(
         new_photo_list.append(file_id)
 
     # Утверждаем список фотографий
-    dialog_manager.dialog_data['admin_edit_object_data_photos'] = new_photo_list
+    dialog_manager.dialog_data['edit_object_data_photos'] = new_photo_list
 
 
 # Удалить загруженные фотографии
@@ -123,7 +123,7 @@ async def dell_photos_admin_edit_object(
 ):
     # Очищаем фотографии из dialog_data
     try:
-        photo_list = dialog_manager.dialog_data.pop('admin_edit_object_data_photos')
+        photo_list = dialog_manager.dialog_data.pop('edit_object_data_photos')
     except KeyError:
         await dialog_manager.event.answer('У вас нет загруженных фотографий')
         return
@@ -141,7 +141,7 @@ async def admin_confirm_edit_photo_and_go_to_finaly(
 ):
     # Получение данных
     try:
-        photo_list = dialog_manager.dialog_data.get('admin_edit_object_data_photos')
+        photo_list = dialog_manager.dialog_data.get('edit_object_data_photos')
     except KeyError:
         await dialog_manager.event.answer('У вас нет загруженных фотографий')
         return
@@ -159,26 +159,32 @@ async def admin_submit_edit_object(
     object_id = dialog_manager.start_data.get('admin_open_object_id')
 
     # Создаем новый словарь и ставим статус "Одобрен"
-    new_object_data = {'status': '✅', 'message_ids': None}
+    new_object_data = {'status': '✅'}
     dialog_data = dialog_manager.dialog_data
-    if 'admin_edit_object_data_address' in dialog_data:
-        new_object_data['address'] = dialog_data['admin_edit_object_data_address']
-    if 'admin_edit_object_data_conditions' in dialog_data:
-        new_object_data['conditions'] = dialog_data['admin_edit_object_data_conditions']
-    if 'admin_edit_object_data_description' in dialog_data:
-        new_object_data['description'] = dialog_data['admin_edit_object_data_description']
-    if 'admin_edit_object_data_photos' in dialog_data:
-        new_object_data['photos'] = dialog_data['admin_edit_object_data_photos']
+    if 'edit_object_data_address' in dialog_data:
+        new_object_data['address'] = dialog_data['edit_object_data_address']
+    if 'edit_object_data_conditions' in dialog_data:
+        new_object_data['conditions'] = dialog_data['edit_object_data_conditions']
+    if 'edit_object_data_description' in dialog_data:
+        new_object_data['description'] = dialog_data['edit_object_data_description']
+    if 'edit_object_data_photos' in dialog_data:
+        new_object_data['photos'] = dialog_data['edit_object_data_photos']
+
+    print(new_object_data)
 
     # Сохраняем измененный объект в БД
     await db_update_object(object_id=object_id,
                            object_data=new_object_data)
 
     # Отправляем пост в группу
-    object_data = await send_media_group(dialog_manager, object_id, Config.chat, True)
+    result_object_data = await send_media_group(dialog_manager, object_id, Config.chat, True)
 
-    if not object_data:
+    if not result_object_data:
         await dialog_manager.event.answer('Не могу отправить пост в чат! Обратитесь к тех админу!')
+    else:
+        # Обновляем message_ids
+        await db_update_object(object_id=object_id,
+                               object_data=result_object_data)
 
     # Оповещаем пользователя и закрываем диалог
     await dialog_manager.event.answer('Объект успешно изменён/одобрен')

@@ -20,15 +20,15 @@ async def clear_dialog_data_create_object(
     dialog_manager.show_mode = ShowMode.AUTO
 
     keys_to_remove = [
-        'create_object_data_country_id',
-        'create_object_data_country_name',
-        'create_object_data_type',
-        'create_object_data_address',
-        'create_object_data_conditions',
-        'create_object_data_description',
-        'create_object_data_contacts',
-        'create_object_data_photos',
-        'create_object_data_generate_id'
+        'create_object_state_data_country_id',
+        'create_object_state_data_country_name',
+        'create_object_state_data_type',
+        'create_object_state_data_address',
+        'create_object_state_data_conditions',
+        'create_object_state_data_description',
+        'create_object_state_data_contacts',
+        'create_object_state_data_photos',
+        'create_object_state_data_generate_id'
     ]
 
     for key in keys_to_remove:
@@ -42,7 +42,7 @@ async def clear_photos_create_object(
         dialog_manager: DialogManager
 ):
     try:
-        dialog_manager.dialog_data.pop('create_object_data_photos')
+        dialog_manager.dialog_data.pop('create_object_state_data_photos')
     except:
         pass
 
@@ -63,8 +63,8 @@ async def create_object_country_input(
 ):
     country_name = await db_get_country_name_by_id(country_id=int(item_id))
 
-    dialog_manager.dialog_data['create_object_data_country_id'] = int(item_id)
-    dialog_manager.dialog_data['create_object_data_country_name'] = country_name
+    dialog_manager.dialog_data['create_object_state_data_country_id'] = int(item_id)
+    dialog_manager.dialog_data['create_object_state_data_country_name'] = country_name
 
     await dialog_manager.switch_to(CreateObject.get_type)
     # await dialog_manager.switch_to(CreateObject.get_photos)
@@ -77,7 +77,7 @@ async def create_object_type_input(
         dialog_manager: DialogManager
 ):
     object_type = message.html_text.strip()
-    dialog_manager.dialog_data['create_object_data_type'] = object_type
+    dialog_manager.dialog_data['create_object_state_data_type'] = object_type
     await dialog_manager.switch_to(CreateObject.get_address)
 
 
@@ -88,7 +88,7 @@ async def create_object_address_input(
         dialog_manager: DialogManager
 ):
     object_address = message.html_text.strip()
-    dialog_manager.dialog_data['create_object_data_address'] = object_address
+    dialog_manager.dialog_data['create_object_state_data_address'] = object_address
     await dialog_manager.switch_to(CreateObject.get_conditions)
 
 
@@ -99,7 +99,7 @@ async def create_object_conditions_input(
         dialog_manager: DialogManager
 ):
     object_conditions = message.html_text.strip()
-    dialog_manager.dialog_data['create_object_data_conditions'] = object_conditions
+    dialog_manager.dialog_data['create_object_state_data_conditions'] = object_conditions
     await dialog_manager.switch_to(CreateObject.get_description)
 
 
@@ -110,7 +110,7 @@ async def create_object_description_input(
         dialog_manager: DialogManager
 ):
     object_description = message.html_text.strip()
-    dialog_manager.dialog_data['create_object_data_description'] = object_description
+    dialog_manager.dialog_data['create_object_state_data_description'] = object_description
     await dialog_manager.switch_to(CreateObject.get_contacts)
 
 
@@ -121,7 +121,7 @@ async def create_object_contacts_input(
         dialog_manager: DialogManager
 ):
     object_contacts = message.html_text.strip()
-    dialog_manager.dialog_data['create_object_data_contacts'] = object_contacts
+    dialog_manager.dialog_data['create_object_state_data_contacts'] = object_contacts
     await dialog_manager.switch_to(CreateObject.get_photos)
 
 
@@ -135,7 +135,7 @@ async def create_object_photos_input(
     file_id = message.photo[-1].file_id
 
     # Смотрим, были ли ранее отправлены фотографии от Пользователя
-    photo_list_dialog_data = dialog_manager.dialog_data.get('create_object_data_photos')
+    photo_list_dialog_data = dialog_manager.dialog_data.get('create_object_state_data_photos')
 
     # Формируем список фотографий
     if not photo_list_dialog_data:
@@ -144,7 +144,7 @@ async def create_object_photos_input(
         photo_list_dialog_data.append(file_id)
 
     # Утверждаем список фотографий
-    dialog_manager.dialog_data['create_object_data_photos'] = photo_list_dialog_data
+    dialog_manager.dialog_data['create_object_state_data_photos'] = photo_list_dialog_data
 
 
 # Удалить загруженные фотографии
@@ -155,7 +155,7 @@ async def dell_photos_create_object(
 ):
     # Очищаем фотографии из dialog_data
     try:
-        photo_list = dialog_manager.dialog_data.pop('create_object_data_photos')
+        photo_list = dialog_manager.dialog_data.pop('create_object_state_data_photos')
     except KeyError:
         await dialog_manager.event.answer('У вас нет загруженных фотографий')
         return
@@ -174,7 +174,7 @@ async def go_final_result_create_onject(
     # Получение данных
     try:
         chat_id = dialog_manager.event.message.chat.id
-        photo_list = dialog_manager.dialog_data.get('create_object_data_photos')
+        photo_list = dialog_manager.dialog_data.get('create_object_state_data_photos')
 
         if len(photo_list) == 0:
             await dialog_manager.event.answer('У вас нет загруженных фотографий')
@@ -188,7 +188,7 @@ async def go_final_result_create_onject(
 
     # Формирование ID для объекта
     generate_id = randrange(0, 99999)# формируем id для поста
-    dialog_manager.dialog_data['create_object_data_generate_id'] = generate_id
+    dialog_manager.dialog_data['create_object_state_data_generate_id'] = generate_id
 
     # Формирование медиа группы
     media_group = await create_media_group(state_data=dialog_manager.dialog_data,

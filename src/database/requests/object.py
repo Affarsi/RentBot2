@@ -15,19 +15,19 @@ async def db_new_object(
         user = await db_get_user(telegram_id=user_tg_id)
 
         # Преобразования фотографий
-        photo_list = object_data['create_object_data_photos']
+        photo_list = object_data['create_object_state_data_photos']
         photo_str = ", ".join(photo_list)
 
         # Формирование объекта
         new_object = Object(
             status="🔄",
-            generate_id=object_data['create_object_data_generate_id'],
-            obj_type=object_data['create_object_data_type'],
-            country_id=object_data['create_object_data_country_id'],
-            address=object_data['create_object_data_address'],
-            conditions=object_data['create_object_data_conditions'],
-            description=object_data['create_object_data_description'],
-            contacts=object_data['create_object_data_contacts'],
+            generate_id=object_data['create_object_state_data_generate_id'],
+            obj_type=object_data['create_object_state_data_type'],
+            country_id=object_data['create_object_state_data_country_id'],
+            address=object_data['create_object_state_data_address'],
+            conditions=object_data['create_object_state_data_conditions'],
+            description=object_data['create_object_state_data_description'],
+            contacts=object_data['create_object_state_data_contacts'],
             photos=photo_str,
             owner_id=user["id"]
         )
