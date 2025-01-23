@@ -5,9 +5,9 @@ from aiogram_dialog.widgets.kbd import Row, SwitchTo, Button, Cancel
 from aiogram_dialog.widgets.text import Const
 
 from src.dialogs.dialogs_states import EditObject
-from src.dialogs.getters.edit_object import edit_object_address_input, edit_object_conditions_input, \
+from src.dialogs.getters.edit_object import edit_object_conditions_input, \
     edit_object_description_input, edit_object_photos_input, dell_photos_edit_object, \
-    confirm_edit_photo_and_go_to_finaly, clear_dialog_data_edit_object, submit_edit_object
+    confirm_edit_photo_and_go_to_finaly, clear_dialog_data_edit_object, submit_edit_object, edit_object_contacts_input
 
 # Итоговый вариант редактирование с edit_menu
 result_and_edit_menu_window = Window(
@@ -16,27 +16,15 @@ result_and_edit_menu_window = Window(
 
     Button(Const('✏️ Меню редактирования'), id='...'),
     Row(
-        SwitchTo(Const('Адрес'), id='edit_address', state=EditObject.edit_address),
         SwitchTo(Const('Цена и Условия'), id='edit_conditions', state=EditObject.edit_conditions),
         SwitchTo(Const('Описание'), id='edit_description', state=EditObject.edit_description),
+        SwitchTo(Const('Контакты'), id='edit_contacts', state=EditObject.edit_contacts),
         SwitchTo(Const('Фотографии'), id='edit_photos', state=EditObject.edit_photos),
     ),
     Button(Const('✅ Отправить на модерацию'), id='submit_edit_object', on_click=submit_edit_object),
     Cancel(Const('Отменить изменение объекта'), id='stop_edit_object', on_click=clear_dialog_data_edit_object),
 
     state=EditObject.result_and_edit_menu
-)
-
-# Окно для редактирования адреса объекта
-edit_address_window = Window(
-    Const('<b>Укажите Новый Адрес объекта:</b>\n\n'
-          '<i>Например: г. Алматы, Бостандыкский район, улица Хусаинова, д. 225</i>'),
-
-    MessageInput(edit_object_address_input, filter=F.text),
-
-    SwitchTo(Const('Назад'), id='back_to_edit_menu', state=EditObject.result_and_edit_menu),
-
-    state=EditObject.edit_address
 )
 
 # Окно для редактирования условий и цены объекта
@@ -62,6 +50,18 @@ edit_description_window = Window(
     SwitchTo(Const('Назад'), id='back_to_edit_menu', state=EditObject.result_and_edit_menu),
 
     state=EditObject.edit_description
+)
+
+# Окно для редактирования контактов объекта
+edit_contacts_window = Window(
+    Const('<b>Укажите контакты для связи:</b>\n\n'
+        '<i>Например: Чтобы получить прямой контакт арендодателя пишите @telegra_login</i>'),
+
+    MessageInput(edit_object_contacts_input, filter=F.text),
+
+    SwitchTo(Const('Назад'), id='back_to_edit_menu', state=EditObject.result_and_edit_menu),
+
+    state=EditObject.edit_contacts
 )
 
 # Окно для редактирования фотографий объекта

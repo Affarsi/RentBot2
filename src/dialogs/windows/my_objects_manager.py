@@ -49,9 +49,9 @@ my_object_confirmed_window = Window(
 
         Button(Const('✏️ Меню редактирования'), id='invert_edit_menu_my_object', on_click=invert_edit_menu_open),
         Row(
-            Button(Const('Адрес'), id='edit_address', on_click=start_edit_menu_dialog),
             Button(Const('Цена и Условия'), id='edit_conditions', on_click=start_edit_menu_dialog),
             Button(Const('Описание'), id='edit_description', on_click=start_edit_menu_dialog),
+            Button(Const('Контакты'), id='edit_contacts', on_click=start_edit_menu_dialog),
             Button(Const('Фотографии'), id='edit_photos', on_click=start_edit_menu_dialog),
 
             when=F['edit_menu_open']

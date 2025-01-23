@@ -17,9 +17,9 @@ async def start_edit_menu_dialog(
     callback_data = callback.data.split('_')[1]
 
     states = {
-        'address': EditObject.edit_address,
         'conditions': EditObject.edit_conditions,
         'description': EditObject.edit_description,
+        'contacts': EditObject.edit_contacts,
         'photos': EditObject.edit_photos
     }
 
@@ -44,9 +44,9 @@ async def clear_dialog_data_edit_object(
 
     keys_to_remove = [
         'open_object_dict_data',
-        'edit_object_data_address',
         'edit_object_data_conditions',
         'edit_object_data_description',
+        'edit_object_data_contacts',
         'edit_object_data_photos'
     ]
 
@@ -84,15 +84,6 @@ async def edit_object_input(
     await dialog_manager.switch_to(EditObject.result_and_edit_menu)
 
 
-# Изменить адрес объекта и перейти к следующему шагу
-async def edit_object_address_input(
-        message: Message,
-        widget: MessageInput,
-        dialog_manager: DialogManager
-):
-    await edit_object_input(widget, dialog_manager, 'address', message=message)
-
-
 # Изменить условия и стоимость объекта и перейти к следующему шагу
 async def edit_object_conditions_input(
         message: Message,
@@ -109,6 +100,15 @@ async def edit_object_description_input(
         dialog_manager: DialogManager
 ):
     await edit_object_input(widget, dialog_manager, 'description', message=message)
+
+
+# Изменить контакты объекта и перейти к следующему шагу
+async def edit_object_contacts_input(
+        message: Message,
+        widget: MessageInput,
+        dialog_manager: DialogManager
+):
+    await edit_object_input(widget, dialog_manager, 'contacts', message=message)
 
 
 # Сохраняет загруженные пользователям новые фотографии объекта
@@ -178,12 +178,12 @@ async def submit_edit_object(
     # Создаем новый словарь
     new_object_data = {'status': '🔄'}
     dialog_data = dialog_manager.dialog_data
-    if 'edit_object_data_address' in dialog_data:
-        new_object_data['address'] = dialog_data['edit_object_data_address']
     if 'edit_object_data_conditions' in dialog_data:
         new_object_data['conditions'] = dialog_data['edit_object_data_conditions']
     if 'edit_object_data_description' in dialog_data:
         new_object_data['description'] = dialog_data['edit_object_data_description']
+    if 'edit_object_data_contacts' in dialog_data:
+        new_object_data['contacts'] = dialog_data['edit_object_data_contacts']
     if 'edit_object_data_photos' in dialog_data:
         new_object_data['photos'] = dialog_data['edit_object_data_photos']
 

@@ -19,9 +19,9 @@ async def start_admin_edit_menu_dialog(
     callback_data = callback.data.split('_')[2]
 
     states = {
-        'address': AdminEditObject.edit_address,
         'conditions': AdminEditObject.edit_conditions,
         'description': AdminEditObject.edit_description,
+        'contacts': AdminEditObject.edit_contacts,
         'photos': AdminEditObject.edit_photos
     }
 
@@ -66,15 +66,6 @@ async def admin_edit_object_input(
     await dialog_manager.switch_to(AdminEditObject.result_and_edit_menu)
 
 
-# Изменить адрес объекта и перейти к следующему шагу
-async def admin_edit_object_address_input(
-        message: Message,
-        widget: MessageInput,
-        dialog_manager: DialogManager
-):
-    await admin_edit_object_input(widget, dialog_manager, 'address', message=message)
-
-
 # Изменить условия и стоимость объекта и перейти к следующему шагу
 async def admin_edit_object_conditions_input(
         message: Message,
@@ -91,6 +82,15 @@ async def admin_edit_object_description_input(
         dialog_manager: DialogManager
 ):
     await admin_edit_object_input(widget, dialog_manager, 'description', message=message)
+
+
+# Изменить контакты объекта и перейти к следующему шагу
+async def admin_edit_object_contacts_input(
+        message: Message,
+        widget: MessageInput,
+        dialog_manager: DialogManager
+):
+    await admin_edit_object_input(widget, dialog_manager, 'contacts', message=message)
 
 
 # Сохраняет загруженные пользователям новые фотографии объекта
@@ -161,12 +161,12 @@ async def admin_submit_edit_object(
     # Создаем новый словарь и ставим статус "Одобрен"
     new_object_data = {'status': '✅'}
     dialog_data = dialog_manager.dialog_data
-    if 'edit_object_data_address' in dialog_data:
-        new_object_data['address'] = dialog_data['edit_object_data_address']
     if 'edit_object_data_conditions' in dialog_data:
         new_object_data['conditions'] = dialog_data['edit_object_data_conditions']
     if 'edit_object_data_description' in dialog_data:
         new_object_data['description'] = dialog_data['edit_object_data_description']
+    if 'edit_object_data_contacts' in dialog_data:
+        new_object_data['contacts'] = dialog_data['edit_object_data_contacts']
     if 'edit_object_data_photos' in dialog_data:
         new_object_data['photos'] = dialog_data['edit_object_data_photos']
 

@@ -11,8 +11,8 @@ from src.dialogs.windows.admin.users_manager import users_manager_window, open_u
     change_user_status_window, change_user_obj_limit_window
 from src.dialogs.windows.create_object import get_country_window, get_type_window, get_address_window, \
     get_conditions_window, get_description_window, get_contacts_window, get_photos_window, final_result_window
-from src.dialogs.windows.edit_object import edit_address_window, edit_conditions_window, edit_description_window, \
-    result_and_edit_menu_window, edit_photos_window
+from src.dialogs.windows.edit_object import edit_conditions_window, edit_description_window, \
+    result_and_edit_menu_window, edit_photos_window, edit_contacts_window
 from src.dialogs.windows.main_menu import main_menu_window, info_window
 from src.dialogs.windows.my_objects_manager import my_objects_manager_window, my_object_confirmed_window, \
     my_object_moderated_window, my_object_deleted_window
@@ -44,9 +44,9 @@ create_object_dialog = Dialog(
 # Диалог редактирования существующего объекта
 edit_object_dialog = Dialog(
     result_and_edit_menu_window,
-    edit_address_window,
     edit_conditions_window,
     edit_description_window,
+    edit_contacts_window,
     edit_photos_window
 )
 
@@ -75,8 +75,8 @@ admin_dialog = Dialog(
 # Диалог редактирования существующего объекта для Администратора
 admin_edit_object_dialog = Dialog(
     admin_result_and_edit_menu_window,
-    admin_edit_address_window,
     admin_edit_conditions_window,
     admin_edit_description_window,
+    admin_edit_contacts_window,
     admin_edit_photos_window
 )

@@ -25,9 +25,9 @@ class CreateObject(StatesGroup):
 # Отдельные состояния для изменения объекта
 class EditObject(StatesGroup):
     result_and_edit_menu = State()
-    edit_address = State()
     edit_conditions = State()
     edit_description = State()
+    edit_contacts = State()
     edit_photos = State()
 
 # Основной диалог для Администратора
@@ -54,7 +54,7 @@ class AdminDialog(StatesGroup):
 # Отдельные состояния для изменения объекта для Администратора
 class AdminEditObject(StatesGroup):
     result_and_edit_menu = State()
-    edit_address = State()
     edit_conditions = State()
     edit_description = State()
+    edit_contacts = State()
     edit_photos = State()

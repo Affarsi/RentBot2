@@ -17,7 +17,7 @@ admin_result_and_edit_menu_window = Window(
 
     Button(Const('✏️ Меню редактирования'), id='...'),
     Row(
-        SwitchTo(Const('Адрес'), id='admin_edit_address', state=AdminEditObject.edit_address),
+        SwitchTo(Const('Контакты'), id='admin_edit_contacts', state=AdminEditObject.edit_contacts),
         SwitchTo(Const('Цена и Условия'), id='admin_edit_conditions', state=AdminEditObject.edit_conditions),
         SwitchTo(Const('Описание'), id='admin_edit_description', state=AdminEditObject.edit_description),
         SwitchTo(Const('Фотографии'), id='admin_edit_photos', state=AdminEditObject.edit_photos),
@@ -26,18 +26,6 @@ admin_result_and_edit_menu_window = Window(
     Cancel(Const('Отменить изменение объекта'), id='stop_admin_edit_object', on_click=clear_dialog_data_edit_object),
 
     state=AdminEditObject.result_and_edit_menu
-)
-
-# Окно для редактирования адреса объекта
-admin_edit_address_window = Window(
-    Const('<b>Укажите Новый Адрес объекта:</b>\n\n'
-          '<i>Например: г. Алматы, Бостандыкский район, улица Хусаинова, д. 225</i>'),
-
-    MessageInput(admin_edit_object_address_input, filter=F.text),
-
-    SwitchTo(Const('Назад'), id='back_to_admin_edit_menu', state=AdminEditObject.result_and_edit_menu),
-
-    state=AdminEditObject.edit_address
 )
 
 # Окно для редактирования условий и цены объекта
@@ -63,6 +51,18 @@ admin_edit_description_window = Window(
     SwitchTo(Const('Назад'), id='back_to_admin_edit_menu', state=AdminEditObject.result_and_edit_menu),
 
     state=AdminEditObject.edit_description
+)
+
+# Окно для редактирования контактов объекта
+admin_edit_contacts_window = Window(
+    Const('<b>Укажите контакты для связи:</b>\n\n'
+        '<i>Например: Чтобы получить прямой контакт арендодателя пишите @telegra_login</i>'),
+
+    MessageInput(admin_edit_object_contacts_input, filter=F.text),
+
+    SwitchTo(Const('Назад'), id='back_to_admin_edit_menu', state=AdminEditObject.result_and_edit_menu),
+
+    state=AdminEditObject.edit_contacts
 )
 
 # Окно для редактирования фотографий объекта
