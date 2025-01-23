@@ -2,15 +2,14 @@ from dataclasses import dataclass
 
 @dataclass
 class Config:
-    bot_token: str = '7617336613:AAEz95VLn0kAoO7vR_9LQbxz4CXfrIpHKrM'  # test_kwork
+    bot_token: str = '123'
     sqlalchemy_url: str = 'sqlite+aiosqlite:///src/database/db.sqlite3'
-    admin_ids = [902966420, 6991273215] # IDs список администраторов
-    api_id: int = 23988290 # МОИ
-    api_hash: str = '62b3cc11b049d4e2f5d4a1de5636df06' # МОИ
-    chat: str or int = "@klajflksadjflsakdjfklsafd" # ID или "@логин чата"
+    admin_ids = [123] # IDs список администраторов
+    api_id: int = 123
+    api_hash: str = '123'
+    chat: str or int = "@123" # ID или "@логин чата"
 
     # Пример ID чата
-    # chat: str or int = "@klajflksadjflsakdjfklsafd"
-
-    # Пример логин чата
     # chat: str or int = -109234012098402
+    # Пример логин чата
+    # chat: str or int = "@klajflksadjflsakdjfklsafd"
