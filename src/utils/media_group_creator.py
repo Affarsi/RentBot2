@@ -37,14 +37,15 @@ async def create_description_for_obj(
     generate_id = get_priority_value('generate_id', dict_data.get('generate_id'))
 
     # Формирование текста
-    caption = (f"<b>🏢 {obj_type} (ID{generate_id})</b>\n"
-               f"<b>📍 Местоположение:</b>\n"
+    caption = (f"<b>ID:</b> {generate_id}\n"
+               f"<b>🏢 {obj_type}</b>\n"
+               f"<b>📍 Местоположение: </b>"
                f"{country}, {address}\n"
-               f"💸<b> Цена и условия:</b>\n"
+               f"💸<b> Цена и условия: </b>"
                f"{conditions}\n"
-               f"<b>🛋 Описание:</b>\n"
+               f"<b>🛋 Описание: </b>"
                f"{description}\n\n"
-               f"<b>☎️ Контакты:</b>\n"
+               f"<b>☎️ Контакты: </b>"
                f"{contacts}")
 
     return caption

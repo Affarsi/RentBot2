@@ -143,7 +143,7 @@ async def admin_confirm_edit_photo_and_go_to_finaly(
     try:
         photo_list = dialog_manager.dialog_data.get('edit_object_data_photos')
 
-        if len(photo_list) < 3 or len(photo_list) > 7:
+        if len(photo_list) < 2 or len(photo_list) > 8:
             await dialog_manager.event.answer('Загрузите больше 2ух и не меньше 8 фотографий!')
             return
     except KeyError:

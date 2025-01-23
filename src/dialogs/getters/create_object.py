@@ -179,7 +179,7 @@ async def go_final_result_create_onject(
         if len(photo_list) == 0:
             await dialog_manager.event.answer('У вас нет загруженных фотографий')
             return
-        elif len(photo_list) < 3 or len(photo_list) > 7:
+        elif len(photo_list) < 2 or len(photo_list) > 8:
             await dialog_manager.event.answer('Загрузите больше 2ух и не меньше 8 фотографий!')
             return
     except KeyError:
