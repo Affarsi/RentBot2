@@ -4,14 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1bd5e2e9-72a5-4a8d-b09e-36008a260f3c" name="Changes" comment="admin_edit_object">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/database/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/src/database/db.sqlite3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/database/requests/object.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/database/requests/object.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dialogs/getters/admin/edit_object.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/dialogs/getters/admin/edit_object.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dialogs/getters/create_object.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/dialogs/getters/create_object.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/utils/media_group_creator.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/media_group_creator.py" afterDir="false" />
-    </list>
+    <list default="true" id="1bd5e2e9-72a5-4a8d-b09e-36008a260f3c" name="Changes" comment="fix_edit_object" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -437,7 +430,15 @@
       <option name="project" value="LOCAL" />
       <updated>1737637265412</updated>
     </task>
-    <option name="localTasksCounter" value="40" />
+    <task id="LOCAL-00040" summary="fix_edit_object">
+      <option name="closed" value="true" />
+      <created>1737639000454</created>
+      <option name="number" value="00040" />
+      <option name="presentableId" value="LOCAL-00040" />
+      <option name="project" value="LOCAL" />
+      <updated>1737639000454</updated>
+    </task>
+    <option name="localTasksCounter" value="41" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -462,7 +463,8 @@
     <MESSAGE value="pred_admin_delete_object" />
     <MESSAGE value="admin_delete_object and clean_import" />
     <MESSAGE value="admin_edit_object" />
-    <option name="LAST_COMMIT_MESSAGE" value="admin_edit_object" />
+    <MESSAGE value="fix_edit_object" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix_edit_object" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

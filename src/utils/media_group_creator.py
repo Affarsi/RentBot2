@@ -110,15 +110,12 @@ async def send_media_group(
     if send_to_chat:
         # Удаляем предыдущие посты!
         old_message_ids = object_data.get('message_ids')
-        print(f"old_message_ids: {old_message_ids}")
         if old_message_ids:
             try:    # удаляем медиа группу старых сообщений
                 await dialog_manager.event.bot.delete_messages(Config.chat, old_message_ids)
-                print(f'удалил несколько {old_message_ids}')
             except:
                 try:    # если там только одно сообщение - удаляем одно сообщение
                     await dialog_manager.event.bot.delete_message(Config.chat, old_message_ids)
-                    print(f'удалил одно {old_message_ids}')
                 except:    # если произошла какая-та ошибка
                     print('Не смог удалить старые сообщения, когда админ одобрял или изменял объект')
 
