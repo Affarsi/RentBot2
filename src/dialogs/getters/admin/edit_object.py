@@ -188,3 +188,26 @@ async def admin_submit_edit_object(
     await dialog_manager.event.answer('Объект успешно изменён/одобрен')
     await clear_dialog_data_edit_object(dialog_manager=dialog_manager)
     await dialog_manager.start(state=AdminDialog.all_objects_manager)
+
+
+# Прекратить изменять объект и вернуться к старому
+async def stop_admin_edit_object(
+        callback: CallbackQuery,
+        widget: Button,
+        dialog_manager: DialogManager
+):
+    # Получение данных объекта
+    object_id = dialog_manager.dialog_data.get('admin_open_object_id')
+    object_data = await db_get_object(object_id=object_id)
+    object_data = object_data[0]
+
+    # Формирование медиа группы
+    media_group = await create_media_group(dict_data=object_data)
+
+    # Отправка медиа группы и диалога с edit_menu
+    await dialog_manager.event.bot.send_media_group(
+        chat_id=dialog_manager.event.from_user.id,
+        media=media_group
+    )
+    dialog_manager.show_mode = ShowMode.DELETE_AND_SEND  # чтобы медиа группа раньше отправилась, чем смс от бота
+    await dialog_manager.done()

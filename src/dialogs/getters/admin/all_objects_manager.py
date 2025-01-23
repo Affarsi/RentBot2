@@ -5,6 +5,7 @@ from aiogram_dialog.widgets.input import MessageInput
 
 from config import Config
 from src.database.requests.object import db_get_object, db_update_object
+from src.database.requests.user import db_get_user
 from src.dialogs.dialogs_states import AdminDialog
 from src.utils.media_group_creator import send_media_group
 
@@ -117,12 +118,21 @@ async def invert_admin_dell_obj_confirm_menu(
     dialog_manager.dialog_data['is_admin_delete_object_confirm_menu'] = not is_admin_delete_object_confirm_menu
 
 
-# Getter, сообщающий, открыто ли edit_menu/delete_menu или нет
-async def admin_edit_and_delete_menu_getter(dialog_manager: DialogManager, **kwargs):
+# Getter, сообщающий, открыто ли edit_menu/delete_menu или нет, а также информацию о владельце объекта
+async def admin_open_object_confirmed_getter(dialog_manager: DialogManager, **kwargs):
+    # Получаем информацию о edit/delete menu
     is_edit_menu_open = dialog_manager.dialog_data.get('is_admin_edit_menu_open')
     is_delete_object_confirm_menu = dialog_manager.dialog_data.get('is_admin_delete_object_confirm_menu')
-    return {'admin_dit_menu_open': is_edit_menu_open,
-            'admin_delete_object_confirm_menu': is_delete_object_confirm_menu}
+
+    # Получаем информацию о пользователе
+    object_id = dialog_manager.dialog_data.get('admin_open_object_id')
+    getter_data = await db_get_user(object_id=object_id)
+
+    # Формируем словарь
+    getter_data['admin_dit_menu_open'] = is_edit_menu_open
+    getter_data['admin_delete_object_confirm_menu'] = is_delete_object_confirm_menu
+
+    return getter_data
 
 
 # Удалить созданный объект

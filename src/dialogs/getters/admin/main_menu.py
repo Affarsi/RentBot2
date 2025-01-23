@@ -40,6 +40,12 @@ async def take_new_info_input(
     await dialog_manager.switch_to(AdminDialog.menu)
 
 
+# Удаляет сообщение спустя время
+async def delete_message_delayed(bot, chat_id, message_id, delay):
+  await asyncio.sleep(delay)
+  await bot.delete_message(chat_id, message_id)
+
+
 # Обновляет актуальный список стран, основываясь на названиях топиков в чате
 async def update_countries(
         callback: CallbackQuery,
@@ -64,6 +70,8 @@ async def update_countries(
 
     # Отправляем сервисное уведомление Администратору
     service_message = await dialog_manager.event.bot.send_message(dialog_manager.event.from_user.id, country_message)
-    await asyncio.sleep(10)
     # Удаляем сервисное уведомление через 10 секунд
-    await dialog_manager.event.bot.delete_message(dialog_manager.event.from_user.id, service_message.message_id)
+    asyncio.create_task(
+        delete_message_delayed(dialog_manager.event.bot, dialog_manager.event.from_user.id, service_message.message_id,
+        delay=10)
+    )

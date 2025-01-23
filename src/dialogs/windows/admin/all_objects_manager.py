@@ -9,8 +9,8 @@ from aiogram_dialog.widgets.kbd import Button, Group, ScrollingGroup, Select, Sw
 from src.dialogs.dialogs_states import AdminDialog
 from src.dialogs.getters.admin.all_objects_manager import all_objects_count_and_sg_list_getter, admin_open_object, \
     invert_admin_edit_menu_open, invert_admin_dell_obj_confirm_menu, admin_delete_object, accept_moderated_object, \
-    reason_object_reject_input, admin_edit_and_delete_menu_getter, reason_object_delete_input, \
-    admin_object_delete_reason_getter
+    reason_object_reject_input, reason_object_delete_input, \
+    admin_object_delete_reason_getter, admin_open_object_confirmed_getter
 from src.dialogs.getters.admin.edit_object import start_admin_edit_menu_dialog
 
 # Выбор категории объектов, которые Администратор хочет посмотреть
@@ -120,13 +120,21 @@ admin_open_object_moderated_window = Window(
     ),
     SwitchTo(Const('Назад'), id='back_to_all_deleted_objects', state=AdminDialog.all_objects_moderated),
 
-    getter=admin_edit_and_delete_menu_getter,
+    getter=admin_open_object_confirmed_getter,
     state=AdminDialog.admin_open_object_moderated
 )
 
 # Просмотр объекта со статусом "Одобрено"
 admin_open_object_confirmed_window = Window(
-    Const('<b>Объект был одобрен.\n\nИнформация о владельце:\n...</b>'),
+    Format(
+        '<b>Объект был одобрен!</b>\n\n'
+        '<b>Информация о владельце:</b>\n'
+        '👤 <code>{full_name}</code> (@{username})\n'
+        '<b>Статус:</b>\n'
+        '<code>{status}</code>\n'
+        '<b>Лимит объектов:</b>\n'
+        '<code>{obj_limit}</code>'
+    ),
 
     Button(Const('✏️ Меню редактирования'), id='invert_admin_edit_menu_object', on_click=invert_admin_edit_menu_open),
     Row(
@@ -145,7 +153,7 @@ admin_open_object_confirmed_window = Window(
     ),
     SwitchTo(Const('Назад'), id='back_to_all_deleted_objects', state=AdminDialog.all_objects_confirmed),
 
-    getter=admin_edit_and_delete_menu_getter,
+    getter=admin_open_object_confirmed_getter,
     state=AdminDialog.admin_open_object_confirmed
 )
 

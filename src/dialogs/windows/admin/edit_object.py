@@ -8,13 +8,13 @@ from src.dialogs.dialogs_states import AdminEditObject
 from src.dialogs.getters.admin.edit_object import admin_submit_edit_object, \
     admin_edit_object_conditions_input, admin_edit_object_description_input, \
     admin_edit_object_photos_input, dell_photos_admin_edit_object, admin_confirm_edit_photo_and_go_to_finaly, \
-    admin_edit_object_contacts_input
+    admin_edit_object_contacts_input, stop_admin_edit_object
 from src.dialogs.getters.edit_object import clear_dialog_data_edit_object
 
 # Итоговый вариант редактирование с admin_edit_menu
 admin_result_and_edit_menu_window = Window(
     Const('<b>Выше вы видите отредактированный пост!\n\n</b>'
-          'Вы можете отказаться от изменений или отправить его на модерацию'),
+          'Вы можете отказаться от изменений или сохранить их и автоматически одобрить пост!'),
 
     Button(Const('✏️ Меню редактирования'), id='...'),
     Row(
@@ -24,7 +24,7 @@ admin_result_and_edit_menu_window = Window(
         SwitchTo(Const('Фотографии'), id='admin_edit_photos', state=AdminEditObject.edit_photos),
     ),
     Button(Const('✅ Подтвердить и Изменить/Одобрить'), id='submit_admin_edit_object', on_click=admin_submit_edit_object),
-    Cancel(Const('Отменить изменение объекта'), id='stop_admin_edit_object', on_click=clear_dialog_data_edit_object),
+    Button(Const('Отменить изменение объекта'), id='stop_admin_edit_object', on_click=stop_admin_edit_object),
 
     state=AdminEditObject.result_and_edit_menu
 )
@@ -68,7 +68,7 @@ admin_edit_contacts_window = Window(
 
 # Окно для редактирования фотографий объекта
 admin_edit_photos_window = Window(
-    Const('<b>Отправьте фотографии объекта (от 2 до 8)</b>\n\n'
+    Const('<b>Отправьте фотографии объекта (от 1 до 8)</b>\n\n'
           'Необходимо сжать и сгруппировать фотографии перед отправкой!\n\n'
           '<b>❗️ Если вы отправили фотографии</b> - то они успешно загружены!\n'
           '<b>❗️ Если вы хотите изменить фотографии</b> - нажмите УДАЛИТЬ ФОТОГРАФИИ и отправьте их снова!\n'
