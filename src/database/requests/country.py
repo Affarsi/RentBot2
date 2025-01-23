@@ -1,4 +1,4 @@
-from sqlalchemy import select
+from sqlalchemy import select, delete
 
 from src.database.run_db import async_session
 from src.database.models import Country
@@ -19,7 +19,7 @@ async def db_get_country() -> list:
         return country_list
 
 
-# Возращает название страны по её ID
+# Возвращает название страны по её ID
 async def db_get_country_name_by_id(country_id: int) -> str:
     async with async_session() as session:
         # Выполняем запрос к базе данных для получения страны по ID
@@ -33,3 +33,17 @@ async def db_get_country_name_by_id(country_id: int) -> str:
             return country.name
         else:
             return "Страна не найдена"
+
+
+# Добавить новые страны по списку
+async def db_update_countries(country_list: list[list[str, int]]) -> None:
+    async with async_session() as session:
+        # Очищаем таблицу стран
+        await session.execute(delete(Country))
+
+        # Создаем страны из переданного списка
+        for country_name, thread_id in country_list:
+            new_country = Country(name=country_name, thread_id=thread_id)
+            session.add(new_country)
+
+        await session.commit()  # Фиксируем изменения в базе данных

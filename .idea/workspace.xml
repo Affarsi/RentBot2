@@ -4,9 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1bd5e2e9-72a5-4a8d-b09e-36008a260f3c" name="Changes" comment="add_edit_contacts">
-      <change beforePath="$PROJECT_DIR$/src/dialogs/windows/admin/all_objects_manager.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/dialogs/windows/admin/all_objects_manager.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dialogs/windows/admin/edit_object.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/dialogs/windows/admin/edit_object.py" afterDir="false" />
+    <list default="true" id="1bd5e2e9-72a5-4a8d-b09e-36008a260f3c" name="Changes" comment="my_object_delete">
+      <change afterPath="$PROJECT_DIR$/src/utils/country_updater.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/database/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/src/database/db.sqlite3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/database/requests/country.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/database/requests/country.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dialogs/getters/admin/main_menu.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/dialogs/getters/admin/main_menu.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dialogs/windows/admin/main_menu.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/dialogs/windows/admin/main_menu.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -473,7 +477,23 @@
       <option name="project" value="LOCAL" />
       <updated>1737639923600</updated>
     </task>
-    <option name="localTasksCounter" value="45" />
+    <task id="LOCAL-00045" summary="add_edit_contacts">
+      <option name="closed" value="true" />
+      <created>1737640028350</created>
+      <option name="number" value="00045" />
+      <option name="presentableId" value="LOCAL-00045" />
+      <option name="project" value="LOCAL" />
+      <updated>1737640028350</updated>
+    </task>
+    <task id="LOCAL-00046" summary="my_object_delete">
+      <option name="closed" value="true" />
+      <created>1737640295941</created>
+      <option name="number" value="00046" />
+      <option name="presentableId" value="LOCAL-00046" />
+      <option name="project" value="LOCAL" />
+      <updated>1737640295941</updated>
+    </task>
+    <option name="localTasksCounter" value="47" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -500,7 +520,8 @@
     <MESSAGE value="admin_edit_object" />
     <MESSAGE value="fix_edit_object" />
     <MESSAGE value="add_edit_contacts" />
-    <option name="LAST_COMMIT_MESSAGE" value="add_edit_contacts" />
+    <MESSAGE value="my_object_delete" />
+    <option name="LAST_COMMIT_MESSAGE" value="my_object_delete" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
