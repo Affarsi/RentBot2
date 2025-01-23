@@ -2,6 +2,7 @@ from aiogram.types import CallbackQuery
 from aiogram_dialog import DialogManager, ShowMode
 from aiogram_dialog.widgets.kbd import Button, Select
 
+from config import Config
 from src.database.requests.object import db_get_object, db_update_object
 from src.database.requests.user import db_get_user
 from src.dialogs.dialogs_states import CreateObject, UserDialog
@@ -85,9 +86,18 @@ async def delete_my_object(
         dialog_manager: DialogManager
 ):
     object_id = dialog_manager.dialog_data.get('open_object_id')
+    object_data = dialog_manager.dialog_data.get('open_object_data')
+
+    # Удаление поста с группы
+    message_ids = object_data['message_ids']
+    message_ids = message_ids.split(', ')
+    try:
+        await dialog_manager.event.bot.delete_messages(chat_id=Config.chat, message_ids=message_ids)
+    except:
+        print('Пользователь пытается удалить объект. Скрипт не может найти message_id')
 
     # Изменяем статус объекта на 'Удалён'
-    new_object_data = {'status': '❌'}
+    new_object_data = {'status': '❌', 'delete_reason': 'Удалено инициатором!', 'message_ids': None}
     await db_update_object(object_id=object_id, object_data=new_object_data)
 
     await dialog_manager.event.answer('Объект успешно удалён!')
