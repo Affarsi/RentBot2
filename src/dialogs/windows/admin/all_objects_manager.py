@@ -130,9 +130,9 @@ admin_open_object_confirmed_window = Window(
 
     Button(Const('✏️ Меню редактирования'), id='invert_admin_edit_menu_object', on_click=invert_admin_edit_menu_open),
     Row(
-        Button(Const('Адрес'), id='admin_edit_address', on_click=start_admin_edit_menu_dialog),
         Button(Const('Цена и Условия'), id='admin_edit_conditions', on_click=start_admin_edit_menu_dialog),
         Button(Const('Описание'), id='admin_edit_description', on_click=start_admin_edit_menu_dialog),
+        Button(Const('Контакты'), id='admin_edit_contacts', on_click=start_admin_edit_menu_dialog),
         Button(Const('Фотографии'), id='admin_edit_photos', on_click=start_admin_edit_menu_dialog),
 
         when=F['admin_dit_menu_open']

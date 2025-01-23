@@ -170,8 +170,6 @@ async def admin_submit_edit_object(
     if 'edit_object_data_photos' in dialog_data:
         new_object_data['photos'] = dialog_data['edit_object_data_photos']
 
-    print(new_object_data)
-
     # Сохраняем измененный объект в БД
     await db_update_object(object_id=object_id,
                            object_data=new_object_data)
