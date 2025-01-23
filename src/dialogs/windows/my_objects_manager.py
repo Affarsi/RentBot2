@@ -9,7 +9,7 @@ from src.dialogs.dialogs_states import UserDialog
 from src.dialogs.getters.edit_object import start_edit_menu_dialog
 from src.dialogs.getters.my_objects_manager import my_objects_getter, start_create_object, open_my_object, \
     delete_my_object, \
-    object_confirmed_getter, invert_edit_menu_open, invert_delete_object_confirm_menu
+    object_confirmed_getter, invert_edit_menu_open, invert_delete_object_confirm_menu, my_object_delete_reason_getter
 
 # Раздел 'Мои объекты'
 my_objects_manager_window = Window(
@@ -82,12 +82,15 @@ my_object_moderated_window = Window(
 
 # Просмотр объекта, находящегося в статусе 'Удалён'
 my_object_deleted_window = Window(
-    Const('<b>К сожалению, ваш пост был удалён администратором.\n\n'
-          'Причина удаления:\n'
+    Format('<b>К сожалению, ваш пост был удалён администратором.\n\n'
+          'Причина удаления:</b>\n'
+          '{delete_reason}'
           '\n\n'
-          'Если вы не согласны с решением администратора - обратитесь в Тех. Поддержку.</b>'),
+          '<b>Если вы не согласны с решением администратора - обратитесь в Тех. Поддержку.</b>'),
 
         SwitchTo(Const('Назад'), id='back_to_my_objects_manager', state=UserDialog.my_objects_manager),
 
+    getter=my_object_delete_reason_getter,
     state=UserDialog.my_open_object_deleted
 )
+

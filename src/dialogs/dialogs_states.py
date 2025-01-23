@@ -47,6 +47,7 @@ class AdminDialog(StatesGroup):
     admin_open_object_moderated = State()
     admin_open_object_deleted = State()
     enter_object_reject_reason = State()
+    enter_object_delete_reason = State()
 
     update_info = State()
 

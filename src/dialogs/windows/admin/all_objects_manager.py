@@ -9,7 +9,8 @@ from aiogram_dialog.widgets.kbd import Button, Group, ScrollingGroup, Select, Sw
 from src.dialogs.dialogs_states import AdminDialog
 from src.dialogs.getters.admin.all_objects_manager import all_objects_count_and_sg_list_getter, admin_open_object, \
     invert_admin_edit_menu_open, invert_admin_dell_obj_confirm_menu, admin_delete_object, accept_moderated_object, \
-    reason_object_reject_input, admin_edit_and_delete_menu_getter
+    reason_object_reject_input, admin_edit_and_delete_menu_getter, reason_object_delete_input, \
+    admin_object_delete_reason_getter
 from src.dialogs.getters.admin.edit_object import start_admin_edit_menu_dialog
 
 # Выбор категории объектов, которые Администратор хочет посмотреть
@@ -138,7 +139,7 @@ admin_open_object_confirmed_window = Window(
     ),
     Button(Const('❌ Удалить объект'), id='admin_invert_delete_object_confirm_menu', on_click=invert_admin_dell_obj_confirm_menu),
     Row(
-        Button(Const('🚨ПОДТВЕРДИТЬ УДАЛЕНИЕ ОБЪЕКТА🚨'), id='admin_delete_object', on_click=admin_delete_object),
+        SwitchTo(Const('🚨ПОДТВЕРДИТЬ УДАЛЕНИЕ ОБЪЕКТА🚨'), id='admin_delete_object', state=AdminDialog.enter_object_delete_reason),
 
         when=F['admin_delete_object_confirm_menu']
     ),
@@ -151,10 +152,11 @@ admin_open_object_confirmed_window = Window(
 
 # Просмотр объекта со статусом "Удалено"
 admin_open_object_deleted_window = Window(
-    Const('<b>Объект удалён</b>\n\nПричина удаления: ...\n'),
+    Format('<b>Объект удалён\n\nПричина:</b>\n{delete_reason}'),
 
     SwitchTo(Const('Назад'), id='back_to_all_deleted_objects', state=AdminDialog.all_objects_deleted),
 
+    getter=admin_object_delete_reason_getter,
     state=AdminDialog.admin_open_object_deleted
 )
 
@@ -168,4 +170,16 @@ object_reject_reason_window = Window(
     SwitchTo(Const('Назад'), id='back_to_admin_open_object_moderated', state=AdminDialog.admin_open_object_moderated),
 
     state=AdminDialog.enter_object_reject_reason
+)
+
+
+# Ввести причину удаления уже опубликованного объекта
+object_delete_reason_window = Window(
+    Const('<b>Вы собираетесь удалить объект!\n\nРаспишите ОБЪЕКТИВНО и ПОДРОБНО причину удаления:</b>'),
+
+    MessageInput(reason_object_delete_input, filter=F.text),
+
+    SwitchTo(Const('Назад'), id='back_to_admin_open_object_confirmed', state=AdminDialog.admin_open_object_confirmed),
+
+    state=AdminDialog.enter_object_delete_reason
 )

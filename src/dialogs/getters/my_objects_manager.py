@@ -59,11 +59,12 @@ async def open_my_object(
     object_id = int(item_id)
     chat_id = dialog_manager.event.message.chat.id
 
-    # Сохраняем id открытого объета
-    dialog_manager.dialog_data['open_object_id'] = object_id
-
     # Отправка медиа группы
     object_data = await send_media_group(dialog_manager, object_id, chat_id)
+
+    # Сохраняем id открытого объета
+    dialog_manager.dialog_data['open_object_id'] = object_id
+    dialog_manager.dialog_data['open_object_data'] = object_data
 
     # Чтобы медиа группа отправилась раньше чем смс от бота
     dialog_manager.show_mode = ShowMode.DELETE_AND_SEND
@@ -123,3 +124,9 @@ async def object_confirmed_getter(dialog_manager: DialogManager, **kwargs):
     is_delete_object_confirm_menu = dialog_manager.dialog_data.get('is_delete_object_confirm_menu')
     return {'edit_menu_open': is_edit_menu_open,
             'delete_object_confirm_menu': is_delete_object_confirm_menu}
+
+
+# Получить причину удаления объекта
+async def my_object_delete_reason_getter(dialog_manager: DialogManager, **kwargs):
+    delete_reason = dialog_manager.dialog_data.get('open_object_data').get('delete_reason')
+    return {'delete_reason': delete_reason}

@@ -13,8 +13,8 @@ admin_menu_window = Window(
     Format(
         "<b>🖥 Панель администрирования:</b>\n"
         "├Кол-во стран: <code>{all_countries_count}</code>\n"
-        "├кол-во объектов: <code>{all_objects_count}</code>\n"
-        "└кол-во пользователей: <code>{all_users_count}</code>"
+        "├Кол-во объектов: <code>{all_objects_count}</code>\n"
+        "└Кол-во пользователей: <code>{all_users_count}</code>"
     ),
 
     Row(

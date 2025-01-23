@@ -102,6 +102,12 @@ async def db_get_user(
         )
         obj_list = [obj.id for obj in objects.scalars()]
 
+        # Получение объектов Пользователя со статусами "🔄" и "✅"
+        filtered_objects = await session.execute(
+            select(Object).where(Object.owner_id == user.id, Object.status.in_(["🔄", "✅"]))
+        )
+        filtered_obj_list_len = [obj.id for obj in filtered_objects.scalars()]
+
         # Формируем словарь
         user_dict = {
             "id": str(user.id),
@@ -111,7 +117,7 @@ async def db_get_user(
             "status": user.status,
             "obj_limit": str(user.object_limit),
             "obj_list": obj_list,
-            "obj_list_len": len(obj_list)
+            "obj_list_len": len(filtered_obj_list_len)
         }
 
         return user_dict

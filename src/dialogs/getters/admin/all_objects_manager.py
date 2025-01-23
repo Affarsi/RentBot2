@@ -137,10 +137,13 @@ async def admin_delete_object(
     # Удаление поста с группы
     message_ids = object_data['message_ids']
     message_ids = message_ids.split(', ')
-    await dialog_manager.event.bot.delete_messages(chat_id=Config.chat, message_ids=message_ids)
+    try:
+        await dialog_manager.event.bot.delete_messages(chat_id=Config.chat, message_ids=message_ids)
+    except:
+        print('Админ пытается удалить объект. Скрипт не может найти message_id')
 
     # Изменяем статус объекта на 'Удалён'
-    new_object_data = {'status': '❌'}
+    new_object_data = {'status': '❌', 'message_ids': None}
     await db_update_object(object_id=object_id, object_data=new_object_data)
 
     # Оповещаем Администратора и отправляем в предыдущие окно
@@ -191,3 +194,36 @@ async def reason_object_reject_input(
     # Оповещаем Администратора и отправляем в предыдущие окно
     await dialog_manager.event.answer('Объект отклонён!')
     await dialog_manager.switch_to(AdminDialog.all_objects_moderated)
+
+
+# Удалить уже опубликованный объект
+async def reason_object_delete_input(
+        message: Message,
+        widget: MessageInput,
+        dialog_manager: DialogManager
+):
+    delete_reason = message.html_text
+    object_id = dialog_manager.dialog_data.get('admin_open_object_id')
+    object_data = dialog_manager.dialog_data.get('admin_open_object_data')
+
+    # Удаление поста с группы
+    message_ids = object_data['message_ids']
+    message_ids = message_ids.split(', ')
+    try:
+        await dialog_manager.event.bot.delete_messages(chat_id=Config.chat, message_ids=message_ids)
+    except:
+        print('Админ пытается удалить объект. Скрипт не может найти message_id')
+
+    # Обновляем объект в БД
+    new_object_data = {'status': '❌', 'delete_reason': delete_reason, 'message_ids': None}
+    await db_update_object(object_id=object_id, object_data=new_object_data)
+
+    # Оповещаем Администратора и отправляем в предыдущие окно
+    await dialog_manager.event.answer('Объект успешно удалён!')
+    await dialog_manager.switch_to(AdminDialog.all_objects_confirmed)
+
+
+# Получить причину удаления объекта
+async def admin_object_delete_reason_getter(dialog_manager: DialogManager, **kwargs):
+    delete_reason = dialog_manager.dialog_data.get('admin_open_object_data').get('delete_reason')
+    return {'delete_reason': delete_reason}

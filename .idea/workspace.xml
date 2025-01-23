@@ -4,23 +4,19 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1bd5e2e9-72a5-4a8d-b09e-36008a260f3c" name="Changes" comment="pred_admin_delete_object">
+    <list default="true" id="1bd5e2e9-72a5-4a8d-b09e-36008a260f3c" name="Changes" comment="admin_delete_object and clean_import">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/database/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/src/database/db.sqlite3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/database/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/database/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/database/requests/country.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/database/requests/country.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/database/requests/object.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/database/requests/object.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/database/requests/user.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/database/requests/user.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dialogs/dialogs_manager.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/dialogs/dialogs_manager.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dialogs/dialogs_states.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/dialogs/dialogs_states.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/dialogs/getters/admin/all_objects_manager.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/dialogs/getters/admin/all_objects_manager.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/dialogs/getters/admin/edit_object.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/dialogs/getters/admin/edit_object.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dialogs/getters/admin/main_menu.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/dialogs/getters/admin/main_menu.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dialogs/getters/admin/users_manager.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/dialogs/getters/admin/users_manager.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dialogs/getters/create_object.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/dialogs/getters/create_object.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dialogs/getters/edit_object.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/dialogs/getters/edit_object.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/dialogs/getters/my_objects_manager.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/dialogs/getters/my_objects_manager.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/dialogs/windows/admin/all_objects_manager.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/dialogs/windows/admin/all_objects_manager.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dialogs/windows/admin/edit_object.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/dialogs/windows/admin/edit_object.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dialogs/windows/admin/users_manager.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/dialogs/windows/admin/users_manager.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dialogs/windows/create_object.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/dialogs/windows/create_object.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dialogs/windows/admin/main_menu.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/dialogs/windows/admin/main_menu.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dialogs/windows/my_objects_manager.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/dialogs/windows/my_objects_manager.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/utils/media_group_creator.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/media_group_creator.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -432,7 +428,15 @@
       <option name="project" value="LOCAL" />
       <updated>1737380928552</updated>
     </task>
-    <option name="localTasksCounter" value="38" />
+    <task id="LOCAL-00038" summary="admin_delete_object and clean_import">
+      <option name="closed" value="true" />
+      <created>1737393195378</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL-00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1737393195378</updated>
+    </task>
+    <option name="localTasksCounter" value="39" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -455,7 +459,8 @@
     <MESSAGE value="admin_user_manager" />
     <MESSAGE value="all_objects_manager and accept_moderated_object" />
     <MESSAGE value="pred_admin_delete_object" />
-    <option name="LAST_COMMIT_MESSAGE" value="pred_admin_delete_object" />
+    <MESSAGE value="admin_delete_object and clean_import" />
+    <option name="LAST_COMMIT_MESSAGE" value="admin_delete_object and clean_import" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

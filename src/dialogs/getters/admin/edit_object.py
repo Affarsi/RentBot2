@@ -3,10 +3,11 @@ from aiogram_dialog.widgets.kbd import Button
 from aiogram.types import CallbackQuery, Message
 from aiogram_dialog.widgets.input import MessageInput
 
+from config import Config
 from src.database.requests.object import db_get_object, db_update_object
 from src.dialogs.dialogs_states import AdminEditObject, AdminDialog
 from src.dialogs.getters.edit_object import clear_dialog_data_edit_object
-from src.utils.media_group_creator import create_media_group
+from src.utils.media_group_creator import create_media_group, send_media_group
 
 
 # Запуск admin_edit_menu_dialog и сохранение admin_open_object_id
@@ -148,16 +149,17 @@ async def admin_confirm_edit_photo_and_go_to_finaly(
     await admin_edit_object_input(widget, dialog_manager, 'photos', photos=photo_list)
 
 
-# Сохранить и отправить объект на модерацию!
+# Подтвердить изменения в объекте и отправить его в группу!
 async def admin_submit_edit_object(
         callback: CallbackQuery,
         widget: Button,
         dialog_manager: DialogManager
 ):
     dialog_manager.show_mode = ShowMode.AUTO
+    object_id = dialog_manager.start_data.get('admin_open_object_id')
 
-    # Создаем новый словарь
-    new_object_data = {'status': '✅'}
+    # Создаем новый словарь и ставим статус "Одобрен"
+    new_object_data = {'status': '✅', 'message_ids': None}
     dialog_data = dialog_manager.dialog_data
     if 'admin_edit_object_data_address' in dialog_data:
         new_object_data['address'] = dialog_data['admin_edit_object_data_address']
@@ -168,9 +170,15 @@ async def admin_submit_edit_object(
     if 'admin_edit_object_data_photos' in dialog_data:
         new_object_data['photos'] = dialog_data['admin_edit_object_data_photos']
 
-    # Сохраняем объект в БД и отправляем его на модерацию
-    await db_update_object(object_id=dialog_manager.start_data.get('admin_open_object_id'),
+    # Сохраняем измененный объект в БД
+    await db_update_object(object_id=object_id,
                            object_data=new_object_data)
+
+    # Отправляем пост в группу
+    object_data = await send_media_group(dialog_manager, object_id, Config.chat, True)
+
+    if not object_data:
+        await dialog_manager.event.answer('Не могу отправить пост в чат! Обратитесь к тех админу!')
 
     # Оповещаем пользователя и закрываем диалог
     await dialog_manager.event.answer('Объект успешно изменён/одобрен')

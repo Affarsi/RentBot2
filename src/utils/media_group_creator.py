@@ -3,6 +3,7 @@ from typing import List
 from aiogram.utils.media_group import MediaGroupBuilder
 from aiogram_dialog import DialogManager
 
+from config import Config
 from src.database.requests.object import db_get_object
 
 
@@ -105,6 +106,14 @@ async def send_media_group(
         message_thread_id=message_thread_id,
         media=media_group,
     )
+
+    # Удаляем предыдущие посты!
+    old_message_ids = object_data.get('message_ids')
+    if old_message_ids:
+        try:
+            await dialog_manager.event.bot.delete_messages(Config.chat, old_message_ids)
+        except:
+            print('Не смог удалить старые сообщения, когда админ одобрял или изменял объект')
 
     # Сохраняем message_ids
     if send_to_chat:

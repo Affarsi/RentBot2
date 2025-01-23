@@ -107,6 +107,7 @@ async def db_get_object(
                 "contacts": obj.contacts,
                 "photos": obj.photos,
                 "message_ids": obj.message_ids,
+                "delete_reason": obj.delete_reason,
                 "owner_id": obj.owner_id,
             })
 
