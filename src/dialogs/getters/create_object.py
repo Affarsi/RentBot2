@@ -20,7 +20,7 @@ async def clear_dialog_data_create_object(
     dialog_manager.show_mode = ShowMode.AUTO
 
     keys_to_remove = [
-        'create_object_state_data_country_id',
+        'create_object_state_data_country_thread_id',
         'create_object_state_data_country_name',
         'create_object_state_data_type',
         'create_object_state_data_address',
@@ -47,10 +47,10 @@ async def clear_photos_create_object(
         pass
 
 
-# Возвращает список стран [Название страны, ID страны]
+# Возвращает список стран [Название страны, ID топика страны]
 async def country_list_getter(dialog_manager: DialogManager, **kwargs):
     countries = await db_get_country()
-    country_list = [[country[1], country[0]] for country in countries]  # Извлекаем ID и название страны
+    country_list = [[country[1], country[2]] for country in countries]  # Извлекаем ID и название страны
     return {'country_list': country_list}
 
 
@@ -63,7 +63,7 @@ async def create_object_country_input(
 ):
     country_name = await db_get_country_name_by_id(country_id=int(item_id))
 
-    dialog_manager.dialog_data['create_object_state_data_country_id'] = int(item_id)
+    dialog_manager.dialog_data['create_object_state_data_country_thread_id'] = int(item_id)
     dialog_manager.dialog_data['create_object_state_data_country_name'] = country_name
 
     await dialog_manager.switch_to(CreateObject.get_type)

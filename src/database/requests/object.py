@@ -23,7 +23,7 @@ async def db_new_object(
             status="🔄",
             generate_id=object_data['create_object_state_data_generate_id'],
             obj_type=object_data['create_object_state_data_type'],
-            country_id=object_data['create_object_state_data_country_id'],
+            country_thread_id=object_data['create_object_state_data_country_thread_id'],
             address=object_data['create_object_state_data_address'],
             conditions=object_data['create_object_state_data_conditions'],
             description=object_data['create_object_state_data_description'],
@@ -45,7 +45,7 @@ async def db_new_object(
 # Извлекает объекты из базы данных на основе заданных параметров
 async def db_get_object(
         object_id: int = None,
-        country_id: int = None,
+        country_thread_id: int = None,
         country_name: str = None,
         telegram_id: int = None,
         status: str = None
@@ -80,8 +80,8 @@ async def db_get_object(
             query = query.where(Object.id == object_id)
         elif country_name is not None:
             query = query.where(Country.name == country_name)
-        elif country_id is not None:  # Фильтруем по country_id, если он передан
-            query = query.where(Object.country_id == country_id)
+        elif country_thread_id is not None:  # Фильтруем по country_id, если он передан
+            query = query.where(Object.country_thread_id == country_thread_id)
 
         if status is not None:
             # Если передан статус, фильтруем по статусу
@@ -142,7 +142,7 @@ async def db_update_object(object_id: int, object_data: dict) -> bool:
             print(f'Объект с ID {object_id} не найден в базе данных.')
             return False
 
-        key_list = ['status', 'obj_type', 'country_id', 'address', 'conditions', 'description', 'contacts', 'photos',
+        key_list = ['status', 'obj_type', 'country_thread_id', 'address', 'conditions', 'description', 'contacts', 'photos',
                     'delete_reason', 'message_ids']
 
         # Обновляем только указанные поля объекта
