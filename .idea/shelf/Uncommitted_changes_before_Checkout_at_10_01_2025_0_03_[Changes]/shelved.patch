@@ -1,0 +1,37 @@
+Index: bot.py
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import pytz\r\nimport asyncio\r\nfrom config import Config\r\nfrom src.database.run_db import create_db\r\n\r\nfrom aiogram import Bot, Dispatcher\r\nfrom aiogram.client.bot import DefaultBotProperties\r\nfrom aiogram.fsm.storage.memory import MemoryStorage\r\nfrom aiogram_dialog import setup_dialogs\r\n\r\nfrom src.handlers.chat_commands import chat_handler as chat_cmd_router\r\nfrom src.handlers.bot_commands import bot_handler as bot_cmd_router\r\nfrom src.dialogs.dialogs_manager import user_panel_dialog\r\n\r\nbot = Bot(Config.bot_token, default=DefaultBotProperties(parse_mode='HTML'))\r\n\r\n\r\nasync def aiogram_run():\r\n    dp = Dispatcher(storage=MemoryStorage())\r\n\r\n    # Подключение роутеров\r\n    dp.include_routers(\r\n        user_panel_dialog,\r\n\r\n        bot_cmd_router,\r\n        chat_cmd_router\r\n    )\r\n\r\n    setup_dialogs(dp)\r\n\r\n    await bot.delete_webhook(drop_pending_updates=True)\r\n    await dp.start_polling(bot)\r\n\r\n\r\nasync def main():\r\n    # Запуск базы данных\r\n    await create_db()\r\n\r\n    # Установка часового пояса\r\n    pytz.timezone('Europe/Moscow')\r\n\r\n    # Запуск aiogram бота\r\n    print('Бот запущен!')\r\n    await aiogram_run()\r\n\r\n\r\n\r\nif __name__ == '__main__':\r\n    asyncio.run(main())
+===================================================================
+diff --git a/bot.py b/bot.py
+--- a/bot.py	(revision d6d6c8d3fe61576ca6dca3271b564c27355c0f14)
++++ b/bot.py	(date 1736455014758)
+@@ -12,10 +12,9 @@
+ from src.handlers.bot_commands import bot_handler as bot_cmd_router
+ from src.dialogs.dialogs_manager import user_panel_dialog
+ 
+-bot = Bot(Config.bot_token, default=DefaultBotProperties(parse_mode='HTML'))
+-
+ 
+ async def aiogram_run():
++    bot = Bot(Config.bot_token, default=DefaultBotProperties(parse_mode='HTML'))
+     dp = Dispatcher(storage=MemoryStorage())
+ 
+     # Подключение роутеров
+Index: .idea/misc.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"ProjectRootManager\" version=\"2\" project-jdk-name=\"Python 3.13 (RentBot)\" project-jdk-type=\"Python SDK\" />\r\n</project>
+===================================================================
+diff --git a/.idea/misc.xml b/.idea/misc.xml
+--- a/.idea/misc.xml	(revision d6d6c8d3fe61576ca6dca3271b564c27355c0f14)
++++ b/.idea/misc.xml	(date 1736448429827)
+@@ -1,4 +1,7 @@
+ <?xml version="1.0" encoding="UTF-8"?>
+ <project version="4">
++  <component name="Black">
++    <option name="sdkName" value="Python 3.13 (RentBot2) (3)" />
++  </component>
+   <component name="ProjectRootManager" version="2" project-jdk-name="Python 3.13 (RentBot)" project-jdk-type="Python SDK" />
+ </project>
+\ No newline at end of file
