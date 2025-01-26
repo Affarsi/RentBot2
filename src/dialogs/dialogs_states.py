@@ -58,3 +58,7 @@ class AdminEditObject(StatesGroup):
     edit_description = State()
     edit_contacts = State()
     edit_photos = State()
+
+# Покупка улучшенных тарифов
+class UpgradeTariff(StatesGroup):
+    main = State()

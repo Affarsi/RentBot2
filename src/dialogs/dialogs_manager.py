@@ -16,6 +16,7 @@ from src.dialogs.windows.edit_object import edit_conditions_window, edit_descrip
 from src.dialogs.windows.main_menu import main_menu_window, info_window
 from src.dialogs.windows.my_objects_manager import my_objects_manager_window, my_object_confirmed_window, \
     my_object_moderated_window, my_object_deleted_window
+from src.dialogs.windows.upgrade_tariff import upgrade_tariff_main_window
 
 # Основной диалог у Пользователя
 user_dialog = Dialog(
@@ -79,4 +80,10 @@ admin_edit_object_dialog = Dialog(
     admin_edit_description_window,
     admin_edit_contacts_window,
     admin_edit_photos_window
+)
+
+# Диалог покупки тарифов
+upgrade_tariff_dialog = Dialog(
+    upgrade_tariff_main_window
+
 )
