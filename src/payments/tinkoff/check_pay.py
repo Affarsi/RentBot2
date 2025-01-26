@@ -6,7 +6,7 @@ url = "https://securepay.tinkoff.ru/v2/CheckOrder"
 
 terminal_key = "1737740259529DEMO"
 secret_key = "Qu9g^zQS&TRtnyCp"
-order_id = '123451-n67890'
+order_id = '111111-n11111'
 
 values = {
     # 'Amount':

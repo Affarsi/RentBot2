@@ -55,8 +55,8 @@ def tinkoff_get_link(amount, chat_id, order_number):
 
 # Пример использования
 amount = 100
-chat_id = 1
-order_number = 67890
+chat_id = 111111
+order_number = 11111
 
 payment_url = tinkoff_get_link(amount, chat_id, order_number)
 

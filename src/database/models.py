@@ -4,7 +4,7 @@ from sqlalchemy import ForeignKey
 from sqlalchemy.ext.asyncio import AsyncAttrs
 from sqlalchemy.orm import Mapped, mapped_column, DeclarativeBase, relationship
 
-from datetime import date
+from datetime import date, datetime
 
 class Base(AsyncAttrs, DeclarativeBase):
     pass
@@ -68,7 +68,7 @@ class PaymentHistory(Base):
     user_id: Mapped[Optional[int]] = mapped_column(ForeignKey('users.id'))
     order_id: Mapped[Optional[str]]
     amount: Mapped[Optional[int]]
-    datetime: Mapped[Optional[date]] = mapped_column(default=date.today())
+    datetime: Mapped[Optional[date]] = mapped_column(default=datetime.today())
     success: Mapped[Optional[bool]] = mapped_column(default=False)
 
     # Связь с Пользователем

@@ -62,3 +62,4 @@ class AdminEditObject(StatesGroup):
 # Пополнение баланса
 class Payment(StatesGroup):
     main = State()
+    waiting_payment = State()

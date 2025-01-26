@@ -127,14 +127,22 @@ async def db_get_user(
 
 # Изменить информацию о Пользователе
 async def db_update_user(
-        user_id: int,
+        user_id: int = None,
+        telegram_id: int = None,
         status: str = None,
-        object_limit: int = None
+        object_limit: int = None,
+        balance: int = None
 ):
     async with async_session() as session:
         # Получаем Пользователя по user_id
-        result = await session.execute(select(User).where(User.id == user_id))
-        user = result.scalar_one_or_none()
+        if user_id is not None:
+            result = await session.execute(select(User).where(User.id == user_id))
+            user = result.scalar_one_or_none()
+
+        # Получаем Пользователя по telegram_id
+        if telegram_id is not None:
+            result = await session.execute(select(User).where(User.telegram_id == telegram_id))
+            user = result.scalar_one_or_none()
 
         # Обновляем поля, если они были переданы
         if status is not None:
@@ -142,6 +150,9 @@ async def db_update_user(
 
         if object_limit is not None:
             user.object_limit = object_limit
+
+        if balance is not None:
+            user.balance += balance
 
         # Сохраняем изменения
         session.add(user)
