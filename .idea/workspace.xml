@@ -4,22 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1bd5e2e9-72a5-4a8d-b09e-36008a260f3c" name="Changes" comment="payments database">
-      <change afterPath="$PROJECT_DIR$/src/database/requests/payment.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/payments/tinkoff/payment_manager.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_19_01_2025_21_30_[Changes]/shelved.patch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_19_01_2025_21_30__Changes_.xml" beforeDir="false" />
+    <list default="true" id="1bd5e2e9-72a5-4a8d-b09e-36008a260f3c" name="Changes" comment="replenishment of balance TBank">
+      <change afterPath="$PROJECT_DIR$/test.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/check_pay.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/payments/tinkoff/check_pay.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/send_pay.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/payments/tinkoff/send_pay.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/database/db.sqlite3" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/database/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/database/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/database/requests/user.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/database/requests/user.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dialogs/dialogs_manager.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/dialogs/dialogs_manager.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dialogs/dialogs_states.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/dialogs/dialogs_states.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dialogs/getters/payment.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/dialogs/getters/payment.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/database/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/src/database/db.sqlite3" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/dialogs/windows/payment.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/dialogs/windows/payment.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sessions/acc_to_check_topic.session" beforeDir="false" afterPath="$PROJECT_DIR$/src/sessions/acc_to_check_topic.session" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/payments/tinkoff/payment_manager.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/payments/tinkoff/payment_manager.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -64,26 +54,26 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Python.bot.executor": "Run",
-    "Python.check_pay.executor": "Run",
-    "Python.commands.executor": "Run",
-    "Python.dolbobot.executor": "Run",
-    "Python.main_menu.executor": "Run",
-    "Python.payment_manager.executor": "Run",
-    "Python.send_pay.executor": "Run",
-    "Python.test.executor": "Run",
-    "Python.upgrade_tariff.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "payment-system",
-    "ignore.virus.scanning.warn.message": "true",
-    "last_opened_file_path": "D:/PCFather/Files/Programm files/pycharmProjects/MyLessons",
-    "settings.editor.selected.configurable": "reference.settingsdialog.IDE.editor.colors.Color Scheme Font"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Python.bot.executor&quot;: &quot;Run&quot;,
+    &quot;Python.check_pay.executor&quot;: &quot;Run&quot;,
+    &quot;Python.commands.executor&quot;: &quot;Run&quot;,
+    &quot;Python.dolbobot.executor&quot;: &quot;Run&quot;,
+    &quot;Python.main_menu.executor&quot;: &quot;Run&quot;,
+    &quot;Python.payment_manager.executor&quot;: &quot;Run&quot;,
+    &quot;Python.send_pay.executor&quot;: &quot;Run&quot;,
+    &quot;Python.test.executor&quot;: &quot;Run&quot;,
+    &quot;Python.upgrade_tariff.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;payment-system&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/PCFather/Files/Programm files/pycharmProjects/MyLessons&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settingsdialog.IDE.editor.colors.Color Scheme Font&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="D:\PCFather\Files\Programm files\pycharmProjects\Kwork\RentBot2" />
@@ -142,14 +132,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1736221880772</updated>
-    </task>
-    <task id="LOCAL-00009" summary="Commit">
-      <option name="closed" value="true" />
-      <created>1736527613797</created>
-      <option name="number" value="00009" />
-      <option name="presentableId" value="LOCAL-00009" />
-      <option name="project" value="LOCAL" />
-      <updated>1736527613797</updated>
     </task>
     <task id="LOCAL-00010" summary="Commit">
       <option name="closed" value="true" />
@@ -535,7 +517,15 @@
       <option name="project" value="LOCAL" />
       <updated>1737913742496</updated>
     </task>
-    <option name="localTasksCounter" value="58" />
+    <task id="LOCAL-00058" summary="replenishment of balance TBank">
+      <option name="closed" value="true" />
+      <created>1737922088031</created>
+      <option name="number" value="00058" />
+      <option name="presentableId" value="LOCAL-00058" />
+      <option name="project" value="LOCAL" />
+      <updated>1737922088032</updated>
+    </task>
+    <option name="localTasksCounter" value="59" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -567,7 +557,8 @@
     <MESSAGE value="commit" />
     <MESSAGE value="replenishment of balance" />
     <MESSAGE value="payments database" />
-    <option name="LAST_COMMIT_MESSAGE" value="payments database" />
+    <MESSAGE value="replenishment of balance TBank" />
+    <option name="LAST_COMMIT_MESSAGE" value="replenishment of balance TBank" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

@@ -1,5 +1,5 @@
 from aiogram_dialog import Window
-from aiogram_dialog.widgets.kbd import Cancel, Button, Counter, Url
+from aiogram_dialog.widgets.kbd import Cancel, Button, Counter, Url, WebApp
 from aiogram_dialog.widgets.text import Const, Format
 
 from src.dialogs.dialogs_states import Payment
@@ -33,7 +33,7 @@ waiting_payment_window = Window(
         'После успешной оплаты нажмите кнопку "Проверить платеж"!'
     ),
 
-    Url(Const('💳 Перейти к оплате'), Format('{payment_link}'), id='payment_link'),
+    WebApp(Const('💳 Перейти к оплате'), Format('{payment_link}'), id='payment_link'),
     Button(Const('⏳ Проверить платёж'), id='check_payment', on_click=check_payment_btn),
     Cancel(Const('Отменить оплату'), id='to_start_main_menu_dialog'),
 

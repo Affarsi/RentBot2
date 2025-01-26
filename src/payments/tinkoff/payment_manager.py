@@ -43,7 +43,6 @@ async def create_payment_link(
         response.raise_for_status()
 
         output_array = response.json()
-        print(output_array)
         if output_array.get("Success") is True and "PaymentURL" in output_array:
             return output_array["PaymentURL"]
         else:
