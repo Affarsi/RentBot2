@@ -15,6 +15,7 @@ class User(Base):
     username: Mapped[str] = mapped_column(nullable=True)
     status: Mapped[str] = mapped_column(default='Владелец')  # Владелец/Агент
     object_limit: Mapped[int] = mapped_column(default=1)
+    balance: Mapped[int] = mapped_column(default=0)
 
 # Страны
 class Country(Base):

@@ -87,7 +87,8 @@ async def db_get_user(
                     "full_name": user.full_name,
                     "username": user.username,
                     "status": user.status,
-                    "object_limit": user.object_limit
+                    "object_limit": user.object_limit,
+                    "balance": user.balance
                 })
 
             user = users_list
@@ -117,7 +118,8 @@ async def db_get_user(
             "status": user.status,
             "obj_limit": str(user.object_limit),
             "obj_list": obj_list,
-            "obj_list_len": len(filtered_obj_list_len)
+            "obj_list_len": len(filtered_obj_list_len),
+            "balance": user.balance
         }
 
         return user_dict
