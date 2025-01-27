@@ -15,6 +15,7 @@ async def my_objects_getter(dialog_manager: DialogManager, **kwargs):
     telegram_id = dialog_manager.event.from_user.id
     object_list = await db_get_object(telegram_id=telegram_id) # Получение списка объектов из БД
     user_dict = await db_get_user(telegram_id=telegram_id)
+    obj_limit = user_dict.get('obj_limit')
 
     # Если у Пользователя не найдено объектов
     if not object_list:
@@ -29,9 +30,12 @@ async def my_objects_getter(dialog_manager: DialogManager, **kwargs):
         country = obj['country']
         my_object_list.append([f'{status} | ID: {generate_id} | {country}', str(id)])
 
-    # Проверяем, израсходовал ли Пользователь свой лимит объектов?
-    obj_limit = user_dict.get('obj_limit')
-    is_limit_object_max = True if len(my_object_list) >= int(obj_limit) else False
+    # Проверка на Администратора
+    if telegram_id in Config.admin_ids:
+        is_limit_object_max = False
+    else:
+        # Проверяем, израсходовал ли Пользователь свой лимит объектов?
+        is_limit_object_max = True if len(my_object_list) >= int(obj_limit) else False
 
     return {'my_object_list': my_object_list, 'is_limit_object_max': is_limit_object_max}
 
@@ -51,13 +55,16 @@ async def start_create_object(
     balance = user_dict['balance']
 
     is_free_create_object = False # Создание объекта будет платным
+    is_admin = False # Пользователь не Администратор
 
     # Проверка на Администратора
     if telegram_id in Config.admin_ids:
         print('Этот пользователь администратор')
+        is_admin = True
+        is_free_create_object = True
 
     # Проверка условий
-    if obj_len >= obj_max:
+    if not is_admin and obj_len >= obj_max:
         # Закончился бесплатный лимит
         if balance >= 100:
             # Есть деньги на балансе

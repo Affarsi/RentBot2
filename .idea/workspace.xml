@@ -4,20 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1bd5e2e9-72a5-4a8d-b09e-36008a260f3c" name="Changes" comment="paid_add_object_start">
+    <list default="true" id="1bd5e2e9-72a5-4a8d-b09e-36008a260f3c" name="Changes" comment="paid_add_object">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/database/db.sqlite3" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/database/requests/user.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/database/requests/user.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dialogs/getters/admin/edit_object.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/dialogs/getters/admin/edit_object.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dialogs/getters/create_object.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/dialogs/getters/create_object.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dialogs/getters/edit_object.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/dialogs/getters/edit_object.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/dialogs/getters/my_objects_manager.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/dialogs/getters/my_objects_manager.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dialogs/getters/payment.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/dialogs/getters/payment.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dialogs/windows/admin/edit_object.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/dialogs/windows/admin/edit_object.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dialogs/windows/create_object.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/dialogs/windows/create_object.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dialogs/windows/edit_object.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/dialogs/windows/edit_object.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dialogs/windows/my_objects_manager.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/dialogs/windows/my_objects_manager.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sessions/acc_to_check_topic.session" beforeDir="false" afterPath="$PROJECT_DIR$/src/sessions/acc_to_check_topic.session" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -140,14 +129,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1736221880772</updated>
-    </task>
-    <task id="LOCAL-00012" summary="Commit">
-      <option name="closed" value="true" />
-      <created>1736615246875</created>
-      <option name="number" value="00012" />
-      <option name="presentableId" value="LOCAL-00012" />
-      <option name="project" value="LOCAL" />
-      <updated>1736615246875</updated>
     </task>
     <task id="LOCAL-00013" summary="Commit">
       <option name="closed" value="true" />
@@ -533,7 +514,15 @@
       <option name="project" value="LOCAL" />
       <updated>1737985538140</updated>
     </task>
-    <option name="localTasksCounter" value="61" />
+    <task id="LOCAL-00061" summary="paid_add_object">
+      <option name="closed" value="true" />
+      <created>1737987972600</created>
+      <option name="number" value="00061" />
+      <option name="presentableId" value="LOCAL-00061" />
+      <option name="project" value="LOCAL" />
+      <updated>1737987972600</updated>
+    </task>
+    <option name="localTasksCounter" value="62" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -567,7 +556,8 @@
     <MESSAGE value="payments database" />
     <MESSAGE value="replenishment of balance TBank" />
     <MESSAGE value="paid_add_object_start" />
-    <option name="LAST_COMMIT_MESSAGE" value="paid_add_object_start" />
+    <MESSAGE value="paid_add_object" />
+    <option name="LAST_COMMIT_MESSAGE" value="paid_add_object" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
