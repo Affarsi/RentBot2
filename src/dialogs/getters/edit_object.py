@@ -34,24 +34,13 @@ async def start_edit_menu_dialog(
                                                                       'open_object_id': object_id})
 
 
-# Очищает информацию, которая собирается при изменении объекта
-async def clear_dialog_data_edit_object(
+# Прекращает редактирование объекта
+async def stop_edit_object(
         callback: CallbackQuery=None,
         widget: Button=None,
         dialog_manager: DialogManager=None
 ):
     dialog_manager.show_mode = ShowMode.AUTO
-
-    keys_to_remove = [
-        'open_object_dict_data',
-        'edit_object_data_conditions',
-        'edit_object_data_description',
-        'edit_object_data_contacts',
-        'edit_object_data_photos'
-    ]
-
-    for key in keys_to_remove:
-        dialog_manager.dialog_data.pop(key, None)  # Удаляем ключ, если он существует
 
 
 # Менеджер edit_object_input
@@ -196,5 +185,5 @@ async def submit_edit_object(
 
     # Оповещаем пользователя и закрываем диалог
     await dialog_manager.event.answer('Объект успешно отправлен на модерацию!')
-    await clear_dialog_data_edit_object(dialog_manager=dialog_manager)
+    await stop_edit_object(dialog_manager=dialog_manager)
     await dialog_manager.start(state=UserDialog.my_objects_manager)

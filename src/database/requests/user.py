@@ -131,7 +131,7 @@ async def db_update_user(
         telegram_id: int = None,
         status: str = None,
         object_limit: int = None,
-        balance: int = None
+        plus_balance: int = None
 ):
     async with async_session() as session:
         # Получаем Пользователя по user_id
@@ -151,8 +151,8 @@ async def db_update_user(
         if object_limit is not None:
             user.object_limit = object_limit
 
-        if balance is not None:
-            user.balance += balance
+        if plus_balance is not None:
+            user.balance += plus_balance
 
         # Сохраняем изменения
         session.add(user)

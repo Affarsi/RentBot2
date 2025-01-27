@@ -35,7 +35,8 @@ my_objects_manager_window = Window(
             width=2,
             height=7,
         ),
-        Button(Const('➕ Создать объект'), id='create_object', on_click=start_create_object),
+        Button(Const('➕ Создать объект [100руб. - 365 дней]'), id='create_object', on_click=start_create_object, when=F['is_limit_object_max']),
+        Button(Const('➕ Создать объект [0руб. - Бессрочно]'), id='create_object', on_click=start_create_object, when=~F['is_limit_object_max']),
         SwitchTo(Const('Назад'), id='to_main_menu', state=UserDialog.main_menu),
     ),
 

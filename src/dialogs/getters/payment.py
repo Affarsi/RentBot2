@@ -75,7 +75,7 @@ async def check_payment_btn(
 
         # Изменяем данные в БД
         amount = payment_data.get('Payments')[0].get('Amount') / 100 # потому что в копейках
-        await db_update_user(telegram_id=callback.from_user.id, balance=amount)
+        await db_update_user(telegram_id=callback.from_user.id, plus_balance=amount)
         await db_update_payment_success(order_id=order_id)
 
         # Перебрасываем Пользователя в главное меню

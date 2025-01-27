@@ -7,32 +7,25 @@ from aiogram_dialog.widgets.input import MessageInput
 
 from src.database.requests.country import db_get_country, db_get_country_name_by_id
 from src.database.requests.object import db_new_object
+from src.database.requests.user import db_update_user
 from src.dialogs.dialogs_states import CreateObject
 from src.utils.media_group_creator import create_media_group
 
 
-# Очищает информацию, которая собирается при создании объекта
-async def clear_dialog_data_create_object(
+# Прекращает создание объекта
+async def stop_create_object(
         callback: CallbackQuery=None,
         widget: Button=None,
         dialog_manager: DialogManager=None
 ):
-    dialog_manager.show_mode = ShowMode.AUTO
+    dialog_manager.show_mode = ShowMode.AUTO # В исходное положение
 
-    keys_to_remove = [
-        'create_object_state_data_country_thread_id',
-        'create_object_state_data_country_name',
-        'create_object_state_data_type',
-        'create_object_state_data_address',
-        'create_object_state_data_conditions',
-        'create_object_state_data_description',
-        'create_object_state_data_contacts',
-        'create_object_state_data_photos',
-        'create_object_state_data_generate_id'
-    ]
-
-    for key in keys_to_remove:
-        dialog_manager.dialog_data.pop(key, None)  # Удаляем ключ, если он существует
+    # Возвращаем денежные средства если создание объекта было платным
+    is_free_create_object = dialog_manager.start_data.get('is_free_create_object')
+    if not is_free_create_object:
+        tg_id = callback.from_user.id
+        await db_update_user(telegram_id=tg_id, plus_balance=100) # Пополняем баланс на 100 рублей
+        await callback.answer('На ваш баланс зачислено: 100руб.!')
 
 
 # Очищает фотографии, полученные при создании объекта
@@ -221,6 +214,6 @@ async def submit_create_object(
 
     # Оповещаем пользователя и закрываем диалог
     await dialog_manager.event.answer('Объект успешно отправлен на модерацию!')
-    await clear_dialog_data_create_object(dialog_manager=dialog_manager)
+    await stop_create_object(dialog_manager=dialog_manager)
     await dialog_manager.done()
 

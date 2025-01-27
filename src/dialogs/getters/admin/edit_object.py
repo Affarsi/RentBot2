@@ -6,7 +6,7 @@ from aiogram_dialog.widgets.input import MessageInput
 from config import Config
 from src.database.requests.object import db_get_object, db_update_object
 from src.dialogs.dialogs_states import AdminEditObject, AdminDialog
-from src.dialogs.getters.edit_object import clear_dialog_data_edit_object
+from src.dialogs.getters.edit_object import stop_edit_object
 from src.utils.media_group_creator import create_media_group, send_media_group
 
 
@@ -190,7 +190,7 @@ async def admin_submit_edit_object(
 
     # Оповещаем пользователя и закрываем диалог
     await dialog_manager.event.answer('Объект успешно изменён/одобрен')
-    await clear_dialog_data_edit_object(dialog_manager=dialog_manager)
+    await stop_edit_object(dialog_manager=dialog_manager)
     await dialog_manager.start(state=AdminDialog.all_objects_manager)
 
 

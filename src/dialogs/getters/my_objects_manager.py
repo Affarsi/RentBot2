@@ -4,15 +4,17 @@ from aiogram_dialog.widgets.kbd import Button, Select
 
 from config import Config
 from src.database.requests.object import db_get_object, db_update_object
-from src.database.requests.user import db_get_user
+from src.database.requests.user import db_get_user, db_update_user
 from src.dialogs.dialogs_states import CreateObject, UserDialog
 from src.utils.media_group_creator import send_media_group
 
 
 # Возвращает текст для раздела Информация
 async def my_objects_getter(dialog_manager: DialogManager, **kwargs):
+    # Инициализируем данные
     telegram_id = dialog_manager.event.from_user.id
     object_list = await db_get_object(telegram_id=telegram_id) # Получение списка объектов из БД
+    user_dict = await db_get_user(telegram_id=telegram_id)
 
     # Если у Пользователя не найдено объектов
     if not object_list:
@@ -20,7 +22,6 @@ async def my_objects_getter(dialog_manager: DialogManager, **kwargs):
 
     # Формируем список объектов
     my_object_list = []
-
     for obj in object_list:
         id = obj['id']
         status = obj['status']
@@ -28,7 +29,11 @@ async def my_objects_getter(dialog_manager: DialogManager, **kwargs):
         country = obj['country']
         my_object_list.append([f'{status} | ID: {generate_id} | {country}', str(id)])
 
-    return {'my_object_list': my_object_list}
+    # Проверяем, израсходовал ли Пользователь свой лимит объектов?
+    obj_limit = user_dict.get('obj_limit')
+    is_limit_object_max = True if len(my_object_list) >= int(obj_limit) else False
+
+    return {'my_object_list': my_object_list, 'is_limit_object_max': is_limit_object_max}
 
 
 # Запускает диалог с созданием объекта
@@ -37,17 +42,37 @@ async def start_create_object(
         widget: Button,
         dialog_manager: DialogManager
 ):
-    # Сверка лимитов
+    # Инициализируем данные
+    telegram_id = callback.from_user.id
     user_dict = await db_get_user(telegram_id=callback.from_user.id)
+    user_id = user_dict['id']
     obj_max = int(user_dict['obj_limit'])
     obj_len = user_dict['obj_list_len']
+    balance = user_dict['balance']
 
-    # Пользователь не прошёл по лимитам
+    is_free_create_object = False # Создание объекта будет платным
+
+    # Проверка на Администратора
+    if telegram_id in Config.admin_ids:
+        print('Этот пользователь администратор')
+
+    # Проверка условий
     if obj_len >= obj_max:
-        await callback.answer('Ваш лимит исчерпан!')
-        return
+        # Закончился бесплатный лимит
+        if balance >= 100:
+            # Есть деньги на балансе
+            await db_update_user(user_id=user_id, plus_balance=-100) # Списываем 100 рублей с баланса
+            await callback.answer('С баланса списано: 100руб.!')
+        else:
+            # Нет денег на балансе
+            await callback.answer('На вашем балансе недостаточно средств!')
+            return
+    else:
+        # Есть бесплатный лимит
+        is_free_create_object = True # Создание объекта будет бесплатным
 
-    await dialog_manager.start(CreateObject.get_country)
+    # Открытие диалога создания объекта
+    await dialog_manager.start(CreateObject.get_country, data={'is_free_create_object': is_free_create_object})
 
 
 # Вывод информации об объекте Пользователю (send media_group) с меню взаимодействия

@@ -9,7 +9,6 @@ from src.dialogs.getters.admin.edit_object import admin_submit_edit_object, \
     admin_edit_object_conditions_input, admin_edit_object_description_input, \
     admin_edit_object_photos_input, dell_photos_admin_edit_object, admin_confirm_edit_photo_and_go_to_finaly, \
     admin_edit_object_contacts_input, stop_admin_edit_object
-from src.dialogs.getters.edit_object import clear_dialog_data_edit_object
 
 # Итоговый вариант редактирование с admin_edit_menu
 admin_result_and_edit_menu_window = Window(
