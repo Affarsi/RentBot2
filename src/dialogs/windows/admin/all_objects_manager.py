@@ -128,12 +128,11 @@ admin_open_object_moderated_window = Window(
 admin_open_object_confirmed_window = Window(
     Format(
         '<b>Объект был одобрен!</b>\n\n'
-        '<b>Информация о владельце:</b>\n'
-        '👤 <code>{full_name}</code> (@{username})\n'
-        '<b>Статус:</b>\n'
-        '<code>{status}</code>\n'
-        '<b>Лимит объектов:</b>\n'
-        '<code>{obj_limit}</code>'
+        '👤 <b>{full_name}</b>: @{username}\n'
+        '<b>Статус:</b> <code>{status}</code>\n'
+        '<b>Создано объектов:</b> <code>{obj_list_len}</code>\n'
+        '<b>Лимит объектов:</b> <code>{obj_limit}</code>\n\n'
+        '🗓 До конца размещения объекта: <code>{days_left}</code>'
     ),
 
     Button(Const('✏️ Меню редактирования'), id='invert_admin_edit_menu_object', on_click=invert_admin_edit_menu_open),

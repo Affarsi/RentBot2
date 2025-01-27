@@ -1,3 +1,5 @@
+import datetime
+
 from aiogram.types import CallbackQuery, Message
 from aiogram_dialog import DialogManager, ShowMode
 from aiogram_dialog.widgets.kbd import Button, Select
@@ -124,13 +126,25 @@ async def admin_open_object_confirmed_getter(dialog_manager: DialogManager, **kw
     is_edit_menu_open = dialog_manager.dialog_data.get('is_admin_edit_menu_open')
     is_delete_object_confirm_menu = dialog_manager.dialog_data.get('is_admin_delete_object_confirm_menu')
 
-    # Получаем информацию о пользователе
+    # Получаем информацию из БД
     object_id = dialog_manager.dialog_data.get('admin_open_object_id')
+    object_data = dialog_manager.dialog_data.get('admin_open_object_data')
+    create_date = object_data['create_date']
     getter_data = await db_get_user(object_id=object_id)
 
-    # Формируем словарь
+    # Вычисляем остаток дней
+    if create_date is None:
+        # Бессрочный объект
+        days_left = 'Бессрочно'
+    else:
+        end_date = create_date + datetime.timedelta(days=365)
+        days_left = abs(end_date - create_date)
+        days_left = str(days_left).split(',')[0]
+
+    # Дополняем словарь
     getter_data['admin_dit_menu_open'] = is_edit_menu_open
     getter_data['admin_delete_object_confirm_menu'] = is_delete_object_confirm_menu
+    getter_data['days_left'] = days_left
 
     return getter_data
 
