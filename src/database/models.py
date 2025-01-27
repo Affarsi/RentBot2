@@ -20,6 +20,7 @@ class User(Base):
     status: Mapped[str] = mapped_column(default='Владелец')  # Владелец/Агент
     object_limit: Mapped[Optional[int]] = mapped_column(default=1)
     balance: Mapped[int] = mapped_column(default=0)
+    recurring_payments: Mapped[bool] = mapped_column(default=True)
 
     # Связь с Платежами
     payments: Mapped[List["PaymentHistory"]] = relationship(back_populates="user")

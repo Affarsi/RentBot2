@@ -2,7 +2,7 @@ from aiogram import F
 from aiogram_dialog import Window
 from aiogram_dialog.widgets.input import MessageInput
 from aiogram_dialog.widgets.text import Const, Format
-from aiogram_dialog.widgets.kbd import Start, Button, SwitchTo, Row
+from aiogram_dialog.widgets.kbd import Start, Button, SwitchTo, Row, Group
 
 from src.dialogs.dialogs_states import UserDialog, AdminDialog
 from src.dialogs.getters.admin.main_menu import admin_menu_getter, take_new_info_input, update_countries
@@ -17,13 +17,15 @@ admin_menu_window = Window(
         "└Кол-во пользователей: <code>{all_users_count}</code>"
     ),
 
-    Row(
-        SwitchTo(Const('🏠 Все объекты'), id='all_objects', state=AdminDialog.all_objects_manager),
-        SwitchTo(Const('👥 Все пользователи'), id='all_users', state=AdminDialog.users_manager),
+    Group(
+        Row(
+            SwitchTo(Const('🏠 Все объекты'), id='all_objects', state=AdminDialog.all_objects_manager),
+            SwitchTo(Const('👥 Все пользователи'), id='all_users', state=AdminDialog.users_manager),
+        ),
+        Button(Const('Обновить страны'), id='update_countries', on_click=update_countries),
+        SwitchTo(Const('Изменить "Информация"'), id='update_info', state=AdminDialog.update_info),
+        Start(Const('👨 Вернуться в панель Пользователя'), id='user_menu', state=UserDialog.main_menu),
     ),
-    Button(Const('Обновить страны'), id='update_countries', on_click=update_countries),
-    SwitchTo(Const('Изменить "Информация"'), id='update_info', state=AdminDialog.update_info),
-    Start(Const('👨 Вернуться в панель Пользователя'), id='user_menu', state=UserDialog.main_menu),
 
     getter=admin_menu_getter,
     state=AdminDialog.menu

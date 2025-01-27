@@ -88,7 +88,8 @@ async def db_get_user(
                     "username": user.username,
                     "status": user.status,
                     "object_limit": user.object_limit,
-                    "balance": user.balance
+                    "balance": user.balance,
+                    "recurring_payments": user.recurring_payments
                 })
 
             user = users_list
@@ -119,7 +120,8 @@ async def db_get_user(
             "obj_limit": str(user.object_limit),
             "obj_list": obj_list,
             "obj_list_len": len(filtered_obj_list_len),
-            "balance": user.balance
+            "balance": user.balance,
+            "recurring_payments": user.recurring_payments
         }
 
         return user_dict
@@ -131,7 +133,8 @@ async def db_update_user(
         telegram_id: int = None,
         status: str = None,
         object_limit: int = None,
-        plus_balance: int = None
+        plus_balance: int = None,
+        recurring_payments: bool = None
 ):
     async with async_session() as session:
         # Получаем Пользователя по user_id
@@ -147,12 +150,12 @@ async def db_update_user(
         # Обновляем поля, если они были переданы
         if status is not None:
             user.status = status
-
         if object_limit is not None:
             user.object_limit = object_limit
-
         if plus_balance is not None:
             user.balance += plus_balance
+        if recurring_payments is not None:
+            user.recurring_payments = recurring_payments
 
         # Сохраняем изменения
         session.add(user)
