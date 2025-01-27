@@ -48,7 +48,7 @@ class Object(Base):
     photos: Mapped[Optional[str]]
     delete_reason: Mapped[Optional[str]]
     message_ids: Mapped[Optional[str]]
-    create_data: Mapped[date] = mapped_column(default=date.today())
+    create_data: Mapped[Optional[date]] = mapped_column(default=date.today())
 
     # Связь с Пользователем
     owner_id: Mapped[int] = mapped_column(ForeignKey('users.id'), nullable=True)  # Внешний ключ на пользователя
