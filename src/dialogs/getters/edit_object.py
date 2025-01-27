@@ -185,5 +185,5 @@ async def submit_edit_object(
 
     # Оповещаем пользователя и закрываем диалог
     await dialog_manager.event.answer('Объект успешно отправлен на модерацию!')
-    await stop_edit_object(dialog_manager=dialog_manager)
+    dialog_manager.show_mode = ShowMode.AUTO
     await dialog_manager.start(state=UserDialog.my_objects_manager)

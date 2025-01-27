@@ -23,7 +23,7 @@ async def stop_create_object(
     # Возвращаем денежные средства если создание объекта было платным
     is_free_create_object = dialog_manager.start_data.get('is_free_create_object')
     if not is_free_create_object:
-        tg_id = callback.from_user.id
+        tg_id = dialog_manager.event.from_user.id
         await db_update_user(telegram_id=tg_id, plus_balance=100) # Пополняем баланс на 100 рублей
         await callback.answer('На ваш баланс зачислено: 100руб.!')
 
@@ -209,11 +209,15 @@ async def submit_create_object(
 
     user_tg_id = dialog_manager.event.from_user.id
 
+    # Если объект бессрочной публикации
+    if dialog_manager.start_data.get('is_free_create_object'):
+        dialog_manager.dialog_data['create_date_no_limit'] = True
+
     # Сохраняем объект в БД и отправляем его на модерацию
     await db_new_object(object_data=dialog_manager.dialog_data, user_tg_id=user_tg_id)
 
     # Оповещаем пользователя и закрываем диалог
     await dialog_manager.event.answer('Объект успешно отправлен на модерацию!')
-    await stop_create_object(dialog_manager=dialog_manager)
+    dialog_manager.show_mode = ShowMode.AUTO # В исходное положение
     await dialog_manager.done()
 

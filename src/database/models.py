@@ -40,7 +40,7 @@ class Object(Base):
     generate_id: Mapped[Optional[int]]
     status: Mapped[Optional[str]]
     obj_type: Mapped[Optional[str]]
-    country_thread_id: Mapped[Optional[int]] = mapped_column(ForeignKey('countries.thread_id'))
+    country_thread_id: Mapped[int] = mapped_column(ForeignKey('countries.thread_id'), nullable=True)
     address: Mapped[Optional[str]]
     conditions: Mapped[Optional[str]] # Условия и цена
     description: Mapped[Optional[str]]
@@ -48,7 +48,7 @@ class Object(Base):
     photos: Mapped[Optional[str]]
     delete_reason: Mapped[Optional[str]]
     message_ids: Mapped[Optional[str]]
-    create_data: Mapped[Optional[date]] = mapped_column(default=date.today())
+    create_date: Mapped[Optional[date]]
 
     # Связь с Пользователем
     owner_id: Mapped[int] = mapped_column(ForeignKey('users.id'), nullable=True)  # Внешний ключ на пользователя

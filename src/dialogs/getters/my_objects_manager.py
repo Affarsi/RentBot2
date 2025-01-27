@@ -1,8 +1,11 @@
+import datetime
+from datetime import date
+from config import Config
+
 from aiogram.types import CallbackQuery
 from aiogram_dialog import DialogManager, ShowMode
 from aiogram_dialog.widgets.kbd import Button, Select
 
-from config import Config
 from src.database.requests.object import db_get_object, db_update_object
 from src.database.requests.user import db_get_user, db_update_user
 from src.dialogs.dialogs_states import CreateObject, UserDialog
@@ -59,7 +62,6 @@ async def start_create_object(
 
     # Проверка на Администратора
     if telegram_id in Config.admin_ids:
-        print('Этот пользователь администратор')
         is_admin = True
         is_free_create_object = True
 
@@ -162,10 +164,24 @@ async def invert_delete_object_confirm_menu(
 
 # Getter, сообщающий, открыто ли edit_menu/delete_menu или нет
 async def object_confirmed_getter(dialog_manager: DialogManager, **kwargs):
+    # Инициализация данных
+    object_data = dialog_manager.dialog_data.get('open_object_data')
+    create_date = object_data['create_date']
     is_edit_menu_open = dialog_manager.dialog_data.get('is_edit_menu_open')
     is_delete_object_confirm_menu = dialog_manager.dialog_data.get('is_delete_object_confirm_menu')
+
+    # Вычисляем остаток дней
+    if create_date is None:
+        # Бессрочный объект
+        days_left = 'Бессрочно'
+    else:
+        end_date = create_date + datetime.timedelta(days=365)
+        days_left = abs(end_date - create_date)
+        days_left = str(days_left).split(',')[0]
+
     return {'edit_menu_open': is_edit_menu_open,
-            'delete_object_confirm_menu': is_delete_object_confirm_menu}
+            'delete_object_confirm_menu': is_delete_object_confirm_menu,
+            'days_left': days_left}
 
 
 # Получить причину удаления объекта

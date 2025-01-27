@@ -46,7 +46,7 @@ my_objects_manager_window = Window(
 
 # Просмотр объекта, находящегося в статусе 'Принят'
 my_object_confirmed_window = Window(
-    Const('<b>✨Выберите действие:</b>'),
+    Format('<b>✨Выберите действие:</b>\n\n🗓 До конца размещения объекта: <code>{days_left}</code>'),
 
         Button(Const('✏️ Меню редактирования'), id='invert_edit_menu_my_object', on_click=invert_edit_menu_open),
         Row(
