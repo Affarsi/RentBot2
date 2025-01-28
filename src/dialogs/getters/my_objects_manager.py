@@ -184,7 +184,23 @@ async def object_confirmed_getter(dialog_manager: DialogManager, **kwargs):
             'days_left': days_left}
 
 
-# Получить причину удаления объекта
-async def my_object_delete_reason_getter(dialog_manager: DialogManager, **kwargs):
+# Вывод данных для открытого удалённого объекта
+async def my_object_delete_getter(dialog_manager: DialogManager, **kwargs):
+    # Инициализируем данные
+    telegram_id = dialog_manager.event.from_user.id
+    user_dict = await db_get_user(telegram_id=telegram_id)
+    obj_limit = user_dict.get('obj_limit')
+    obj_list_len = user_dict.get('obj_list_len')
+
+    # Определение причины удаления
     delete_reason = dialog_manager.dialog_data.get('open_object_data').get('delete_reason')
-    return {'delete_reason': delete_reason}
+
+    # Определяем платное ли будет восстановление объекта
+    if telegram_id in Config.admin_ids:
+        # Пользователь == Администратор
+        is_limit_object_max = False
+    else:
+        # Проверяем, израсходовал ли Пользователь свой лимит объектов?
+        is_limit_object_max = True if obj_list_len >= int(obj_limit) else False
+
+    return {'delete_reason': delete_reason, 'is_limit_object_max': is_limit_object_max}

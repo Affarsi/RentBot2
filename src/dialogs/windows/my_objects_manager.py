@@ -9,7 +9,7 @@ from src.dialogs.dialogs_states import UserDialog
 from src.dialogs.getters.edit_object import start_edit_menu_dialog
 from src.dialogs.getters.my_objects_manager import my_objects_getter, start_create_object, open_my_object, \
     delete_my_object, \
-    object_confirmed_getter, invert_edit_menu_open, invert_delete_object_confirm_menu, my_object_delete_reason_getter
+    object_confirmed_getter, invert_edit_menu_open, invert_delete_object_confirm_menu, my_object_delete_getter
 
 # Раздел 'Мои объекты'
 my_objects_manager_window = Window(
@@ -48,6 +48,7 @@ my_objects_manager_window = Window(
 my_object_confirmed_window = Window(
     Format('<b>✨Выберите действие:</b>\n\n🗓 До конца размещения объекта: <code>{days_left}</code>'),
 
+    Group(
         Button(Const('✏️ Меню редактирования'), id='invert_edit_menu_my_object', on_click=invert_edit_menu_open),
         Row(
             Button(Const('Цена и Условия'), id='edit_conditions', on_click=start_edit_menu_dialog),
@@ -57,13 +58,15 @@ my_object_confirmed_window = Window(
 
             when=F['edit_menu_open']
         ),
-        Button(Const('❌ Удалить объект'), id='invert_delete_object_confirm_menu', on_click=invert_delete_object_confirm_menu),
+        Button(Const('❌ Удалить объект'), id='invert_delete_object_confirm_menu',
+               on_click=invert_delete_object_confirm_menu),
         Row(
             Button(Const('🚨ПОДТВЕРДИТЬ УДАЛЕНИЕ ОБЪЕКТА🚨'), id='dell_my_object', on_click=delete_my_object),
 
             when=F['delete_object_confirm_menu']
         ),
         SwitchTo(Const('Назад'), id='back_to_my_objects_manager', state=UserDialog.my_objects_manager),
+    ),
 
     getter=object_confirmed_getter,
     state=UserDialog.my_open_object_confirmed
@@ -76,22 +79,22 @@ my_object_moderated_window = Window(
           'напишите в Тех. Поддержку!\n'
           'Спасибо за понимание!</b>'),
 
-        SwitchTo(Const('Назад'), id='back_to_my_objects_manager', state=UserDialog.my_objects_manager),
+    SwitchTo(Const('Назад'), id='back_to_my_objects_manager', state=UserDialog.my_objects_manager),
 
     state=UserDialog.my_open_object_moderated
 )
 
 # Просмотр объекта, находящегося в статусе 'Удалён'
 my_object_deleted_window = Window(
-    Format('<b>К сожалению, ваш пост был удалён администратором.\n\n'
-          'Причина удаления:</b>\n'
-          '{delete_reason}'
-          '\n\n'
-          '<b>Если вы не согласны с решением администратора - обратитесь в Тех. Поддержку.</b>'),
+    Format('<b>Объект удалён</b>\n\n'
+           '<blockquote><b>Причина:</b>\n'
+           '{delete_reason}</blockquote>'),
 
-        SwitchTo(Const('Назад'), id='back_to_my_objects_manager', state=UserDialog.my_objects_manager),
+    Button(Const('🔄 Восстановить объект [100руб. - 365 дней]'), id='...', on_click=..., when=F['is_limit_object_max']),
+    Button(Const('🔄 Восстановить объект [0руб. - Бессрочно]'), id='...', on_click=..., when=~F['is_limit_object_max']),
+    SwitchTo(Const('Назад'), id='back_to_my_objects_manager', state=UserDialog.my_objects_manager),
 
-    getter=my_object_delete_reason_getter,
+    getter=my_object_delete_getter,
     state=UserDialog.my_open_object_deleted
 )
 
