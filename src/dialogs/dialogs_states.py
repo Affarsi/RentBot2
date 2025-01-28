@@ -38,6 +38,7 @@ class AdminDialog(StatesGroup):
     open_user_account = State()
     change_user_status = State()
     change_user_obj_limit = State()
+    change_user_balance = State()
 
     all_objects_manager = State()
     all_objects_confirmed = State()

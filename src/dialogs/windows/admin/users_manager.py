@@ -8,7 +8,7 @@ from aiogram_dialog.widgets.text import Const, Format
 
 from src.dialogs.dialogs_states import AdminDialog
 from src.dialogs.getters.admin.users_manager import all_users_getter, admin_open_user_account, user_account_getter, \
-    new_user_status_input, new_user_obj_limit_input, search_user_by_username
+    new_user_status_input, new_user_obj_limit_input, search_user_by_username, new_user_plus_balance_input
 
 # Менеджер всех пользователей
 users_manager_window = Window(
@@ -48,13 +48,16 @@ open_user_account_window = Window(
         "│\n"
         "├<b>Status:</b> <code>{status}</code>\n"
         "├<b>Лимит объектов:</b> <code>{obj_limit}</code>\n"
+        "├<b>Создано объектов:</b> <code>{obj_list_len}</code>\n"
         "│\n"
-        "└<b>Создано объектов:</b> <code>{obj_list_len}</code>"
+        "└<b>Баланс:</b> <code>{balance}руб.</code>"
     ),
 
+    Button(Const('Выберите, что хотели бы изменить:'), id='plug_btn'),
     Row(
-        SwitchTo(Const('Изменить статус'), id='change_user_status', state=AdminDialog.change_user_status),
-        SwitchTo(Const('Изменить лимит объектов'), id='change_user_obj_limit', state=AdminDialog.change_user_obj_limit),
+        SwitchTo(Const('Статус'), id='change_user_status', state=AdminDialog.change_user_status),
+        SwitchTo(Const('Лимит объектов'), id='change_user_obj_limit', state=AdminDialog.change_user_obj_limit),
+        SwitchTo(Const('Баланс'), id='change_user_balance', state=AdminDialog.change_user_balance),
     ),
     Url(Const('📞 Связаться с Пользователем'), Format('https://t.me/{username}')),
     SwitchTo(Const('Назад'), id='back_to_users_manager', state=AdminDialog.users_manager),
@@ -83,4 +86,23 @@ change_user_obj_limit_window = Window(
     SwitchTo(Const('Назад'), id='back_to_open_user_acc', state=AdminDialog.open_user_account),
 
     state=AdminDialog.change_user_obj_limit
+)
+
+# Окно изменения баланса Пользователя
+change_user_balance_window = Window(
+    Const(
+        '<b>Отправьте число на которое будет <i>ПРИПЛЮСОВАН</i> баланс:</b>\n\n'
+        '⚠️ Данная функция <b>ПРИБАВЛЯЕТ</b> баланс Пользователю, а не изменяет его на тот, который вы укажите\n\n'
+        '<b>Например:</b>\n'
+        'У Пользователя <code>500 руб.</code> на балансе\n'
+        'Если вы сейчас отправите число <code>500</code>, то у Пользователя баланс станет: <code>1000 руб.</code>\n'
+        'Вы <b>ПРИПЛЮСУЕТЕ</b> ему <code>500</code> рублей к балансу!\n\n'
+        '<b>Чтобы уменьшить баланс, отправьте <code>-500</code></b>'
+    ),
+
+    MessageInput(new_user_plus_balance_input, filter=F.text),
+
+    SwitchTo(Const('Назад'), id='back_to_open_user_acc', state=AdminDialog.open_user_account),
+
+    state=AdminDialog.change_user_balance
 )

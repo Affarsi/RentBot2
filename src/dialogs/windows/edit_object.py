@@ -14,7 +14,7 @@ result_and_edit_menu_window = Window(
     Const('<b>Выше вы видите отредактированный пост!\n\n</b>'
           'Вы можете отказаться от изменений или отправить его на модерацию'),
 
-    Button(Const('✏️ Меню редактирования'), id='...'),
+    Button(Const('✏️ Меню редактирования'), id='plug_btn'),
     Row(
         SwitchTo(Const('Цена и Условия'), id='edit_conditions', state=EditObject.edit_conditions),
         SwitchTo(Const('Описание'), id='edit_description', state=EditObject.edit_description),

@@ -4,10 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1bd5e2e9-72a5-4a8d-b09e-36008a260f3c" name="Changes" comment="recurring_payments">
+    <list default="true" id="1bd5e2e9-72a5-4a8d-b09e-36008a260f3c" name="Changes" comment="work_start">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/database/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/src/database/db.sqlite3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sessions/acc_to_check_topic.session" beforeDir="false" afterPath="$PROJECT_DIR$/src/sessions/acc_to_check_topic.session" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dialogs/dialogs_manager.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/dialogs/dialogs_manager.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dialogs/dialogs_states.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/dialogs/dialogs_states.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dialogs/getters/admin/users_manager.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/dialogs/getters/admin/users_manager.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dialogs/windows/admin/edit_object.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/dialogs/windows/admin/edit_object.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dialogs/windows/admin/users_manager.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/dialogs/windows/admin/users_manager.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dialogs/windows/edit_object.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/dialogs/windows/edit_object.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -130,14 +134,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1736221880772</updated>
-    </task>
-    <task id="LOCAL-00017" summary="Commit">
-      <option name="closed" value="true" />
-      <created>1736617820657</created>
-      <option name="number" value="00017" />
-      <option name="presentableId" value="LOCAL-00017" />
-      <option name="project" value="LOCAL" />
-      <updated>1736617820657</updated>
     </task>
     <task id="LOCAL-00018" summary="Commit">
       <option name="closed" value="true" />
@@ -523,7 +519,15 @@
       <option name="project" value="LOCAL" />
       <updated>1737997660498</updated>
     </task>
-    <option name="localTasksCounter" value="66" />
+    <task id="LOCAL-00066" summary="work_start">
+      <option name="closed" value="true" />
+      <created>1738064344886</created>
+      <option name="number" value="00066" />
+      <option name="presentableId" value="LOCAL-00066" />
+      <option name="project" value="LOCAL" />
+      <updated>1738064344886</updated>
+    </task>
+    <option name="localTasksCounter" value="67" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -560,6 +564,7 @@
     <MESSAGE value="paid_add_object" />
     <MESSAGE value="confirmed_obj_window" />
     <MESSAGE value="recurring_payments" />
-    <option name="LAST_COMMIT_MESSAGE" value="recurring_payments" />
+    <MESSAGE value="work_start" />
+    <option name="LAST_COMMIT_MESSAGE" value="work_start" />
   </component>
 </project>

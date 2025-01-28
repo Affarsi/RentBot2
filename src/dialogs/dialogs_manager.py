@@ -8,7 +8,7 @@ from src.dialogs.windows.admin.edit_object import admin_result_and_edit_menu_win
     admin_edit_conditions_window, admin_edit_description_window, admin_edit_photos_window, admin_edit_contacts_window
 from src.dialogs.windows.admin.main_menu import admin_menu_window, update_info_window
 from src.dialogs.windows.admin.users_manager import users_manager_window, open_user_account_window, \
-    change_user_status_window, change_user_obj_limit_window
+    change_user_status_window, change_user_obj_limit_window, change_user_balance_window
 from src.dialogs.windows.create_object import get_country_window, get_type_window, get_address_window, \
     get_conditions_window, get_description_window, get_contacts_window, get_photos_window, final_result_window
 from src.dialogs.windows.edit_object import edit_conditions_window, edit_description_window, \
@@ -59,6 +59,7 @@ admin_dialog = Dialog(
     open_user_account_window,
     change_user_status_window,
     change_user_obj_limit_window,
+    change_user_balance_window,
 
     all_objects_manager_window,
     all_objects_confirmed_window,

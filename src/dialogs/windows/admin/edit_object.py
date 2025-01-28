@@ -15,7 +15,7 @@ admin_result_and_edit_menu_window = Window(
     Const('<b>Выше вы видите отредактированный пост!\n\n</b>'
           'Вы можете отказаться от изменений или сохранить их и автоматически одобрить пост!'),
 
-    Button(Const('✏️ Меню редактирования'), id='...'),
+    Button(Const('✏️ Меню редактирования'), id='plug_btn'),
     Row(
         SwitchTo(Const('Цена и Условия'), id='admin_edit_conditions', state=AdminEditObject.edit_conditions),
         SwitchTo(Const('Описание'), id='admin_edit_description', state=AdminEditObject.edit_description),
