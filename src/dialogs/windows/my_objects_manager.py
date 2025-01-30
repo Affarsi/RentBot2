@@ -90,8 +90,8 @@ my_object_deleted_window = Window(
            '<blockquote><b>Причина:</b>\n'
            '{delete_reason}</blockquote>'),
 
-    Button(Const('🔄 Восстановить объект [100руб. - 365 дней]'), id='...', on_click=..., when=F['is_limit_object_max']),
-    Button(Const('🔄 Восстановить объект [0руб. - Бессрочно]'), id='...', on_click=..., when=~F['is_limit_object_max']),
+    Button(Const('🔄 Восстановить объект [100руб. - 365 дней]'), id='restore_obj', on_click=restore_object, when=F['is_limit_object_max']),
+    Button(Const('🔄 Восстановить объект [0руб. - Бессрочно]'), id='restore_obj', on_click=restore_object, when=~F['is_limit_object_max']),
     SwitchTo(Const('Назад'), id='back_to_my_objects_manager', state=UserDialog.my_objects_manager),
 
     getter=my_object_delete_getter,

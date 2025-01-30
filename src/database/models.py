@@ -49,7 +49,7 @@ class Object(Base):
     photos: Mapped[Optional[str]]
     delete_reason: Mapped[Optional[str]]
     message_ids: Mapped[Optional[str]]
-    create_date: Mapped[Optional[date]]
+    payment_date: Mapped[Optional[date]]
 
     # Связь с Пользователем
     owner_id: Mapped[int] = mapped_column(ForeignKey('users.id'), nullable=True)  # Внешний ключ на пользователя

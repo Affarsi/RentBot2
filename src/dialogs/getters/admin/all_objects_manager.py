@@ -129,16 +129,16 @@ async def admin_open_object_confirmed_getter(dialog_manager: DialogManager, **kw
     # Получаем информацию из БД
     object_id = dialog_manager.dialog_data.get('admin_open_object_id')
     object_data = dialog_manager.dialog_data.get('admin_open_object_data')
-    create_date = object_data['create_date']
+    payment_date = object_data['payment_date']
     getter_data = await db_get_user(object_id=object_id)
 
     # Вычисляем остаток дней
-    if create_date is None:
+    if payment_date is None:
         # Бессрочный объект
         days_left = 'Бессрочно'
     else:
-        end_date = create_date + datetime.timedelta(days=365)
-        days_left = abs(end_date - create_date)
+        end_date = payment_date + datetime.timedelta(days=365)
+        days_left = abs(end_date - payment_date)
         days_left = str(days_left).split(',')[0]
 
     # Дополняем словарь

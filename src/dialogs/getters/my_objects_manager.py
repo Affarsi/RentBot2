@@ -6,10 +6,27 @@ from aiogram.types import CallbackQuery
 from aiogram_dialog import DialogManager, ShowMode
 from aiogram_dialog.widgets.kbd import Button, Select
 
-from src.database.requests.object import db_get_object, db_update_object
+from src.database.requests.object import db_get_object, db_update_object, db_new_object
 from src.database.requests.user import db_get_user, db_update_user
 from src.dialogs.dialogs_states import CreateObject, UserDialog
 from src.utils.media_group_creator import send_media_group
+
+
+# Определяет, бесплатное или платное будет для Пользователя редактирование/создание объекта
+async def is_edit_create_object_paid(telegram_id: int, user_dict: dict) -> dict:
+    obj_limit = user_dict.get('obj_limit')
+    obj_list_len = user_dict.get('obj_list_len')
+
+    # Проверка на Администратора
+    is_admin = False
+    if telegram_id in Config.admin_ids:
+        result = False
+        is_admin = True
+    else:
+        # Проверяем, израсходовал ли Пользователь свой лимит объектов?
+        result = True if obj_list_len >= int(obj_limit) else False
+
+    return {'is_paid': result, 'is_admin': is_admin}
 
 
 # Возвращает текст для раздела Информация
@@ -18,7 +35,6 @@ async def my_objects_getter(dialog_manager: DialogManager, **kwargs):
     telegram_id = dialog_manager.event.from_user.id
     object_list = await db_get_object(telegram_id=telegram_id) # Получение списка объектов из БД
     user_dict = await db_get_user(telegram_id=telegram_id)
-    obj_limit = user_dict.get('obj_limit')
 
     # Если у Пользователя не найдено объектов
     if not object_list:
@@ -33,40 +49,33 @@ async def my_objects_getter(dialog_manager: DialogManager, **kwargs):
         country = obj['country']
         my_object_list.append([f'{status} | ID: {generate_id} | {country}', str(id)])
 
-    # Проверка на Администратора
-    if telegram_id in Config.admin_ids:
-        is_limit_object_max = False
-    else:
-        # Проверяем, израсходовал ли Пользователь свой лимит объектов?
-        is_limit_object_max = True if len(my_object_list) >= int(obj_limit) else False
+    # Определяем платное или бесплатное будет создание объекта
+    res_dict = await is_edit_create_object_paid(telegram_id, user_dict)
+    is_create_object_paid = res_dict.get('is_paid')
+    is_admin = res_dict.get('is_admin')
+    dialog_manager.dialog_data['is_create_object_paid'] = is_create_object_paid
+    dialog_manager.dialog_data['is_admin'] = is_admin
 
-    return {'my_object_list': my_object_list, 'is_limit_object_max': is_limit_object_max}
+    return {'my_object_list': my_object_list, 'is_limit_object_max': is_create_object_paid}
 
 
-# Запускает диалог с созданием объекта
+# Создание объекта. Запуск диалога с созданием объекта
 async def start_create_object(
         callback: CallbackQuery,
         widget: Button,
         dialog_manager: DialogManager
 ):
     # Инициализируем данные
-    telegram_id = callback.from_user.id
     user_dict = await db_get_user(telegram_id=callback.from_user.id)
     user_id = user_dict['id']
-    obj_max = int(user_dict['obj_limit'])
-    obj_len = user_dict['obj_list_len']
     balance = user_dict['balance']
 
+    is_admin = dialog_manager.dialog_data.get('is_admin')
+    is_create_object_paid = dialog_manager.dialog_data.get('is_create_object_paid')
     is_free_create_object = False # Создание объекта будет платным
-    is_admin = False # Пользователь не Администратор
-
-    # Проверка на Администратора
-    if telegram_id in Config.admin_ids:
-        is_admin = True
-        is_free_create_object = True
 
     # Проверка условий
-    if not is_admin and obj_len >= obj_max:
+    if not is_admin and is_create_object_paid:
         # Закончился бесплатный лимит
         if balance >= 100:
             # Есть деньги на балансе
@@ -166,17 +175,17 @@ async def invert_delete_object_confirm_menu(
 async def object_confirmed_getter(dialog_manager: DialogManager, **kwargs):
     # Инициализация данных
     object_data = dialog_manager.dialog_data.get('open_object_data')
-    create_date = object_data['create_date']
+    payment_date = object_data['payment_date']
     is_edit_menu_open = dialog_manager.dialog_data.get('is_edit_menu_open')
     is_delete_object_confirm_menu = dialog_manager.dialog_data.get('is_delete_object_confirm_menu')
 
     # Вычисляем остаток дней
-    if create_date is None:
+    if payment_date is None:
         # Бессрочный объект
         days_left = 'Бессрочно'
     else:
-        end_date = create_date + datetime.timedelta(days=365)
-        days_left = abs(end_date - create_date)
+        end_date = payment_date + datetime.timedelta(days=365)
+        days_left = abs(end_date - payment_date)
         days_left = str(days_left).split(',')[0]
 
     return {'edit_menu_open': is_edit_menu_open,
@@ -204,3 +213,64 @@ async def my_object_delete_getter(dialog_manager: DialogManager, **kwargs):
         is_limit_object_max = True if obj_list_len >= int(obj_limit) else False
 
     return {'delete_reason': delete_reason, 'is_limit_object_max': is_limit_object_max}
+
+
+# Восстановление объекта
+async def restore_object(
+        callback: CallbackQuery,
+        widget: Button,
+        dialog_manager: DialogManager
+):
+    # Бесплатное или платное? Админ не админ?
+    is_admin = dialog_manager.dialog_data.get('is_admin')
+    is_create_object_paid = dialog_manager.dialog_data.get('is_create_object_paid')
+
+    # Вычитаем или не вычитаем деньги с балика юзера
+
+
+    # Далее - тупо объекту меняем статус на то, что он на модерке теперь. И меняем ему payment_date
+    # всё
+    ...
+
+    # # Инициализируем данные
+    # telegram_id = callback.from_user.id
+    # user_dict = await db_get_user(telegram_id=callback.from_user.id)
+    # user_id = user_dict['id']
+    # obj_max = int(user_dict['obj_limit'])
+    # obj_len = user_dict['obj_list_len']
+    # balance = user_dict['balance']
+    #
+    # is_free_create_object = False # Создание объекта будет платным
+    # is_admin = False # Пользователь не Администратор
+    #
+    # # Проверка на Администратора
+    # if telegram_id in Config.admin_ids:
+    #     is_admin = True
+    #     is_free_create_object = True
+    #
+    # # Проверка условий
+    # if not is_admin and obj_len >= obj_max:
+    #     # Закончился бесплатный лимит
+    #     if balance >= 100:
+    #         # Есть деньги на балансе
+    #         await db_update_user(user_id=user_id, plus_balance=-100) # Списываем 100 рублей с баланса
+    #         await callback.answer('С баланса списано: 100руб.!')
+    #     else:
+    #         # Нет денег на балансе
+    #         await callback.answer('На вашем балансе недостаточно средств!')
+    #         return
+    # else:
+    #     # Есть бесплатный лимит
+    #     is_free_create_object = True # Создание объекта будет бесплатным
+    #
+    # # Если объект бессрочной публикации
+    # if dialog_manager.start_data.get('is_free_create_object'):
+    #     dialog_manager.dialog_data['payment_date_no_limit'] = True
+    #
+    # # Сохраняем объект в БД и отправляем его на модерацию
+    # await db_update_object(object_id=)
+    #
+    # # Оповещаем пользователя и закрываем диалог
+    # await dialog_manager.event.answer('Объект успешно отправлен на модерацию!')
+    # dialog_manager.show_mode = ShowMode.AUTO # В исходное положение
+    # await dialog_manager.done()

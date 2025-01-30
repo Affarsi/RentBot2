@@ -211,7 +211,7 @@ async def submit_create_object(
 
     # Если объект бессрочной публикации
     if dialog_manager.start_data.get('is_free_create_object'):
-        dialog_manager.dialog_data['create_date_no_limit'] = True
+        dialog_manager.dialog_data['payment_date_no_limit'] = True
 
     # Сохраняем объект в БД и отправляем его на модерацию
     await db_new_object(object_data=dialog_manager.dialog_data, user_tg_id=user_tg_id)

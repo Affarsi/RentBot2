@@ -30,13 +30,13 @@ async def db_new_object(
             description=object_data['create_object_state_data_description'],
             contacts=object_data['create_object_state_data_contacts'],
             photos=photo_str,
-            create_date=date.today(),
+            payment_date=date.today(),
             owner_id=user["id"]
         )
 
         # Если объект бессрочной публикации
-        if object_data.get('create_date_no_limit', False):
-            new_object.create_date = None
+        if object_data.get('payment_date_no_limit', False):
+            new_object.payment_date = None
 
         # Попытка добавления объекта в БД
         try:
@@ -114,7 +114,7 @@ async def db_get_object(
                 "photos": obj.photos,
                 "message_ids": obj.message_ids,
                 "delete_reason": obj.delete_reason,
-                "create_date": obj.create_date,
+                "payment_date": obj.payment_date,
                 "owner_id": obj.owner_id,
             })
 
