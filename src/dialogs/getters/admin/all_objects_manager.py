@@ -250,4 +250,34 @@ async def reason_object_delete_input(
 # Получить причину удаления объекта
 async def admin_object_delete_reason_getter(dialog_manager: DialogManager, **kwargs):
     delete_reason = dialog_manager.dialog_data.get('admin_open_object_data').get('delete_reason')
-    return {'delete_reason': delete_reason}
+    is_edit_menu_open = dialog_manager.dialog_data.get('is_admin_edit_menu_open')
+    return {'delete_reason': delete_reason, 'admin_dit_menu_open': is_edit_menu_open}
+
+
+# Восстановить объект
+async def admin_restore_object(
+        callback: CallbackQuery,
+        widget: Button,
+        dialog_manager: DialogManager
+):
+    # Инициализируем данные
+    object_id = dialog_manager.dialog_data.get('admin_open_object_id')
+
+    # Восстанавливаем объект и отправляем его снова на модерацию
+    payment_date = None
+    new_object_data = {'status': '✅', 'payment_date': payment_date, 'delete_reason': None}
+    await db_update_object(object_id=object_id, object_data=new_object_data)
+
+    # Отправляем пост в группу
+    result_object_data = await send_media_group(dialog_manager, object_id, Config.chat, True)
+
+    if not result_object_data:
+        await dialog_manager.event.answer('Не могу отправить пост в чат! Обратитесь к тех админу!')
+    else:
+        # Обновляем message_ids
+        await db_update_object(object_id=object_id,
+                               object_data=result_object_data)
+
+    # Возвращаем обратно Администратора
+    await callback.answer('Объект восстановлен и опубликован!')
+    await dialog_manager.switch_to(state=AdminDialog.all_objects_deleted)

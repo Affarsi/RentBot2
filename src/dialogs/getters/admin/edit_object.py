@@ -188,7 +188,7 @@ async def admin_submit_edit_object(
         await db_update_object(object_id=object_id,
                                object_data=result_object_data)
 
-    # Оповещаем пользователя и закрываем диалог
+    # Оповещаем Администратора и закрываем диалог
     await dialog_manager.event.answer('Объект успешно изменён/одобрен')
     await stop_edit_object(dialog_manager=dialog_manager)
     await dialog_manager.start(state=AdminDialog.all_objects_manager)

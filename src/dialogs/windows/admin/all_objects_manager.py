@@ -10,8 +10,21 @@ from src.dialogs.dialogs_states import AdminDialog
 from src.dialogs.getters.admin.all_objects_manager import all_objects_count_and_sg_list_getter, admin_open_object, \
     invert_admin_edit_menu_open, invert_admin_dell_obj_confirm_menu, admin_delete_object, accept_moderated_object, \
     reason_object_reject_input, reason_object_delete_input, \
-    admin_object_delete_reason_getter, admin_open_object_confirmed_getter
+    admin_object_delete_reason_getter, admin_open_object_confirmed_getter, admin_restore_object
 from src.dialogs.getters.admin.edit_object import start_admin_edit_menu_dialog
+
+admin_object_edit_menu = Group(
+    Button(Const('✏️ Меню редактирования'), id='invert_admin_edit_menu_object', on_click=invert_admin_edit_menu_open),
+    Row(
+        Button(Const('Цена и Условия'), id='admin_edit_conditions', on_click=start_admin_edit_menu_dialog),
+        Button(Const('Описание'), id='admin_edit_description', on_click=start_admin_edit_menu_dialog),
+        Button(Const('Контакты'), id='admin_edit_contacts', on_click=start_admin_edit_menu_dialog),
+        Button(Const('Фотографии'), id='admin_edit_photos', on_click=start_admin_edit_menu_dialog),
+
+        when=F['admin_dit_menu_open']
+    ),
+)
+
 
 # Выбор категории объектов, которые Администратор хочет посмотреть
 all_objects_manager_window = Window(
@@ -105,15 +118,7 @@ all_objects_deleted_window = Window(
 admin_open_object_moderated_window = Window(
     Const('<b>Объект на модерации</b>'),
 
-    Button(Const('✏️ Меню редактирования'), id='invert_admin_edit_menu_object', on_click=invert_admin_edit_menu_open),
-    Row(
-        Button(Const('Цена и Условия'), id='admin_edit_conditions', on_click=start_admin_edit_menu_dialog),
-        Button(Const('Описание'), id='admin_edit_description', on_click=start_admin_edit_menu_dialog),
-        Button(Const('Контакты'), id='admin_edit_contacts', on_click=start_admin_edit_menu_dialog),
-        Button(Const('Фотографии'), id='admin_edit_photos', on_click=start_admin_edit_menu_dialog),
-
-        when=F['admin_dit_menu_open']
-    ),
+    admin_object_edit_menu, # Меню редактирования объекта
     Row(
         SwitchTo(Const('❌ Отклонить'), id='reject_moderated_object', state=AdminDialog.enter_object_reject_reason),
         Button(Const('✅ Одобрить'), id='accept_moderated_object', on_click=accept_moderated_object),
@@ -135,15 +140,7 @@ admin_open_object_confirmed_window = Window(
         '🗓 До конца размещения объекта: <code>{days_left}</code>'
     ),
 
-    Button(Const('✏️ Меню редактирования'), id='invert_admin_edit_menu_object', on_click=invert_admin_edit_menu_open),
-    Row(
-        Button(Const('Цена и Условия'), id='admin_edit_conditions', on_click=start_admin_edit_menu_dialog),
-        Button(Const('Описание'), id='admin_edit_description', on_click=start_admin_edit_menu_dialog),
-        Button(Const('Контакты'), id='admin_edit_contacts', on_click=start_admin_edit_menu_dialog),
-        Button(Const('Фотографии'), id='admin_edit_photos', on_click=start_admin_edit_menu_dialog),
-
-        when=F['admin_dit_menu_open']
-    ),
+    admin_object_edit_menu, # Меню редактирования объекта
     Button(Const('❌ Удалить объект'), id='admin_invert_delete_object_confirm_menu', on_click=invert_admin_dell_obj_confirm_menu),
     Row(
         SwitchTo(Const('🚨ПОДТВЕРДИТЬ УДАЛЕНИЕ ОБЪЕКТА🚨'), id='admin_delete_object', state=AdminDialog.enter_object_delete_reason),
@@ -161,6 +158,8 @@ admin_open_object_confirmed_window = Window(
 admin_open_object_deleted_window = Window(
     Format('<b>Объект удалён\n\nПричина:</b>\n{delete_reason}'),
 
+    admin_object_edit_menu, # Меню редактирования объекта
+    Button(Format('🔄 Восстановить и одобрить объект'), id='admin_restore_obj', on_click=admin_restore_object),
     SwitchTo(Const('Назад'), id='back_to_all_deleted_objects', state=AdminDialog.all_objects_deleted),
 
     getter=admin_object_delete_reason_getter,
