@@ -1,4 +1,4 @@
-from aiogram.types import CallbackQuery, Message
+from aiogram.types import CallbackQuery, Message, InlineKeyboardButton
 
 from src.database.requests.user import db_update_user
 
@@ -6,6 +6,7 @@ class InsufficientFundsError(Exception):
     """Исключение, указывающее на недостаток средств."""
     pass
 
+InlineKeyboardButton(text='Связаться', url='https://t.me/VontRianast')
 
 # Пополнить баланс Пользователя
 async def deposit_user_balance(
