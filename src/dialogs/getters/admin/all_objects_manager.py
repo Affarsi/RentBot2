@@ -9,6 +9,7 @@ from config import Config
 from src.database.requests.object import db_get_object, db_update_object
 from src.database.requests.user import db_get_user
 from src.dialogs.dialogs_states import AdminDialog
+from src.payments.payment_handler import deposit_user_balance
 from src.utils.media_group_creator import send_media_group
 
 
@@ -92,7 +93,7 @@ async def admin_open_object(
         await dialog_manager.switch_to(AdminDialog.admin_open_object_confirmed)
     elif object_data['status'] == '🔄':
         await dialog_manager.switch_to(AdminDialog.admin_open_object_moderated)
-    else:
+    elif object_data['status'] == '❌':
         await dialog_manager.switch_to(AdminDialog.admin_open_object_deleted)
 
 
@@ -208,8 +209,16 @@ async def reason_object_reject_input(
         widget: MessageInput,
         dialog_manager: DialogManager
 ):
+    # Инициализируем данные
     delete_reason = message.html_text
     object_id = dialog_manager.dialog_data.get('admin_open_object_id')
+    object_data = dialog_manager.dialog_data.get('admin_open_object_data')
+    user_id = object_data.get('owner_id')
+
+    # Если за объект были внесены деньги - возвращаем их (100 руб)
+    if object_data.get('payment_date'):
+        print(object_data.get('payment_date'))
+        await deposit_user_balance(amount=100, message=message, user_id=user_id)
 
     # Обновляем объект в БД
     new_object_data = {'status': '❌', 'delete_reason': delete_reason}

@@ -1,5 +1,4 @@
-# Пополнить баланс Пользователя
-from aiogram.types import CallbackQuery
+from aiogram.types import CallbackQuery, Message
 
 from src.database.requests.user import db_update_user
 
@@ -10,16 +9,17 @@ class InsufficientFundsError(Exception):
 
 # Пополнить баланс Пользователя
 async def deposit_user_balance(
-        callback: CallbackQuery,
         amount: int,
+        callback: CallbackQuery=None,
+        message: Message=None,
         user_id: int=None,
         telegram_id: int=None
 ):
     await db_update_user(user_id=user_id, telegram_id=telegram_id, plus_balance=amount)
-    await callback.answer(f'На ваш баланс зачислено: {amount}руб.!')
+    if callback:
+        await callback.answer(f'На ваш баланс зачислено: {amount}руб.!')
 
 
-# Списать баланс Пользователя
 async def withdraw_user_balance(
         is_admin: bool,
         is_limit_object_max: bool,
@@ -44,3 +44,4 @@ async def withdraw_user_balance(
         is_free_create_object = True # Создание объекта будет бесплатным
 
     return is_free_create_object
+# Списать баланс Пользователя
