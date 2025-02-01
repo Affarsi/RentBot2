@@ -70,7 +70,7 @@ async def db_get_object(
     """
     async with async_session() as session:
         # Начинаем запрос с соединения Object и Country
-        query = select(Object, Country.name, Country.id, Country.thread_id).join(Country)
+        query = select(Object, Country.name, Country.id, Country.thread_id, User.telegram_id).join(Country).join(User)
 
         if telegram_id is not None:
             # Сначала получаем user_id по telegram_id
@@ -98,7 +98,7 @@ async def db_get_object(
 
         # Преобразуем объекты в список словарей
         objects_list = []
-        for obj, country_name, country_id, country_thread_id in objects:
+        for obj, country_name, country_id, country_thread_id, owner_telegram_id in objects:
             objects_list.append({
                 "id": obj.id,
                 "generate_id": obj.generate_id,
@@ -116,6 +116,7 @@ async def db_get_object(
                 "delete_reason": obj.delete_reason,
                 "payment_date": obj.payment_date,
                 "owner_id": obj.owner_id,
+                "owner_telegram_id": owner_telegram_id
             })
 
         return objects_list

@@ -21,6 +21,7 @@ async def deposit_user_balance(
         await callback.answer(f'На ваш баланс зачислено: {amount}руб.!')
 
 
+# Снять деньги с баланса
 async def withdraw_user_balance(
         is_admin: bool,
         is_limit_object_max: bool,
