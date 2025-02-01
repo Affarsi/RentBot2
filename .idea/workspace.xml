@@ -4,14 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1bd5e2e9-72a5-4a8d-b09e-36008a260f3c" name="Changes" comment="commit">
+    <list default="true" id="1bd5e2e9-72a5-4a8d-b09e-36008a260f3c" name="Changes" comment="Editing before recovery">
+      <change afterPath="$PROJECT_DIR$/src/payments/payment_handler.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config.py" beforeDir="false" afterPath="$PROJECT_DIR$/config.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/database/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/src/database/db.sqlite3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/database/requests/object.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/database/requests/object.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dialogs/getters/create_object.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/dialogs/getters/create_object.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dialogs/getters/edit_object.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/dialogs/getters/edit_object.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/dialogs/getters/my_objects_manager.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/dialogs/getters/my_objects_manager.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/dialogs/windows/my_objects_manager.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/dialogs/windows/my_objects_manager.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sessions/acc_to_check_topic.session" beforeDir="false" afterPath="$PROJECT_DIR$/src/sessions/acc_to_check_topic.session" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -134,14 +134,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1736221880772</updated>
-    </task>
-    <task id="LOCAL-00021" summary="Commit">
-      <option name="closed" value="true" />
-      <created>1736791257795</created>
-      <option name="number" value="00021" />
-      <option name="presentableId" value="LOCAL-00021" />
-      <option name="project" value="LOCAL" />
-      <updated>1736791257795</updated>
     </task>
     <task id="LOCAL-00022" summary="Commit">
       <option name="closed" value="true" />
@@ -527,7 +519,15 @@
       <option name="project" value="LOCAL" />
       <updated>1738250582685</updated>
     </task>
-    <option name="localTasksCounter" value="70" />
+    <task id="LOCAL-00070" summary="Editing before recovery">
+      <option name="closed" value="true" />
+      <created>1738379985427</created>
+      <option name="number" value="00070" />
+      <option name="presentableId" value="LOCAL-00070" />
+      <option name="project" value="LOCAL" />
+      <updated>1738379985427</updated>
+    </task>
+    <option name="localTasksCounter" value="71" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -542,7 +542,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Commit" />
     <MESSAGE value="admin_menu_window" />
     <MESSAGE value="admin_users_manager" />
     <MESSAGE value="admin_objects_manager" />
@@ -567,6 +566,7 @@
     <MESSAGE value="admin_edit_user_balance" />
     <MESSAGE value="Restoration of the object" />
     <MESSAGE value="commit" />
-    <option name="LAST_COMMIT_MESSAGE" value="commit" />
+    <MESSAGE value="Editing before recovery" />
+    <option name="LAST_COMMIT_MESSAGE" value="Editing before recovery" />
   </component>
 </project>

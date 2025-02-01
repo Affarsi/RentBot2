@@ -9,6 +9,7 @@ from aiogram_dialog.widgets.kbd import Button, Select
 from src.database.requests.object import db_get_object, db_update_object, db_new_object
 from src.database.requests.user import db_get_user, db_update_user
 from src.dialogs.dialogs_states import CreateObject, UserDialog, EditObject
+from src.payments.payment_handler import withdraw_user_balance, InsufficientFundsError
 from src.utils.media_group_creator import send_media_group
 
 
@@ -70,21 +71,13 @@ async def start_create_object(
     is_admin = dialog_manager.dialog_data.get('is_admin')
     is_limit_object_max = dialog_manager.dialog_data.get('is_limit_object_max')
 
-    # Проверка условий
-    is_free_create_object = False # Создание объекта будет платным
-    if not is_admin and is_limit_object_max:
-        # Закончился бесплатный лимит
-        if balance >= 100:
-            # Есть деньги на балансе
-            await db_update_user(user_id=user_id, plus_balance=-100) # Списываем 100 рублей с баланса
-            await callback.answer('С баланса списано: 100руб.!')
-        else:
-            # Нет денег на балансе
-            await callback.answer('На вашем балансе недостаточно средств!')
-            return
-    else:
-        # Есть бесплатный лимит
-        is_free_create_object = True # Создание объекта будет бесплатным
+    # Проверяем условия и пытаемся списать деньги с баланса Пользователя
+    try:
+        is_free_create_object = await withdraw_user_balance(
+            is_admin=is_admin, is_limit_object_max=is_limit_object_max,
+            amount=100, balance=balance, user_id=user_id, callback=callback
+        )
+    except InsufficientFundsError: return
 
     # Открытие диалога создания объекта
     await dialog_manager.start(CreateObject.get_country, data={'is_free_create_object': is_free_create_object})
@@ -115,7 +108,7 @@ async def open_my_object(
         await dialog_manager.switch_to(UserDialog.my_open_object_confirmed)
     elif object_data['status'] == '🔄':
         await dialog_manager.switch_to(UserDialog.my_open_object_moderated)
-    else:
+    elif object_data['status'] == '❌':
         await dialog_manager.switch_to(UserDialog.my_open_object_deleted)
 
 
@@ -194,6 +187,7 @@ async def object_confirmed_getter(dialog_manager: DialogManager, **kwargs):
 async def my_object_delete_getter(dialog_manager: DialogManager, **kwargs):
     # Инициализируем данные
     is_limit_object_max = dialog_manager.dialog_data.get('is_limit_object_max')
+    is_edit_menu_open = dialog_manager.dialog_data.get('is_edit_menu_open')
 
     # Определение причины удаления
     delete_reason = dialog_manager.dialog_data.get('open_object_data').get('delete_reason')
@@ -201,10 +195,12 @@ async def my_object_delete_getter(dialog_manager: DialogManager, **kwargs):
     # Формируем кнопку
     if is_limit_object_max:
         edit_object_btn_text = '🔄 Восстановить объект [100руб. - 365 дней]'
+        dialog_manager.dialog_data['is_free_edit_object'] = False # Запоминаем, что редактирование платное
     else:
         edit_object_btn_text = '🔄 Восстановить объект [0руб. - Бессрочно]'
+        dialog_manager.dialog_data['is_free_edit_object'] = True # Запоминаем, что редактирование бесплатное
 
-    return {'delete_reason': delete_reason, 'edit_object_btn_text': edit_object_btn_text}
+    return {'edit_menu_open': is_edit_menu_open, 'delete_reason': delete_reason, 'edit_object_btn_text': edit_object_btn_text}
 
 
 # Восстановление объекта
@@ -221,20 +217,13 @@ async def restore_object(
     is_admin = dialog_manager.dialog_data.get('is_admin')
     is_limit_object_max = dialog_manager.dialog_data.get('is_limit_object_max')
 
-    # Проверка условий
-    is_free_edit_object = False # Редактирование - платное
-    if not is_admin and is_limit_object_max:
-        # Закончился бесплатный лимит
-        if balance >= 100:
-            # Есть деньги на балансе
-            await db_update_user(user_id=user_id, plus_balance=-100)  # Списываем 100 рублей с баланса
-            await callback.answer('С баланса списано: 100руб.!')
-        else:
-            # Нет денег на балансе
-            await callback.answer('На вашем балансе недостаточно средств!')
-            return
-    else:
-        is_free_edit_object = True # Редактирование бесплатное
+    # Проверяем условия и пытаемся списать деньги с баланса Пользователя
+    try:
+        is_free_edit_object = await withdraw_user_balance(
+            is_admin=is_admin, is_limit_object_max=is_limit_object_max,
+            amount=100, balance=balance, user_id=user_id, callback=callback
+        )
+    except InsufficientFundsError: return
 
     # Восстанавливаем объект и отправляем его снова на модерацию
     payment_date = None if is_free_edit_object else date.today()

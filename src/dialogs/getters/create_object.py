@@ -9,6 +9,7 @@ from src.database.requests.country import db_get_country, db_get_country_name_by
 from src.database.requests.object import db_new_object
 from src.database.requests.user import db_update_user
 from src.dialogs.dialogs_states import CreateObject
+from src.payments.payment_handler import deposit_user_balance
 from src.utils.media_group_creator import create_media_group
 
 
@@ -24,8 +25,7 @@ async def stop_create_object(
     is_free_create_object = dialog_manager.start_data.get('is_free_create_object')
     if not is_free_create_object:
         tg_id = dialog_manager.event.from_user.id
-        await db_update_user(telegram_id=tg_id, plus_balance=100) # Пополняем баланс на 100 рублей
-        await callback.answer('На ваш баланс зачислено: 100руб.!')
+        await deposit_user_balance(callback=callback, amount=100, telegram_id=tg_id)
 
 
 # Очищает фотографии, полученные при создании объекта

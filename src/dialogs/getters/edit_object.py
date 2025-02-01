@@ -1,11 +1,32 @@
+from datetime import date
+from typing import Optional
+
 from aiogram_dialog import DialogManager, ShowMode
 from aiogram_dialog.widgets.kbd import Button
 from aiogram.types import CallbackQuery, Message
 from aiogram_dialog.widgets.input import MessageInput
 
 from src.database.requests.object import db_get_object, db_update_object
+from src.database.requests.user import db_get_user
 from src.dialogs.dialogs_states import EditObject, UserDialog
+from src.payments.payment_handler import withdraw_user_balance, InsufficientFundsError
 from src.utils.media_group_creator import create_media_group
+
+
+# Формируем и отправляем медиа группу для edit menu
+async def edit_menu_create_and_send_media_group(
+        object_dict_data: dict,
+        dialog_manager: DialogManager,
+        edit_data: dict=None
+):
+    # Формирование медиа группы
+    media_group = await create_media_group(dict_data=object_dict_data, edit_data=edit_data)
+
+    # Отправка медиа группы и диалога с edit_menu
+    await dialog_manager.event.bot.send_media_group(
+        chat_id=dialog_manager.event.from_user.id,
+        media=media_group
+    )
 
 
 # Запуск edit_menu_dialog и сохранение open_object_id
@@ -29,9 +50,18 @@ async def start_edit_menu_dialog(
         objects_list = await db_get_object(object_id=object_id)
         object_dict_data = objects_list[0]
 
+        # Сохранение других данны dialog_data
+        is_admin = dialog_manager.dialog_data.get('is_admin')
+        is_limit_object_max = dialog_manager.dialog_data.get('is_limit_object_max')
+        is_free_edit_object = dialog_manager.dialog_data.get('is_free_edit_object')
+
         # Начинаем AdminEditObject диалог и передаем start_data
         await dialog_manager.start(state=states[callback_data], data={'open_object_dict_data': object_dict_data,
-                                                                      'open_object_id': object_id})
+                                                                      'open_object_id': object_id,
+                                                                      'is_admin': is_admin,
+                                                                      'is_limit_object_max': is_limit_object_max,
+                                                                      'is_free_edit_object': is_free_edit_object}
+        )
 
 
 # Прекращает редактирование объекта
@@ -40,7 +70,13 @@ async def stop_edit_object(
         widget: Button=None,
         dialog_manager: DialogManager=None
 ):
-    dialog_manager.show_mode = ShowMode.AUTO
+    dialog_manager.show_mode = ShowMode.SEND
+
+    # Получение данных об объекте
+    object_dict_data = dialog_manager.start_data.get('open_object_dict_data')
+
+    # Формируем и отправляем медиа группу
+    await edit_menu_create_and_send_media_group(object_dict_data, dialog_manager)
 
 
 # Менеджер edit_object_input
@@ -61,14 +97,9 @@ async def edit_object_input(
     # Получение данных об объекте
     object_dict_data = dialog_manager.start_data.get('open_object_dict_data')
 
-    # Формирование медиа группы
-    media_group = await create_media_group(dict_data=object_dict_data, edit_data=dialog_manager.dialog_data)
+    # Формируем и отправляем медиа группу
+    await edit_menu_create_and_send_media_group(object_dict_data, dialog_manager, dialog_manager.dialog_data)
 
-    # Отправка медиа группы и диалога с edit_menu
-    await dialog_manager.event.bot.send_media_group(
-        chat_id=dialog_manager.event.from_user.id,
-        media=media_group
-    )
     dialog_manager.show_mode = ShowMode.DELETE_AND_SEND  # чтобы медиа группа раньше отправилась, чем смс от бота
     await dialog_manager.switch_to(EditObject.result_and_edit_menu)
 
@@ -167,8 +198,35 @@ async def submit_edit_object(
 ):
     dialog_manager.show_mode = ShowMode.AUTO
 
-    # Создаем новый словарь
+    # Инициализируем данные
     new_object_data = {'status': '🔄'}
+    open_object_dict_data = dialog_manager.start_data.get('open_object_dict_data')
+    user_dict = await db_get_user(telegram_id=callback.from_user.id)
+    user_id = user_dict['id']
+    balance = user_dict['balance']
+    is_admin = dialog_manager.start_data.get('is_admin')
+    is_limit_object_max = dialog_manager.start_data.get('is_limit_object_max')
+
+    # Если объект восстанавливается после удаления - определяем, платное или бесплатное восстановление
+    if open_object_dict_data.get('status') == '❌':
+        is_free_edit_object = dialog_manager.start_data.get('is_free_edit_object')
+
+        if is_free_edit_object:
+            # Восстановление бесплатное
+            new_object_data['payment_date'] = None
+        else:
+            # Восстановление платное
+            new_object_data['payment_date'] = date.today()
+
+            # Проверяем условия и пытаемся списать деньги с баланса Пользователя
+            try:
+                await withdraw_user_balance(
+                    is_admin=is_admin, is_limit_object_max=is_limit_object_max,
+                    amount=100, balance=balance, user_id=user_id, callback=callback
+                )
+            except InsufficientFundsError: return
+
+    # Формируем словарь с новыми данными объекта
     dialog_data = dialog_manager.dialog_data
     if 'edit_object_data_conditions' in dialog_data:
         new_object_data['conditions'] = dialog_data['edit_object_data_conditions']
