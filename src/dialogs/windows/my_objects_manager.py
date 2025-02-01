@@ -9,7 +9,8 @@ from src.dialogs.dialogs_states import UserDialog
 from src.dialogs.getters.edit_object import start_edit_menu_dialog
 from src.dialogs.getters.my_objects_manager import my_objects_getter, start_create_object, open_my_object, \
     delete_my_object, \
-    object_confirmed_getter, invert_edit_menu_open, invert_delete_object_confirm_menu, my_object_delete_getter
+    object_confirmed_getter, invert_edit_menu_open, invert_delete_object_confirm_menu, my_object_delete_getter, \
+    restore_object
 
 # Раздел 'Мои объекты'
 my_objects_manager_window = Window(
@@ -35,8 +36,7 @@ my_objects_manager_window = Window(
             width=2,
             height=7,
         ),
-        Button(Const('➕ Создать объект [100руб. - 365 дней]'), id='create_object', on_click=start_create_object, when=F['is_limit_object_max']),
-        Button(Const('➕ Создать объект [0руб. - Бессрочно]'), id='create_object', on_click=start_create_object, when=~F['is_limit_object_max']),
+        Button(Format('{create_object_btn_text}'), id='create_object', on_click=start_create_object),
         SwitchTo(Const('Назад'), id='to_main_menu', state=UserDialog.main_menu),
     ),
 
@@ -90,8 +90,7 @@ my_object_deleted_window = Window(
            '<blockquote><b>Причина:</b>\n'
            '{delete_reason}</blockquote>'),
 
-    Button(Const('🔄 Восстановить объект [100руб. - 365 дней]'), id='restore_obj', on_click=restore_object, when=F['is_limit_object_max']),
-    Button(Const('🔄 Восстановить объект [0руб. - Бессрочно]'), id='restore_obj', on_click=restore_object, when=~F['is_limit_object_max']),
+    Button(Format('{edit_object_btn_text}'), id='restore_obj', on_click=restore_object),
     SwitchTo(Const('Назад'), id='back_to_my_objects_manager', state=UserDialog.my_objects_manager),
 
     getter=my_object_delete_getter,

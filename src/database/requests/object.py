@@ -150,7 +150,7 @@ async def db_update_object(object_id: int, object_data: dict) -> bool:
             return False
 
         key_list = ['status', 'obj_type', 'country_thread_id', 'address', 'conditions', 'description', 'contacts', 'photos',
-                    'delete_reason', 'message_ids']
+                    'delete_reason', 'message_ids', 'payment_date']
 
         # Обновляем только указанные поля объекта
         for key, value in object_data.items():
