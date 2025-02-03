@@ -5,13 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1bd5e2e9-72a5-4a8d-b09e-36008a260f3c" name="Changes" comment="AutoCheckRelevanceObjects">
-      <change afterPath="$PROJECT_DIR$/src/utils/objects_monitoring_sistem.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bot.py" beforeDir="false" afterPath="$PROJECT_DIR$/bot.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/database/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/src/database/db.sqlite3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/database/requests/object.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/database/requests/object.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/payments/payment_handler.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/payments/payment_handler.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sessions/acc_to_check_topic.session" beforeDir="false" afterPath="$PROJECT_DIR$/src/sessions/acc_to_check_topic.session" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/utils/objects_monitoring_sistem.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/objects_monitoring_sistem.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -134,14 +131,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1736221880772</updated>
-    </task>
-    <task id="LOCAL-00026" summary="Commit">
-      <option name="closed" value="true" />
-      <created>1737045550691</created>
-      <option name="number" value="00026" />
-      <option name="presentableId" value="LOCAL-00026" />
-      <option name="project" value="LOCAL" />
-      <updated>1737045550691</updated>
     </task>
     <task id="LOCAL-00027" summary="admin_menu_window">
       <option name="closed" value="true" />
@@ -527,7 +516,15 @@
       <option name="project" value="LOCAL" />
       <updated>1738416788216</updated>
     </task>
-    <option name="localTasksCounter" value="75" />
+    <task id="LOCAL-00075" summary="AutoCheckRelevanceObjects">
+      <option name="closed" value="true" />
+      <created>1738429119361</created>
+      <option name="number" value="00075" />
+      <option name="presentableId" value="LOCAL-00075" />
+      <option name="project" value="LOCAL" />
+      <updated>1738429119361</updated>
+    </task>
+    <option name="localTasksCounter" value="76" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">

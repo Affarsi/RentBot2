@@ -23,8 +23,7 @@ scheduler = AsyncIOScheduler() # Создание асинхронного пл�
 # Запуск систему мониторинга объектов
 async def scheduler_start():
     print('scheduler запущен!')
-    # scheduler.add_job(objects_monitoring, IntervalTrigger(hours=24))
-    scheduler.add_job(objects_monitoring, IntervalTrigger(seconds=5), args=[bot])
+    scheduler.add_job(objects_monitoring, IntervalTrigger(hours=12), args=[bot])
     scheduler.start()
 
 

@@ -70,9 +70,10 @@ async def send_notification(bot: Bot, user_id: int, generate_id: str, message: s
 
 # Мониторинг объектов и уведомления пользователей о статусе подписки
 async def objects_monitoring(bot: Bot):
+    print("***Активировалась служба мониторинга объектов!***")
+
     all_objects_list = await db_get_object()
     warning_objects_dict = await payment_date_analysis(all_objects_list)
-    print(warning_objects_dict)
 
     # Реагируем на объекты с оканчивающимся сроком
     for obj_list, days in zip(
