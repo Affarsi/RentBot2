@@ -87,7 +87,9 @@ async def db_get_user(
                     "full_name": user.full_name,
                     "username": user.username,
                     "status": user.status,
-                    "object_limit": user.object_limit
+                    "object_limit": user.object_limit,
+                    "balance": user.balance,
+                    "recurring_payments": user.recurring_payments
                 })
 
             user = users_list
@@ -117,7 +119,9 @@ async def db_get_user(
             "status": user.status,
             "obj_limit": str(user.object_limit),
             "obj_list": obj_list,
-            "obj_list_len": len(filtered_obj_list_len)
+            "obj_list_len": len(filtered_obj_list_len),
+            "balance": user.balance,
+            "recurring_payments": user.recurring_payments
         }
 
         return user_dict
@@ -125,21 +129,33 @@ async def db_get_user(
 
 # Изменить информацию о Пользователе
 async def db_update_user(
-        user_id: int,
+        user_id: int = None,
+        telegram_id: int = None,
         status: str = None,
-        object_limit: int = None
+        object_limit: int = None,
+        plus_balance: int = None,
+        recurring_payments: bool = None
 ):
     async with async_session() as session:
         # Получаем Пользователя по user_id
-        result = await session.execute(select(User).where(User.id == user_id))
-        user = result.scalar_one_or_none()
+        if user_id is not None:
+            result = await session.execute(select(User).where(User.id == user_id))
+            user = result.scalar_one_or_none()
+
+        # Получаем Пользователя по telegram_id
+        if telegram_id is not None:
+            result = await session.execute(select(User).where(User.telegram_id == telegram_id))
+            user = result.scalar_one_or_none()
 
         # Обновляем поля, если они были переданы
         if status is not None:
             user.status = status
-
         if object_limit is not None:
             user.object_limit = object_limit
+        if plus_balance is not None:
+            user.balance += plus_balance
+        if recurring_payments is not None:
+            user.recurring_payments = recurring_payments
 
         # Сохраняем изменения
         session.add(user)

@@ -1,3 +1,5 @@
+import datetime
+
 from aiogram.types import CallbackQuery, Message
 from aiogram_dialog import DialogManager, ShowMode
 from aiogram_dialog.widgets.kbd import Button, Select
@@ -7,6 +9,7 @@ from config import Config
 from src.database.requests.object import db_get_object, db_update_object
 from src.database.requests.user import db_get_user
 from src.dialogs.dialogs_states import AdminDialog
+from src.payments.payment_handler import deposit_user_balance
 from src.utils.media_group_creator import send_media_group
 
 
@@ -90,7 +93,7 @@ async def admin_open_object(
         await dialog_manager.switch_to(AdminDialog.admin_open_object_confirmed)
     elif object_data['status'] == '🔄':
         await dialog_manager.switch_to(AdminDialog.admin_open_object_moderated)
-    else:
+    elif object_data['status'] == '❌':
         await dialog_manager.switch_to(AdminDialog.admin_open_object_deleted)
 
 
@@ -124,13 +127,25 @@ async def admin_open_object_confirmed_getter(dialog_manager: DialogManager, **kw
     is_edit_menu_open = dialog_manager.dialog_data.get('is_admin_edit_menu_open')
     is_delete_object_confirm_menu = dialog_manager.dialog_data.get('is_admin_delete_object_confirm_menu')
 
-    # Получаем информацию о пользователе
+    # Получаем информацию из БД
     object_id = dialog_manager.dialog_data.get('admin_open_object_id')
+    object_data = dialog_manager.dialog_data.get('admin_open_object_data')
+    payment_date = object_data['payment_date']
     getter_data = await db_get_user(object_id=object_id)
 
-    # Формируем словарь
+    # Вычисляем остаток дней
+    if payment_date is None:
+        # Бессрочный объект
+        days_left = 'Бессрочно'
+    else:
+        end_date = payment_date + datetime.timedelta(days=365)
+        days_left = abs(end_date - payment_date)
+        days_left = str(days_left).split(',')[0]
+
+    # Дополняем словарь
     getter_data['admin_dit_menu_open'] = is_edit_menu_open
     getter_data['admin_delete_object_confirm_menu'] = is_delete_object_confirm_menu
+    getter_data['days_left'] = days_left
 
     return getter_data
 
@@ -194,8 +209,16 @@ async def reason_object_reject_input(
         widget: MessageInput,
         dialog_manager: DialogManager
 ):
+    # Инициализируем данные
     delete_reason = message.html_text
     object_id = dialog_manager.dialog_data.get('admin_open_object_id')
+    object_data = dialog_manager.dialog_data.get('admin_open_object_data')
+    user_id = object_data.get('owner_id')
+
+    # Если за объект были внесены деньги - возвращаем их (100 руб)
+    if object_data.get('payment_date'):
+        print(object_data.get('payment_date'))
+        await deposit_user_balance(amount=100, message=message, user_id=user_id)
 
     # Обновляем объект в БД
     new_object_data = {'status': '❌', 'delete_reason': delete_reason}
@@ -236,4 +259,34 @@ async def reason_object_delete_input(
 # Получить причину удаления объекта
 async def admin_object_delete_reason_getter(dialog_manager: DialogManager, **kwargs):
     delete_reason = dialog_manager.dialog_data.get('admin_open_object_data').get('delete_reason')
-    return {'delete_reason': delete_reason}
+    is_edit_menu_open = dialog_manager.dialog_data.get('is_admin_edit_menu_open')
+    return {'delete_reason': delete_reason, 'admin_dit_menu_open': is_edit_menu_open}
+
+
+# Восстановить объект
+async def admin_restore_object(
+        callback: CallbackQuery,
+        widget: Button,
+        dialog_manager: DialogManager
+):
+    # Инициализируем данные
+    object_id = dialog_manager.dialog_data.get('admin_open_object_id')
+
+    # Восстанавливаем объект и отправляем его снова на модерацию
+    payment_date = None
+    new_object_data = {'status': '✅', 'payment_date': payment_date, 'delete_reason': None}
+    await db_update_object(object_id=object_id, object_data=new_object_data)
+
+    # Отправляем пост в группу
+    result_object_data = await send_media_group(dialog_manager, object_id, Config.chat, True)
+
+    if not result_object_data:
+        await dialog_manager.event.answer('Не могу отправить пост в чат! Обратитесь к тех админу!')
+    else:
+        # Обновляем message_ids
+        await db_update_object(object_id=object_id,
+                               object_data=result_object_data)
+
+    # Возвращаем обратно Администратора
+    await callback.answer('Объект восстановлен и опубликован!')
+    await dialog_manager.switch_to(state=AdminDialog.all_objects_deleted)

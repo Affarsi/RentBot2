@@ -27,3 +27,5 @@ urllib3_secure_extra==0.1.0
 aiosqlite
 greenlet
 kurigram
+httpx
+apscheduler

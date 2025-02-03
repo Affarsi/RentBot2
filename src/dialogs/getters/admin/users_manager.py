@@ -94,11 +94,34 @@ async def new_user_obj_limit_input(
     try:
         new_object_limit = int(new_object_limit)
     except ValueError:
-        await dialog_manager.event.answer('Вы ввели не число!')
+        await dialog_manager.event.answer('Введите число!')
         return
 
     # Обновляем данные в БД
     await db_update_user(user_id=s_user_id, object_limit=new_object_limit)
+
+    # Переключаем окно
+    await dialog_manager.switch_to(state=AdminDialog.open_user_account)
+
+
+# Приплюсовывание Пользователю баланса
+async def new_user_plus_balance_input(
+        message: Message,
+        widget: MessageInput,
+        dialog_manager: DialogManager
+):
+    amount = message.text # число, на которое нужно приплюсовать баланс Пользователя
+    s_user_id = dialog_manager.dialog_data.get('s_user_id')  # user_id
+
+    # Ввел ли Пользователь число?
+    try:
+        amount = int(amount)
+    except ValueError:
+        await dialog_manager.event.answer('Введите число!')
+        return
+
+    # Обновляем данные в БД
+    await db_update_user(user_id=s_user_id, plus_balance=amount)
 
     # Переключаем окно
     await dialog_manager.switch_to(state=AdminDialog.open_user_account)

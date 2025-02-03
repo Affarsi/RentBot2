@@ -8,7 +8,7 @@ from aiogram_dialog.widgets.text import Const, Format
 
 from src.dialogs.dialogs_states import CreateObject
 from src.dialogs.getters.create_object import (
-    clear_dialog_data_create_object, country_list_getter,
+    stop_create_object, country_list_getter,
     create_object_country_input, create_object_type_input, create_object_address_input, create_object_conditions_input,
     create_object_description_input, create_object_contacts_input, create_object_photos_input,
     dell_photos_create_object, go_final_result_create_onject, submit_create_object
@@ -32,7 +32,7 @@ get_country_window = Window(
             width=2,
             height=7,
         ),
-        Cancel(Const('Прекратить создание объекта'), id='stop_create_object', on_click=clear_dialog_data_create_object)
+        Cancel(Const('Прекратить создание объекта'), id='stop_create_object', on_click=stop_create_object)
     ),
 
     getter=country_list_getter,
@@ -46,7 +46,7 @@ get_type_window = Window(
     MessageInput(create_object_type_input, filter=F.text),
 
     Back(Const('Назад')),
-    Cancel(Const('Прекратить создание объекта'), id='stop_create_object', on_click=clear_dialog_data_create_object),
+    Cancel(Const('Прекратить создание объекта'), id='stop_create_object', on_click=stop_create_object),
 
     state=CreateObject.get_type
 )
@@ -59,7 +59,7 @@ get_address_window = Window(
     MessageInput(create_object_address_input, filter=F.text),
 
     Back(Const('Назад')),
-    Cancel(Const('Прекратить создание объекта'), id='stop_create_object', on_click=clear_dialog_data_create_object),
+    Cancel(Const('Прекратить создание объекта'), id='stop_create_object', on_click=stop_create_object),
 
     state=CreateObject.get_address
 )
@@ -72,7 +72,7 @@ get_conditions_window = Window(
     MessageInput(create_object_conditions_input, filter=F.text),
 
     Back(Const('Назад')),
-    Cancel(Const('Прекратить создание объекта'), id='stop_create_object', on_click=clear_dialog_data_create_object),
+    Cancel(Const('Прекратить создание объекта'), id='stop_create_object', on_click=stop_create_object),
 
     state=CreateObject.get_conditions
 )
@@ -86,7 +86,7 @@ get_description_window = Window(
     MessageInput(create_object_description_input, filter=F.text),
 
     Back(Const('Назад')),
-    Cancel(Const('Прекратить создание объекта'), id='stop_create_object', on_click=clear_dialog_data_create_object),
+    Cancel(Const('Прекратить создание объекта'), id='stop_create_object', on_click=stop_create_object),
 
     state=CreateObject.get_description
 )
@@ -99,7 +99,7 @@ get_contacts_window = Window(
     MessageInput(create_object_contacts_input, filter=F.text),
 
     Back(Const('Назад')),
-    Cancel(Const('Прекратить создание объекта'), id='stop_create_object', on_click=clear_dialog_data_create_object),
+    Cancel(Const('Прекратить создание объекта'), id='stop_create_object', on_click=stop_create_object),
 
     state=CreateObject.get_contacts
 )
@@ -118,8 +118,8 @@ get_photos_window = Window(
         Button(Const('🗑 Удалить фотографии'), id='dell_photos_create_object', on_click=dell_photos_create_object),
         Button(Const('✅ Далее'), id='go_final_result_create_object', on_click=go_final_result_create_onject),
     ),
-    Back(Const('Назад'), on_click=clear_dialog_data_create_object),
-    Cancel(Const('Прекратить создание объекта'), id='stop_create_object', on_click=clear_dialog_data_create_object),
+    Back(Const('Назад'), on_click=stop_create_object),
+    Cancel(Const('Прекратить создание объекта'), id='stop_create_object', on_click=stop_create_object),
 
     state=CreateObject.get_photos
 )
@@ -131,7 +131,7 @@ final_result_window = Window(
           '<b>Выберите действие:</b>'),
 
     Button(Const('✅ Отправить на модерацию'), id='submit_create_object', on_click=submit_create_object),
-    Cancel(Const('Прекратить создание объекта'), id='stop_create_object', on_click=clear_dialog_data_create_object),
+    Cancel(Const('Прекратить создание объекта'), id='stop_create_object', on_click=stop_create_object),
 
     state=CreateObject.final_result
 )

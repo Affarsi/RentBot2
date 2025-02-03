@@ -1,3 +1,4 @@
+from datetime import date
 from sqlalchemy import select
 
 from src.database.requests.user import db_get_user
@@ -29,8 +30,13 @@ async def db_new_object(
             description=object_data['create_object_state_data_description'],
             contacts=object_data['create_object_state_data_contacts'],
             photos=photo_str,
+            payment_date=date.today(),
             owner_id=user["id"]
         )
+
+        # Если объект бессрочной публикации
+        if object_data.get('payment_date_no_limit', False):
+            new_object.payment_date = None
 
         # Попытка добавления объекта в БД
         try:
@@ -64,7 +70,7 @@ async def db_get_object(
     """
     async with async_session() as session:
         # Начинаем запрос с соединения Object и Country
-        query = select(Object, Country.name, Country.id, Country.thread_id).join(Country)
+        query = select(Object, Country.name, Country.id, Country.thread_id, User.telegram_id).join(Country).join(User)
 
         if telegram_id is not None:
             # Сначала получаем user_id по telegram_id
@@ -92,7 +98,7 @@ async def db_get_object(
 
         # Преобразуем объекты в список словарей
         objects_list = []
-        for obj, country_name, country_id, country_thread_id in objects:
+        for obj, country_name, country_id, country_thread_id, owner_telegram_id in objects:
             objects_list.append({
                 "id": obj.id,
                 "generate_id": obj.generate_id,
@@ -108,7 +114,9 @@ async def db_get_object(
                 "photos": obj.photos,
                 "message_ids": obj.message_ids,
                 "delete_reason": obj.delete_reason,
+                "payment_date": obj.payment_date,
                 "owner_id": obj.owner_id,
+                "owner_telegram_id": owner_telegram_id
             })
 
         return objects_list
@@ -143,7 +151,7 @@ async def db_update_object(object_id: int, object_data: dict) -> bool:
             return False
 
         key_list = ['status', 'obj_type', 'country_thread_id', 'address', 'conditions', 'description', 'contacts', 'photos',
-                    'delete_reason', 'message_ids']
+                    'delete_reason', 'message_ids', 'payment_date']
 
         # Обновляем только указанные поля объекта
         for key, value in object_data.items():

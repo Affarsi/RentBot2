@@ -1,7 +1,7 @@
 from aiogram import Router, F
+from aiogram.types import Message
 from aiogram.enums import ChatType
 from aiogram.filters import CommandStart
-from aiogram.types import Message
 from aiogram_dialog import DialogManager, StartMode
 
 from src.database.requests.user import db_new_user
@@ -11,7 +11,7 @@ router = Router()
 router.message.filter(F.chat.type == ChatType.PRIVATE) # Принимает только личные сообщения
 
 
-# /start от Пользователя
+# Обработчик /start
 @router.message(CommandStart())
 async def user_start(message: Message, dialog_manager: DialogManager):
     # Получение данных о Пользователе
@@ -28,9 +28,3 @@ async def user_start(message: Message, dialog_manager: DialogManager):
 
     # Запускаем диалоговое окно
     await dialog_manager.start(UserDialog.main_menu, mode=StartMode.RESET_STACK)
-
-
-
-# /start от Администратора
-
-

@@ -38,6 +38,7 @@ class AdminDialog(StatesGroup):
     open_user_account = State()
     change_user_status = State()
     change_user_obj_limit = State()
+    change_user_balance = State()
 
     all_objects_manager = State()
     all_objects_confirmed = State()
@@ -58,3 +59,8 @@ class AdminEditObject(StatesGroup):
     edit_description = State()
     edit_contacts = State()
     edit_photos = State()
+
+# Пополнение баланса
+class Payment(StatesGroup):
+    main = State()
+    waiting_payment = State()
