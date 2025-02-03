@@ -4,8 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1bd5e2e9-72a5-4a8d-b09e-36008a260f3c" name="Changes" comment="AutoCheckRelevanceObjects">
-      <change beforePath="$PROJECT_DIR$/src/dialogs/getters/create_object.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/dialogs/getters/create_object.py" afterDir="false" />
+    <list default="true" id="1bd5e2e9-72a5-4a8d-b09e-36008a260f3c" name="Changes" comment="country_name_create_obj">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/database/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/src/database/db.sqlite3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dialogs/getters/admin/all_objects_manager.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/dialogs/getters/admin/all_objects_manager.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/utils/media_group_creator.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/media_group_creator.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -33,22 +36,22 @@
     &quot;assignee&quot;: &quot;Affarsi&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/Affarsi/RentBot2.git",
-    "accountId": "54f2b555-64cf-4956-b608-2e4ee5a2afb4"
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/Affarsi/RentBot2.git&quot;,
+    &quot;accountId&quot;: &quot;54f2b555-64cf-4956-b608-2e4ee5a2afb4&quot;
   },
-  "recentNewPullRequestHead": {
-    "server": {
-      "useHttp": false,
-      "host": "github.com",
-      "port": null,
-      "suffix": null
+  &quot;recentNewPullRequestHead&quot;: {
+    &quot;server&quot;: {
+      &quot;useHttp&quot;: false,
+      &quot;host&quot;: &quot;github.com&quot;,
+      &quot;port&quot;: null,
+      &quot;suffix&quot;: null
     },
-    "owner": "Affarsi",
-    "repository": "RentBot2"
+    &quot;owner&quot;: &quot;Affarsi&quot;,
+    &quot;repository&quot;: &quot;RentBot2&quot;
   }
-}]]></component>
+}</component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 0
 }</component>
@@ -60,26 +63,26 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Python.bot.executor": "Run",
-    "Python.check_pay.executor": "Run",
-    "Python.commands.executor": "Run",
-    "Python.dolbobot.executor": "Run",
-    "Python.main_menu.executor": "Run",
-    "Python.payment_manager.executor": "Run",
-    "Python.send_pay.executor": "Run",
-    "Python.test.executor": "Run",
-    "Python.upgrade_tariff.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "fixes",
-    "ignore.virus.scanning.warn.message": "true",
-    "last_opened_file_path": "D:/PCFather/Files/Programm files/pycharmProjects/MyLessons",
-    "settings.editor.selected.configurable": "reference.settingsdialog.IDE.editor.colors.Color Scheme Font"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Python.bot.executor&quot;: &quot;Run&quot;,
+    &quot;Python.check_pay.executor&quot;: &quot;Run&quot;,
+    &quot;Python.commands.executor&quot;: &quot;Run&quot;,
+    &quot;Python.dolbobot.executor&quot;: &quot;Run&quot;,
+    &quot;Python.main_menu.executor&quot;: &quot;Run&quot;,
+    &quot;Python.payment_manager.executor&quot;: &quot;Run&quot;,
+    &quot;Python.send_pay.executor&quot;: &quot;Run&quot;,
+    &quot;Python.test.executor&quot;: &quot;Run&quot;,
+    &quot;Python.upgrade_tariff.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;fixes&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/PCFather/Files/Programm files/pycharmProjects/MyLessons&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settingsdialog.IDE.editor.colors.Color Scheme Font&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="D:\PCFather\Files\Programm files\pycharmProjects\Kwork\RentBot2" />
@@ -138,14 +141,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1736221880772</updated>
-    </task>
-    <task id="LOCAL-00029" summary="admin_menu_window">
-      <option name="closed" value="true" />
-      <created>1737199230393</created>
-      <option name="number" value="00029" />
-      <option name="presentableId" value="LOCAL-00029" />
-      <option name="project" value="LOCAL" />
-      <updated>1737199230393</updated>
     </task>
     <task id="LOCAL-00030" summary="admin_users_manager">
       <option name="closed" value="true" />
@@ -531,7 +526,15 @@
       <option name="project" value="LOCAL" />
       <updated>1738625060362</updated>
     </task>
-    <option name="localTasksCounter" value="78" />
+    <task id="LOCAL-00078" summary="country_name_create_obj">
+      <option name="closed" value="true" />
+      <created>1738625367247</created>
+      <option name="number" value="00078" />
+      <option name="presentableId" value="LOCAL-00078" />
+      <option name="project" value="LOCAL" />
+      <updated>1738625367247</updated>
+    </task>
+    <option name="localTasksCounter" value="79" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -546,7 +549,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="admin_users_manager" />
     <MESSAGE value="admin_objects_manager" />
     <MESSAGE value="admin_info_razdel" />
     <MESSAGE value="admin_user_manager" />
@@ -571,6 +573,7 @@
     <MESSAGE value="commit" />
     <MESSAGE value="Editing before recovery" />
     <MESSAGE value="AutoCheckRelevanceObjects" />
-    <option name="LAST_COMMIT_MESSAGE" value="AutoCheckRelevanceObjects" />
+    <MESSAGE value="country_name_create_obj" />
+    <option name="LAST_COMMIT_MESSAGE" value="country_name_create_obj" />
   </component>
 </project>
