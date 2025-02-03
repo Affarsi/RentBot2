@@ -18,6 +18,8 @@ result_and_edit_menu_window = Window(
     Row(
         SwitchTo(Const('Цена и Условия'), id='edit_conditions', state=EditObject.edit_conditions),
         SwitchTo(Const('Описание'), id='edit_description', state=EditObject.edit_description),
+    ),
+    Row(
         SwitchTo(Const('Контакты'), id='edit_contacts', state=EditObject.edit_contacts),
         SwitchTo(Const('Фотографии'), id='edit_photos', state=EditObject.edit_photos),
     ),

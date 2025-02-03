@@ -18,10 +18,14 @@ object_edit_menu = Group(
     Row(
         Button(Const('Цена и Условия'), id='edit_conditions', on_click=start_edit_menu_dialog),
         Button(Const('Описание'), id='edit_description', on_click=start_edit_menu_dialog),
+
+        when=F['edit_menu_open']
+    ),
+    Row(
         Button(Const('Контакты'), id='edit_contacts', on_click=start_edit_menu_dialog),
         Button(Const('Фотографии'), id='edit_photos', on_click=start_edit_menu_dialog),
 
-        when=F['edit_menu_open']
+            when=F['edit_menu_open']
     ),
 )
 
