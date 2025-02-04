@@ -42,6 +42,7 @@ my_objects_manager_window = Window(
     ),
 
     Group(
+        Button(Const('У вас нет объектов'), id='object_list_null', when=F['not_object']),
         ScrollingGroup(
             Select(
                 Format("{item[0]}"),
@@ -53,6 +54,7 @@ my_objects_manager_window = Window(
             id='s_my_objects',
             width=2,
             height=7,
+            when=~F['not_object']
         ),
         Button(Format('{create_object_btn_text}'), id='create_object', on_click=start_create_object), # Создание объекта
         SwitchTo(Const('Назад'), id='to_main_menu', state=UserDialog.main_menu),
