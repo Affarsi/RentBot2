@@ -1,7 +1,7 @@
 import asyncio
 
 from aiogram.types import Message, CallbackQuery
-from aiogram_dialog import DialogManager, ShowMode
+from aiogram_dialog import DialogManager
 from aiogram_dialog.widgets.input import MessageInput
 from aiogram_dialog.widgets.kbd import Button
 
@@ -74,4 +74,55 @@ async def update_countries(
     asyncio.create_task(
         delete_message_delayed(dialog_manager.event.bot, dialog_manager.event.from_user.id, service_message.message_id,
         delay=10)
+    )
+
+
+# Получаем сообщение, которое будет отправлено в массовой рассылке
+async def pre_mass_send_getter(dialog_manager: DialogManager, **kwargs):
+    mass_send_text = dialog_manager.find('mass_send_text').get_value()
+    return {'mass_send_text': mass_send_text}
+
+
+# Отдельно от основного потока продолжаем массовую рассылку
+async def auto_mass_send(bot, users_list, mass_send_text):
+    msg_count = 0
+
+    # рассылаем смс всем пользователям из списка
+    for user in users_list:
+        telegram_id = user['telegram_id']
+
+        if telegram_id in Config.admin_ids:
+            # Админа пропускаем
+            continue
+
+        try:
+            # Отправляем сообщение Пользователю
+            await bot.send_message(telegram_id, mass_send_text)
+            msg_count += 1
+        except Exception as e:
+            print(f'Ошибка при отправке массовой рассылки:\n\n{e}')
+        await asyncio.sleep(0.7)
+
+    # Оповещаем о завершении работы
+    for admin in Config.admin_ids:
+        try:
+            # Отправляем сообщение Пользователю
+            await bot.send_message(admin, f"📢 <b>Массовая рассылка успешно завершена!</b>\n\n"
+                                          f"Отправлено сообщений в количестве: <code>{msg_count}шт.</code>")
+        except Exception as e:
+            print(f'Ошибка при отправке инфы о завершении массовой рассылки:\n\n{e}')
+
+
+# Начать массовую рассылку
+async def start_mass_send(
+        callback: CallbackQuery,
+        widget: Button,
+        dialog_manager: DialogManager
+):
+    mass_send_text = dialog_manager.find('mass_send_text').get_value()
+    users_list = await db_get_user()
+    bot = dialog_manager.event.bot
+
+    asyncio.create_task(
+        auto_mass_send(bot, users_list, mass_send_text)
     )

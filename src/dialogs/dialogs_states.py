@@ -52,6 +52,9 @@ class AdminDialog(StatesGroup):
 
     update_info = State()
 
+    mass_send = State()
+    pre_mass_send = State()
+
 # Отдельные состояния для изменения объекта для Администратора
 class AdminEditObject(StatesGroup):
     result_and_edit_menu = State()
