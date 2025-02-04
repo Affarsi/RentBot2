@@ -111,7 +111,7 @@ async def send_media_group(
     if send_to_chat:
         # Удаляем предыдущие посты!
         old_message_ids = object_data.get('message_ids')
-        old_message_ids = old_message_ids.split(', ')
+        old_message_ids = old_message_ids.split(', ') if old_message_ids is not None else []
         if old_message_ids:
             try:    # удаляем медиа группу старых сообщений
                 await dialog_manager.event.bot.delete_messages(Config.chat, old_message_ids)
