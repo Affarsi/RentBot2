@@ -11,9 +11,11 @@ main_menu_window = Window(
     Format(
         '👋 <b>@{username}, Добро пожаловать!</b>\n\n'
         '👤 Ваш статус: <code>{status}</code>\n'
-        '🏠 Доступно бесплатных объектов: <code>{obj_limit}</code>\n'
-        '🏠 Создано объектов: <code>{obj_list_len}</code>\n\n'
-        '💳 Баланс: <code>{balance}руб.</code>'
+        '🏠 Ваши лимиты:\n'
+        '● Бесплатных объектов: <code>{free_objects_limit} шт.</code>\n'
+        '● Платных объектов: <code>{paid_objects_limit} шт.</code>\n\n'
+        '💳 Баланс: <code>{balance} руб.</code>\n'
+        '🏘 Всего объектов: <code>{obj_list_len} шт.</code>'
     ),
 
     Group(

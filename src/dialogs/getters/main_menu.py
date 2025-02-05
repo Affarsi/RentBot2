@@ -19,6 +19,12 @@ async def user_main_getter(dialog_manager: DialogManager, **kwargs):
     is_admin = telegram_id in Config.admin_ids
     user_dict['is_admin'] = is_admin
 
+    # Подсчет доступных платных и бесплатных объектов
+    free_objects_limit = int(user_dict['obj_limit']) - int(user_dict['free_objects_count'])
+    free_objects_limit = 0 if free_objects_limit < 0 else free_objects_limit
+    user_dict['free_objects_limit'] = free_objects_limit
+    user_dict['paid_objects_limit'] = int(user_dict['balance'] / 100)
+
     # Состояние автопродления
     if user_dict.get('recurring_payments'):
         user_dict['recurring_payments_btn_text'] = 'Автопродление объектов [Вкл]'

@@ -108,7 +108,16 @@ async def db_get_user(
         filtered_objects = await session.execute(
             select(Object).where(Object.owner_id == user.id, Object.status.in_(["🔄", "✅"]))
         )
-        filtered_obj_list_len = [obj.id for obj in filtered_objects.scalars()]
+        filtered_obj_list_len = len([obj.id for obj in filtered_objects.scalars()])
+
+        # Подсчет бесплатных и платных объектов
+        paid_objects_count = await session.execute(
+            select(func.count(Object.id)).where(Object.owner_id == user.id, Object.payment_date != None)
+        )
+        free_objects_count = await session.execute(
+            select(func.count(Object.id)).where(Object.owner_id == user.id, Object.payment_date == None,
+                                                Object.status.in_(["🔄", "✅"]))
+        )
 
         # Формируем словарь
         user_dict = {
@@ -119,7 +128,9 @@ async def db_get_user(
             "status": user.status,
             "obj_limit": str(user.object_limit),
             "obj_list": obj_list,
-            "obj_list_len": len(filtered_obj_list_len),
+            "obj_list_len": filtered_obj_list_len,
+            "paid_objects_count": paid_objects_count.scalar(),
+            "free_objects_count": free_objects_count.scalar(),
             "balance": user.balance,
             "recurring_payments": user.recurring_payments
         }

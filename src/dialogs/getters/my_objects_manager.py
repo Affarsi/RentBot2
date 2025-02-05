@@ -20,7 +20,7 @@ async def my_objects_getter(dialog_manager: DialogManager, **kwargs):
     object_list = await db_get_object(telegram_id=telegram_id) # Получение списка объектов из БД
     user_dict = await db_get_user(telegram_id=telegram_id)
     obj_limit = user_dict.get('obj_limit')
-    obj_list_len = user_dict.get('obj_list_len')
+    free_objects_count = user_dict.get('free_objects_count')
 
     # Определяем платное или бесплатное будет создание объекта
     is_admin = False
@@ -30,7 +30,7 @@ async def my_objects_getter(dialog_manager: DialogManager, **kwargs):
         is_admin = True
     else:
         # Проверяем, израсходовал ли Пользователь свой лимит объектов?
-        is_limit_object_max = True if obj_list_len >= int(obj_limit) else False
+        is_limit_object_max = True if free_objects_count >= int(obj_limit) else False
 
     # Сохраняем данные
     dialog_manager.dialog_data['is_limit_object_max'] = is_limit_object_max
