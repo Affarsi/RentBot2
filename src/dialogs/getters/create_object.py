@@ -5,6 +5,7 @@ from aiogram_dialog.widgets.kbd import Button
 from aiogram.types import CallbackQuery, Message
 from aiogram_dialog.widgets.input import MessageInput
 
+from config import Config
 from src.database.requests.country import db_get_country, db_get_country_name_by_thread_id
 from src.database.requests.object import db_new_object
 from src.database.requests.user import db_update_user
@@ -20,12 +21,13 @@ async def stop_create_object(
         dialog_manager: DialogManager=None
 ):
     dialog_manager.show_mode = ShowMode.AUTO # В исходное положение
+    amount = Config.price_amount
 
     # Возвращаем денежные средства если создание объекта было платным
     is_free_create_object = dialog_manager.start_data.get('is_free_create_object')
     if not is_free_create_object:
         tg_id = dialog_manager.event.from_user.id
-        await deposit_user_balance(callback=callback, amount=100, telegram_id=tg_id)
+        await deposit_user_balance(callback=callback, amount=amount, telegram_id=tg_id)
 
 
 # Очищает фотографии, полученные при создании объекта

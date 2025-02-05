@@ -73,9 +73,10 @@ async def start_create_object(
 
     # Проверяем условия и пытаемся списать деньги с баланса Пользователя
     try:
+        amount = Config.price_amount
         is_free_create_object = await withdraw_user_balance(
             is_admin=is_admin, is_limit_object_max=is_limit_object_max,
-            amount=100, balance=balance, user_id=user_id, callback=callback
+            amount=amount, balance=balance, user_id=user_id, callback=callback
         )
     except InsufficientFundsError: return
 
@@ -219,9 +220,10 @@ async def restore_object(
 
     # Проверяем условия и пытаемся списать деньги с баланса Пользователя
     try:
+        amount = Config.price_amount
         is_free_edit_object = await withdraw_user_balance(
             is_admin=is_admin, is_limit_object_max=is_limit_object_max,
-            amount=100, balance=balance, user_id=user_id, callback=callback
+            amount=amount, balance=balance, user_id=user_id, callback=callback
         )
     except InsufficientFundsError: return
 

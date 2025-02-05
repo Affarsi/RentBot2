@@ -4,6 +4,7 @@ from aiogram_dialog import DialogManager
 from aiogram_dialog.widgets.kbd import Button, ManagedCounter
 from aiogram.types import CallbackQuery
 
+from config import Config
 from src.database.requests.payment import db_new_payment, db_update_payment_success
 from src.database.requests.user import db_update_user
 from src.dialogs.dialogs_states import Payment
@@ -27,7 +28,7 @@ async def create_payment(
         dialog_manager: DialogManager
 ):
     # Инициализация данных
-    amount = dialog_manager.dialog_data.get('payment_amount', 100)
+    amount = dialog_manager.dialog_data.get('payment_amount', Config.price_amount)
     telegram_id = callback.from_user.id
     generate_id = datetime.datetime.now().strftime("%Y%m%d%H%M%S%f")
 

@@ -6,6 +6,7 @@ from aiogram_dialog.widgets.kbd import Button
 from aiogram.types import CallbackQuery, Message
 from aiogram_dialog.widgets.input import MessageInput
 
+from config import Config
 from src.database.requests.object import db_get_object, db_update_object
 from src.database.requests.user import db_get_user
 from src.dialogs.dialogs_states import EditObject, UserDialog
@@ -220,9 +221,10 @@ async def submit_edit_object(
 
             # Проверяем условия и пытаемся списать деньги с баланса Пользователя
             try:
+                amount = Config.price_amount
                 await withdraw_user_balance(
                     is_admin=is_admin, is_limit_object_max=is_limit_object_max,
-                    amount=100, balance=balance, user_id=user_id, callback=callback
+                    amount=amount, balance=balance, user_id=user_id, callback=callback
                 )
             except InsufficientFundsError: return
 
