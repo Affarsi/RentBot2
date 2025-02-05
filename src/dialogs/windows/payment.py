@@ -13,10 +13,10 @@ payment_main_window = Window(
 
     Counter(
         id='select_amount',
-        plus=Const('+100'),
-        minus=Const('-100'),
-        min_value=100,
-        increment=100,
+        plus=Const('+50'),
+        minus=Const('-50'),
+        min_value=50,
+        increment=50,
         default=100,
         on_value_changed=get_amount
     ),

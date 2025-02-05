@@ -213,11 +213,10 @@ async def reason_object_reject_input(
     object_id = dialog_manager.dialog_data.get('admin_open_object_id')
     object_data = dialog_manager.dialog_data.get('admin_open_object_data')
     user_id = object_data.get('owner_id')
-    amount = Config.price_amount
 
-    # Если за объект были внесены деньги - возвращаем их (100 руб)
+    # Если за объект были внесены деньги - возвращаем деньги
     if object_data.get('payment_date'):
-        print(object_data.get('payment_date'))
+        amount = Config.price_amount
         await deposit_user_balance(amount=amount, message=message, user_id=user_id)
 
     # Обновляем объект в БД

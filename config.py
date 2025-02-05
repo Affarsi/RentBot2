@@ -5,7 +5,7 @@ class Config:
     # Основные настройки
     admin_ids = [6094120092] # IDs список администраторов
     chat: str or int = "@sdafsfdasdfasdfasfd" # -109234012098402 или "@klajflksadjflsakdjfklsafd"
-    price_amount = 100 # Цена на создание/продление/восстановление объекта в рублях
+    price_amount: int = 200 # Цена на создание/продление/восстановление объекта в рублях
 
     # Технические настройки
     bot_token: str = '7617336613:AAEz95VLn0kAoO7vR_9LQbxz4CXfrIpHKrM'  # test_kwork

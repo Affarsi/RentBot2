@@ -37,8 +37,9 @@ async def my_objects_getter(dialog_manager: DialogManager, **kwargs):
     dialog_manager.dialog_data['is_admin'] = is_admin
 
     # Формируем кнопку
+    amount = Config.price_amount
     if is_limit_object_max:
-        create_object_btn_text = '➕ Создать объект [100руб. - 365 дней]'
+        create_object_btn_text = f'➕ Создать объект [{amount}руб. - 365 дней]'
     else:
         create_object_btn_text = '➕ Создать объект [0руб. - Бессрочно]'
 
@@ -194,8 +195,9 @@ async def my_object_delete_getter(dialog_manager: DialogManager, **kwargs):
     delete_reason = dialog_manager.dialog_data.get('open_object_data').get('delete_reason')
 
     # Формируем кнопку
+    amount = Config.price_amount
     if is_limit_object_max:
-        edit_object_btn_text = '🔄 Восстановить объект [100руб. - 365 дней]'
+        edit_object_btn_text = f'🔄 Восстановить объект [{amount}руб. - 365 дней]'
         dialog_manager.dialog_data['is_free_edit_object'] = False # Запоминаем, что редактирование платное
     else:
         edit_object_btn_text = '🔄 Восстановить объект [0руб. - Бессрочно]'
