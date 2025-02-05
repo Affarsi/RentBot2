@@ -5,7 +5,7 @@ from aiogram_dialog.widgets.kbd import Button
 from aiogram.types import CallbackQuery, Message
 from aiogram_dialog.widgets.input import MessageInput
 
-from src.database.requests.country import db_get_country, db_get_country_name_by_id
+from src.database.requests.country import db_get_country, db_get_country_name_by_thread_id
 from src.database.requests.object import db_new_object
 from src.database.requests.user import db_update_user
 from src.dialogs.dialogs_states import CreateObject
@@ -54,7 +54,7 @@ async def create_object_country_input(
         dialog_manager: DialogManager,
         item_id: str
 ):
-    country_name = await db_get_country_name_by_id(country_id=int(item_id))
+    country_name = await db_get_country_name_by_thread_id(country_thread_id=int(item_id))
 
     dialog_manager.dialog_data['create_object_state_data_country_thread_id'] = int(item_id)
     dialog_manager.dialog_data['create_object_state_data_country_name'] = country_name

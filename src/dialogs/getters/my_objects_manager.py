@@ -44,7 +44,7 @@ async def my_objects_getter(dialog_manager: DialogManager, **kwargs):
 
     # Если у Пользователя не найдено объектов
     if not object_list:
-        return {'my_object_list': [['У вас нет объектов', 1]], 'create_object_btn_text': create_object_btn_text}
+        return {'not_object': True, 'create_object_btn_text': create_object_btn_text}
 
     # Формируем список объектов
     my_object_list = []
@@ -55,7 +55,7 @@ async def my_objects_getter(dialog_manager: DialogManager, **kwargs):
         country = obj['country']
         my_object_list.append([f'{status} | ID: {generate_id} | {country}', str(id)])
 
-    return {'my_object_list': my_object_list, 'create_object_btn_text': create_object_btn_text}
+    return {'not_object': False, 'my_object_list': my_object_list, 'create_object_btn_text': create_object_btn_text}
 
 
 # Создание объекта. Запуск диалога с созданием объекта

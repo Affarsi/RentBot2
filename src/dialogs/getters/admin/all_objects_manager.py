@@ -189,7 +189,6 @@ async def accept_moderated_object(
 
     # Отправляем пост в группу
     object_data = await send_media_group(dialog_manager, object_id, chat_id, send_to_chat)
-
     if not object_data:
         await dialog_manager.event.answer('Ошибка при отправки поста. Обратитесь к тех администратору!')
         return

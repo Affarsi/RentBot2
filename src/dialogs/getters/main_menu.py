@@ -1,8 +1,10 @@
+import asyncio
+
 from config import Config
 from aiogram_dialog import DialogManager
 
 from aiogram.types import CallbackQuery
-from aiogram_dialog.widgets.kbd import ManagedCheckbox, Button
+from aiogram_dialog.widgets.kbd import Button
 
 from src.database.requests.settings import db_get_info
 from src.database.requests.user import db_get_user, db_update_user

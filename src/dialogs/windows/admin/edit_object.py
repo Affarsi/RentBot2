@@ -19,6 +19,8 @@ admin_result_and_edit_menu_window = Window(
     Row(
         SwitchTo(Const('Цена и Условия'), id='admin_edit_conditions', state=AdminEditObject.edit_conditions),
         SwitchTo(Const('Описание'), id='admin_edit_description', state=AdminEditObject.edit_description),
+    ),
+    Row(
         SwitchTo(Const('Контакты'), id='admin_edit_contacts', state=AdminEditObject.edit_contacts),
         SwitchTo(Const('Фотографии'), id='admin_edit_photos', state=AdminEditObject.edit_photos),
     ),

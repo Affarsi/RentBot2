@@ -19,11 +19,11 @@ async def db_get_country() -> list:
         return country_list
 
 
-# Возвращает название страны по её ID
-async def db_get_country_name_by_id(country_id: int) -> str:
+# Возвращает название страны по её thread_ID
+async def db_get_country_name_by_thread_id(country_thread_id: int) -> str:
     async with async_session() as session:
         # Выполняем запрос к базе данных для получения страны по ID
-        result = await session.execute(select(Country).where(Country.id == country_id))
+        result = await session.execute(select(Country).where(Country.thread_id == country_thread_id))
 
         # Извлекаем единственный результат
         country = result.scalar_one_or_none()

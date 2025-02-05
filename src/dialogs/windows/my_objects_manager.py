@@ -18,10 +18,14 @@ object_edit_menu = Group(
     Row(
         Button(Const('Цена и Условия'), id='edit_conditions', on_click=start_edit_menu_dialog),
         Button(Const('Описание'), id='edit_description', on_click=start_edit_menu_dialog),
+
+        when=F['edit_menu_open']
+    ),
+    Row(
         Button(Const('Контакты'), id='edit_contacts', on_click=start_edit_menu_dialog),
         Button(Const('Фотографии'), id='edit_photos', on_click=start_edit_menu_dialog),
 
-        when=F['edit_menu_open']
+            when=F['edit_menu_open']
     ),
 )
 
@@ -38,6 +42,7 @@ my_objects_manager_window = Window(
     ),
 
     Group(
+        Button(Const('У вас нет объектов'), id='object_list_null', when=F['not_object']),
         ScrollingGroup(
             Select(
                 Format("{item[0]}"),
@@ -49,6 +54,7 @@ my_objects_manager_window = Window(
             id='s_my_objects',
             width=2,
             height=7,
+            when=~F['not_object']
         ),
         Button(Format('{create_object_btn_text}'), id='create_object', on_click=start_create_object), # Создание объекта
         SwitchTo(Const('Назад'), id='to_main_menu', state=UserDialog.main_menu),
