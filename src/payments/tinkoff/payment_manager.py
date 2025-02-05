@@ -6,8 +6,8 @@ import json
 
 from collections import OrderedDict
 
-TINKOFF_TERMINAL_KEY = "1737740259529DEMO"
-TINKOFF_TERMINAL_PASSWORD = "Qu9g^zQS&TRtnyCp"
+TINKOFF_TERMINAL_KEY = "1737740259556"
+TINKOFF_TERMINAL_PASSWORD = "LbyrxXU56!FTAq&h"
 TINKOFF_INIT_URL = "https://securepay.tinkoff.ru/v2/Init"
 TINKOFF_CHECK_ORDER_URL = "https://securepay.tinkoff.ru/v2/CheckOrder"
 
