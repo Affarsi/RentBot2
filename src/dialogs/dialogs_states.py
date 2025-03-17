@@ -3,13 +3,12 @@ from aiogram.fsm.state import State, StatesGroup
 # Основные состояния Пользователя
 class UserDialog(StatesGroup):
     main_menu = State()
+    info = State() # Информационная доска
 
     my_objects_manager = State()
     my_open_object_confirmed = State()
     my_open_object_moderated = State()
     my_open_object_deleted = State()
-
-    info = State() # Информационная доска
 
 # Отдельные состояния для создания объекта
 class CreateObject(StatesGroup):

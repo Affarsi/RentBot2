@@ -1,4 +1,4 @@
-from aiogram_dialog import Dialog
+from aiogram_dialog import Dialog, LaunchMode
 
 from src.dialogs.windows.admin.all_objects_manager import all_objects_manager_window, all_objects_confirmed_window, \
     all_objects_moderated_window, all_objects_deleted_window, admin_open_object_deleted_window, \
@@ -22,13 +22,14 @@ from src.dialogs.windows.payment import payment_main_window, waiting_payment_win
 # Основной диалог у Пользователя
 user_dialog = Dialog(
     main_menu_window,
+    info_window,
 
     my_objects_manager_window,
     my_object_confirmed_window,
     my_object_moderated_window,
     my_object_deleted_window,
 
-    info_window
+    launch_mode=LaunchMode.ROOT
 )
 
 # Диалог с созданием нового объекта

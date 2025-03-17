@@ -1,6 +1,6 @@
 from aiogram import F
 from aiogram_dialog import Window
-from aiogram_dialog.widgets.kbd import Start, Group, Row, SwitchTo, Url, Checkbox, Button
+from aiogram_dialog.widgets.kbd import Start, Group, Row, SwitchTo, Url, Back, Button
 from aiogram_dialog.widgets.text import Const, Format
 
 from src.dialogs.dialogs_states import UserDialog, AdminDialog, Payment
@@ -37,7 +37,7 @@ main_menu_window = Window(
 info_window = Window(
     Format('{info_text}'),
 
-    SwitchTo(Const('Назад'), id='to_main_menu', state=UserDialog.main_menu),
+    Back(Const('Назад')),
 
     getter=info_text_getter,
     state=UserDialog.info

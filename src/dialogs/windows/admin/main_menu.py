@@ -2,7 +2,7 @@ from aiogram import F
 from aiogram_dialog import Window
 from aiogram_dialog.widgets.input import TextInput, MessageInput
 from aiogram_dialog.widgets.text import Const, Format
-from aiogram_dialog.widgets.kbd import Start, Button, SwitchTo, Row, Group, Next, Back
+from aiogram_dialog.widgets.kbd import Start, Button, SwitchTo, Row, Group, Next, Back, Cancel
 
 from src.dialogs.dialogs_states import UserDialog, AdminDialog
 from src.dialogs.getters.admin.main_menu import admin_menu_getter, take_new_info_input, update_countries, \
@@ -28,7 +28,7 @@ admin_menu_window = Window(
             SwitchTo(Const('📕 Обновить F.A.Q.'), id='update_info', state=AdminDialog.update_info),
         ),
         SwitchTo(Const('📢 Массовая рассылка'), id='mass_send', state=AdminDialog.mass_send),
-        Start(Const('👨 Вернуться в панель Пользователя'), id='user_menu', state=UserDialog.main_menu),
+        Cancel(Const('👨 Вернуться в панель Пользователя')),
     ),
 
     getter=admin_menu_getter,

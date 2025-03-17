@@ -2,7 +2,7 @@ import operator
 
 from aiogram import F
 from aiogram_dialog import Window
-from aiogram_dialog.widgets.kbd import Group, Row, SwitchTo, ScrollingGroup, Select, Button
+from aiogram_dialog.widgets.kbd import Group, Row, SwitchTo, ScrollingGroup, Select, Button, Cancel
 from aiogram_dialog.widgets.text import Const, Format
 
 from src.dialogs.dialogs_states import UserDialog
@@ -57,7 +57,7 @@ my_objects_manager_window = Window(
             when=~F['not_object']
         ),
         Button(Format('{create_object_btn_text}'), id='create_object', on_click=start_create_object), # Создание объекта
-        SwitchTo(Const('Назад'), id='to_main_menu', state=UserDialog.main_menu),
+        Cancel(Const('Назад')),
     ),
 
     getter=my_objects_getter,

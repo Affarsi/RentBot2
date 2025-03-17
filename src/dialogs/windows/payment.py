@@ -15,6 +15,7 @@ payment_main_window = Window(
         id='select_amount',
         plus=Const('+50'),
         minus=Const('-50'),
+        text=Format("{value:g} руб."),
         min_value=50,
         increment=50,
         default=100,
