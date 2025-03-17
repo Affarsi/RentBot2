@@ -4,7 +4,7 @@ from dataclasses import dataclass
 class Config:
     # Основные настройки
     admin_ids = [6094120092] # IDs список администраторов
-    chat: str or int = "@sdafsfdasdfasdfasfd" # -109234012098402 или "@klajflksadjflsakdjfklsafd"
+    chat: str or int = "@afdsasdfasdf" # -109234012098402 или "@klajflksadjflsakdjfklsafd"
     price_amount: int = 200 # Цена на создание/продление/восстановление объекта в рублях
 
     # Технические настройки

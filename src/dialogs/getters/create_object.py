@@ -218,6 +218,11 @@ async def submit_create_object(
     # Сохраняем объект в БД и отправляем его на модерацию
     await db_new_object(object_data=dialog_manager.dialog_data, user_tg_id=user_tg_id)
 
+    # Уведомление для администрации
+    msg_text = f'📥На модерацию поступил новый объект:\nОт: @{callback.from_user.username}'
+    for admin_id in Config.admin_ids:
+        await callback.bot.send_message(admin_id, msg_text)
+
     # Оповещаем пользователя и закрываем диалог
     await dialog_manager.event.answer('Объект успешно отправлен на модерацию!')
     dialog_manager.show_mode = ShowMode.AUTO # В исходное положение

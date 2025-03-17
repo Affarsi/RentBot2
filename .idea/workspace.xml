@@ -6,12 +6,14 @@
   <component name="ChangeListManager">
     <list default="true" id="1bd5e2e9-72a5-4a8d-b09e-36008a260f3c" name="Changes" comment="commit">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config.py" beforeDir="false" afterPath="$PROJECT_DIR$/config.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/database/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/src/database/db.sqlite3" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/dialogs/dialogs_manager.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/dialogs/dialogs_manager.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dialogs/dialogs_states.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/dialogs/dialogs_states.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dialogs/windows/admin/main_menu.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/dialogs/windows/admin/main_menu.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dialogs/windows/main_menu.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/dialogs/windows/main_menu.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dialogs/getters/admin/all_objects_manager.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/dialogs/getters/admin/all_objects_manager.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dialogs/getters/admin/edit_object.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/dialogs/getters/admin/edit_object.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dialogs/getters/create_object.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/dialogs/getters/create_object.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dialogs/getters/edit_object.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/dialogs/getters/edit_object.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/dialogs/windows/my_objects_manager.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/dialogs/windows/my_objects_manager.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dialogs/windows/payment.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/dialogs/windows/payment.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -92,7 +94,7 @@
     &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
     &quot;git-widget-placeholder&quot;: &quot;fixes&quot;,
     &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;D:/PCFather/Files/Programm files/pycharmProjects/Work/RentBot-v2&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/PCFather/Files/Programm files/pycharmProjects/Work/ModerationBot&quot;,
     &quot;settings.editor.selected.configurable&quot;: &quot;reference.settingsdialog.IDE.editor.colors.Color Scheme Font&quot;
   }
 }</component>
@@ -154,14 +156,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1736221880772</updated>
-    </task>
-    <task id="LOCAL-00039" summary="admin_edit_object">
-      <option name="closed" value="true" />
-      <created>1737637265412</created>
-      <option name="number" value="00039" />
-      <option name="presentableId" value="LOCAL-00039" />
-      <option name="project" value="LOCAL" />
-      <updated>1737637265412</updated>
     </task>
     <task id="LOCAL-00040" summary="fix_edit_object">
       <option name="closed" value="true" />
@@ -547,7 +541,15 @@
       <option name="project" value="LOCAL" />
       <updated>1738795447949</updated>
     </task>
-    <option name="localTasksCounter" value="88" />
+    <task id="LOCAL-00088" summary="commit">
+      <option name="closed" value="true" />
+      <created>1742221060139</created>
+      <option name="number" value="00088" />
+      <option name="presentableId" value="LOCAL-00088" />
+      <option name="project" value="LOCAL" />
+      <updated>1742221060139</updated>
+    </task>
+    <option name="localTasksCounter" value="89" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">

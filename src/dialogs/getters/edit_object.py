@@ -243,7 +243,12 @@ async def submit_edit_object(
     await db_update_object(object_id=dialog_manager.start_data.get('open_object_id'),
                            object_data=new_object_data)
 
+    # Уведомление для администрации
+    msg_text = f'📥На модерацию поступил новый объект:\nОт: @{callback.from_user.username}'
+    for admin_id in Config.admin_ids:
+        await callback.bot.send_message(admin_id, msg_text)
+
     # Оповещаем пользователя и закрываем диалог
     await dialog_manager.event.answer('Объект успешно отправлен на модерацию!')
     dialog_manager.show_mode = ShowMode.AUTO
-    await dialog_manager.start(state=UserDialog.my_objects_manager)
+    await dialog_manager.done()

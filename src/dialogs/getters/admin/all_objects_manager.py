@@ -197,6 +197,12 @@ async def accept_moderated_object(
     new_object_data = {'status': '✅', 'message_ids': object_data.get('message_ids')}
     await db_update_object(object_id=object_id, object_data=new_object_data)
 
+    # Уведомление для владельца объекта
+    msg_text = f'📢 Ваш объект (ID:{object_data["generate_id"]}) был успешно опубликован!'
+    print(object_data['owner_telegram_id'])
+    print(msg_text)
+    await callback.bot.send_message(object_data['owner_telegram_id'], msg_text)
+
     # Оповещаем Администратора и отправляем в предыдущие окно
     await dialog_manager.event.answer('Объект успешно одобрен!\nСегодня вы в ударе :)')
     await dialog_manager.switch_to(AdminDialog.all_objects_moderated)

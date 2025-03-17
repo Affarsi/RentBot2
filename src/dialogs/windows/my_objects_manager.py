@@ -57,7 +57,7 @@ my_objects_manager_window = Window(
             when=~F['not_object']
         ),
         Button(Format('{create_object_btn_text}'), id='create_object', on_click=start_create_object), # Создание объекта
-        Cancel(Const('Назад')),
+        SwitchTo(Const('Назад'), id='back_to_main_menu', state=UserDialog.main_menu),
     ),
 
     getter=my_objects_getter,

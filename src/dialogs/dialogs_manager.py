@@ -28,8 +28,6 @@ user_dialog = Dialog(
     my_object_confirmed_window,
     my_object_moderated_window,
     my_object_deleted_window,
-
-    launch_mode=LaunchMode.ROOT
 )
 
 # Диалог с созданием нового объекта

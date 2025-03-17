@@ -161,6 +161,8 @@ async def admin_submit_edit_object(
 ):
     dialog_manager.show_mode = ShowMode.AUTO
     object_id = dialog_manager.start_data.get('admin_open_object_id')
+    object_data = dialog_manager.start_data.get('open_object_dict_data')
+
 
     # Создаем новый словарь и ставим статус "Одобрен"
     new_object_data = {'status': '✅'}
@@ -188,10 +190,16 @@ async def admin_submit_edit_object(
         await db_update_object(object_id=object_id,
                                object_data=result_object_data)
 
+    # Уведомление для владельца объекта
+    msg_text = f'📢 Ваш объект (ID:{object_data["generate_id"]}) был успешно опубликован!'
+    print(object_data['owner_telegram_id'])
+    print(msg_text)
+    await callback.bot.send_message(object_data['owner_telegram_id'], msg_text)
+    
     # Оповещаем Администратора и закрываем диалог
     await dialog_manager.event.answer('Объект успешно изменён/одобрен')
     await stop_edit_object(dialog_manager=dialog_manager)
-    await dialog_manager.start(state=AdminDialog.all_objects_manager)
+    await dialog_manager.done()
 
 
 # Прекратить изменять объект и вернуться к старому
